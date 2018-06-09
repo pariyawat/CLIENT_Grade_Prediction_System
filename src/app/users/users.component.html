@@ -8,17 +8,18 @@
         </span>
         <span>HOME</span>
       </button>
-      <button mat-button [matMenuTriggerFor]="predic" routerLink="">PREDICTION</button>
+      <button mat-button [matMenuTriggerFor]="predic" >PREDICTION</button>
       <mat-menu #predic="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="">
           <mat-icon>device_hub</mat-icon>PREDICTION</button>
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="">
           <mat-icon>bubble_chart</mat-icon>GROUP PREDICTION</button>
       </mat-menu>
-      <button mat-button routerLink="">SUBJECT LIST</button>
+      <button mat-button routerLink="subject">SUBJECT LIST</button>
       <button mat-button routerLink="">DOWNLOAD</button>
 
       <span class="spacer"></span>
+      Pariyawat Kaewsai <span style="font-size: 12px;">&ensp;( Student )</span>
       <button mat-button [matMenuTriggerFor]="user">
         <mat-icon>person_pin</mat-icon>
       </button>

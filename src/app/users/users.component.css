@@ -17,7 +17,7 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 10px 16px;
-  background: linear-gradient(141deg, #0076ca 0%, #28b9ca 51%, #0093ca 75%);
+  background: linear-gradient(141deg, #0076ca 0%, #349cbbc7  51%, #0093ca 75%);
 }
 
 .logo-nav {
@@ -37,7 +37,7 @@
 .footer {
   padding-top: 5px;
   margin-top: 40px;
-  background: linear-gradient(141deg, #0076ca 0%, #28b9ca 51%, #0093ca 75%);
+  background: linear-gradient(141deg, #0076ca 0%, #349cbbc7  51%, #0093ca 75%);
   color: white;
 }
 

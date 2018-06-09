@@ -16,6 +16,10 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
+        path: 'subject',
+        loadChildren: './subject-list/subject-list.module#SubjectListModule',
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
