@@ -1,0 +1,77 @@
+<!-- ************** class header **************** -->
+<div class="user">
+  <div class="header">
+    <nav class="header-nav">
+      <button mat-button routerLink="home">
+        <span>
+          <img class="logo-nav" src="../../assets/image/logoGPA.svg">
+        </span>
+        <span>HOME</span>
+      </button>
+      <button mat-button [matMenuTriggerFor]="predic" routerLink="">PREDICTION</button>
+      <mat-menu #predic="matMenu">
+        <button mat-menu-item>
+          <mat-icon>device_hub</mat-icon>PREDICTION</button>
+        <button mat-menu-item>
+          <mat-icon>bubble_chart</mat-icon>GROUP PREDICTION</button>
+      </mat-menu>
+      <button mat-button routerLink="">SUBJECT LIST</button>
+      <button mat-button routerLink="">DOWNLOAD</button>
+
+      <span class="spacer"></span>
+      <button mat-button [matMenuTriggerFor]="user">
+        <mat-icon>person_pin</mat-icon>
+      </button>
+      <mat-menu #user="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>ACCOUNT</button>
+        <button mat-menu-item>
+          <mat-icon>power_settings_new</mat-icon>LOGOUT</button>
+      </mat-menu>
+
+    </nav>
+  </div>
+
+
+
+
+
+  <!-- ************** class content **************** -->
+
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+
+
+
+
+
+  <!-- ************** class footer **************** -->
+
+
+  <footer class="footer">
+    <div class="footer-list">
+
+      <div class="footer-left">
+        <img class="logo-footer" src="../../assets/image/logoGPA.svg">
+        <span>ABOUT SYSTEM
+        </span>
+      </div>
+
+      <div class="footer-center">
+        Version 0.1.0
+      </div>
+
+      <div class="footer-right">
+        Powered by Angular & Node.js
+        <div>
+          <img class="logo-footer-node" src="../../assets/image/node.svg">
+          <img class="logo-footer-angular" src="../../assets/image/angular.svg">
+        </div>
+      </div>
+
+    </div>
+  </footer>
+</div>
