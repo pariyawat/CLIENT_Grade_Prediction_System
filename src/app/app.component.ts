@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '<ngx-loading-bar color=#ff0090 [includeSpinner]=false height=3px ></ngx-loading-bar> <router-outlet></router-outlet>',
+  // tslint:disable-next-line:max-line-length
+  template: `<ng-progress [spinnerPosition]="'right'"  [color]="'#00ddff'" [ease]="'linear'" [thick]="false"></ng-progress> <router-outlet></router-outlet>`,
 })
 export class AppComponent {
   title = 'app';

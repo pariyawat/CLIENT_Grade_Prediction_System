@@ -2,12 +2,14 @@ import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
-import { LoadingBarRouterModule} from '@ngx-loading-bar/router'
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { NgProgressRouterModule } from '@ngx-progressbar/router';
 
 import { AppComponent } from './app.component';
 
@@ -20,14 +22,15 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     HttpModule,
+    HttpClientModule,
     NgbModule,
     MaterialModule,
-    LoadingBarRouterModule,
-
+    NgProgressModule.forRoot(),
+    NgProgressHttpModule,
+    NgProgressRouterModule
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' },],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

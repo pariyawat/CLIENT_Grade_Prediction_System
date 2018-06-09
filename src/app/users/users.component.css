@@ -1,84 +1,80 @@
-.user{
-    font-family: 'Roboto', sans-serif;
+.user {
+  font-family: 'Roboto', sans-serif;
 }
 
 .header {
-    
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    color: #fff;
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
-    
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  color: #fff;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
-.header-nav{
 
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 10px 16px;
-    background: #1a76ff;;
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px 16px;
+  background: linear-gradient(141deg, #0076ca 0%, #28b9ca 51%, #0093ca 75%);
+}
 
-} 
-
-.logo-nav{
+.logo-nav {
   height: 25px;
-  margin: 0 4px 3px 0;  
+  margin: 0 4px 3px 0;
 }
 
-.spacer{
-    flex-grow: 1;
+.spacer {
+  flex-grow: 1;
 }
 
-
-.content{
-    margin-top: 55px;
-    padding: 20px;
+.content {
+  margin-top: 55px;
+  padding: 20px;
 }
 
-.footer{
-    padding-top: 5px;
-    margin-top: 40px;
-    background: #1a76ff;;
-    color: white;
-
+.footer {
+  padding-top: 5px;
+  margin-top: 40px;
+  background: linear-gradient(141deg, #0076ca 0%, #28b9ca 51%, #0093ca 75%);
+  color: white;
 }
 
-.footer-list{
-    align-items: center;
-    display: flex;
-    flex-flow: row wrap;
-    padding: 6px;
+.footer-list {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 6px;
 }
 
-.footer-left{
-    flex: 1;
-    display: block;
-    margin-left: 20px;
+.footer-left {
+  flex: 1;
+  display: block;
+  margin-left: 20px;
 }
 
-.logo-footer{
-    height: 45px;
-    margin: 0 10px 3px 0; 
+.logo-footer {
+  height: 45px;
+  margin: 0 10px 3px 0;
 }
 
-.footer-center{
-    flex: 1;
-    text-align: center;
-    font-size: 12px;
+.footer-center {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
 }
 
-.footer-right{
-    flex: 1;
-    text-align: center;
-    font-size: 12px;
+.footer-right {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
 }
 
-.logo-footer-node{
-    height: 70px;
+.logo-footer-node {
+  height: 70px;
 }
-.logo-footer-angular{
-    height: 30px;
+
+.logo-footer-angular {
+  height: 30px;
 }
