@@ -8,7 +8,7 @@
         </span>
         <span>HOME</span>
       </button>
-      <button mat-button [matMenuTriggerFor]="predic" >PREDICTION</button>
+      <button mat-button [matMenuTriggerFor]="predic">PREDICTION</button>
       <mat-menu #predic="matMenu">
         <button mat-menu-item routerLink="">
           <mat-icon>device_hub</mat-icon>PREDICTION</button>
@@ -16,15 +16,16 @@
           <mat-icon>bubble_chart</mat-icon>GROUP PREDICTION</button>
       </mat-menu>
       <button mat-button routerLink="subject">SUBJECT LIST</button>
-      <button mat-button routerLink="">DOWNLOAD</button>
+      <button mat-button routerLink="download">DOWNLOAD</button>
 
       <span class="spacer"></span>
-      Pariyawat Kaewsai <span style="font-size: 12px;">&ensp;( Student )</span>
-      <button mat-button [matMenuTriggerFor]="user">
+      Pariyawat Kaewsai
+      <span style="font-size: 12px;">&ensp;( Student )</span>
+      <button mat-icon-button [matMenuTriggerFor]="user">
         <mat-icon>person_pin</mat-icon>
       </button>
       <mat-menu #user="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="account">
           <mat-icon>account_circle</mat-icon>ACCOUNT</button>
         <button mat-menu-item>
           <mat-icon>power_settings_new</mat-icon>LOGOUT</button>
@@ -40,12 +41,10 @@
   <!-- ************** class content **************** -->
 
 
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
-
-
-
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+ 
 
 
 

@@ -24,11 +24,11 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     HttpModule,
     HttpClientModule,
-    NgbModule,
+    NgbModule.forRoot(),
     MaterialModule,
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
-    NgProgressRouterModule
+    NgProgressRouterModule,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ],
   bootstrap: [AppComponent]
