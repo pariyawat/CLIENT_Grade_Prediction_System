@@ -1,6 +1,22 @@
-<p>
-  subject-list works!
-</p>
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row subject-header">รายวิชาตามหลักสูตร</div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7 subject-body">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-md-2">
+      <div class="subject-sidebar">
+        <div style="font-weight: 400; font-size: 17px;margin-bottom: 10px;">รายวิชาตามหลักสูตร</div>
+        <div class="year-list" routerLink="subject58" (click)=jumpTop()>
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> หลักสูตร 2558</div>
+        <div class="year-list" routerLink="subject53" (click)=jumpTop()>
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> หลักสูตร 2553</div>
+        <div class="year-list" routerLink="subject50" (click)=jumpTop()>
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> หลักสูตร 2550</div>
+      </div>
 
-
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>

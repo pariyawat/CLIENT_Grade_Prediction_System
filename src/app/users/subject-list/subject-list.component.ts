@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-subject-list',
   templateUrl: './subject-list.component.html',
@@ -12,4 +11,7 @@ export class SubjectListComponent implements OnInit {
   ngOnInit() {
   }
 
+  jumpTop() {
+    window.scrollTo(0, 0);
+  }
 }

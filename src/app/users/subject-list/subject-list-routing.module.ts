@@ -24,11 +24,11 @@ const routes: Routes = [
         path: 'subject50',
         component: Subject50Component,
       },
-      // {
-      //   path: '',
-      //   redirectTo: 'subject50',
-      //   pathMatch: 'full',
-      // }
+      {
+        path: '',
+        redirectTo: 'subject58',
+        pathMatch: 'full',
+      }
     ]
   },
 

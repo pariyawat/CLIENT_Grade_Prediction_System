@@ -7,15 +7,15 @@
   text-align: center;
 }
 
-.basic-button-custom{
-    color: #0093ca;
-    background: #ffffff;
-    height: 60px;
-    width: 180px;
-    border-radius: 30px;
+.basic-button-custom {
+  color: #0093ca;
+  background: #ffffff;
+  height: 60px;
+  width: 180px;
+  border-radius: 30px;
 }
 
-.tools{
+.tools {
   margin-top: 70px;
   margin-bottom: 30px;
   padding: 30px;
@@ -23,20 +23,21 @@
   text-align: center;
 }
 
-.algorithm{
+.algorithm {
   margin-top: 70px;
   margin-bottom: 60px;
   padding: 30px;
   color: #777777;
   text-align: center;
-font-family: 'Kanit', sans-serif;
+  font-family: 'Kanit', sans-serif;
 }
 
-.info-button-custom{
+.info-button-custom {
   color: #ffffff;
-  background-image: linear-gradient(to right,#4cc4ff,#4ca6ff);
+  background-image: linear-gradient(to right, #4cc4ff, #4ca6ff);
   height: 60px;
   width: 180px;
   border-radius: 30px;
   text-align: center;
 }
+button:focus {outline:0;}

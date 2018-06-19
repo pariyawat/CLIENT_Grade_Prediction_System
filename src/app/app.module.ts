@@ -29,6 +29,7 @@ import { AppComponent } from './app.component';
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
     NgProgressRouterModule,
+    MaterialModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ],
   bootstrap: [AppComponent]

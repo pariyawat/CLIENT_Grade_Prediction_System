@@ -14,6 +14,7 @@ import { Subject58Component } from './subject58/subject58.component';
     imports: [
         MaterialModule,
         SubjectListRoutingModule,
+        MaterialModule
 
     ],
     declarations: [

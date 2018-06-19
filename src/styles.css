@@ -1,3 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://fonts.googleapis.com/css?family=Kanit:200,300,400');
+
+
+/********************************** Scrollbr **********************************/
+
+/* width */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: #dddddd;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: rgb(153, 153, 153);
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #61b2ca;
+}
+
+/******************************************************************************/
+
+/********************************* BUTTON *************************************/
+
+.primary-button-custom {
+  color: #ffffff;
+  background-image: linear-gradient(to right, #b57fff, #8a7fff);
+  height: 60px;
+  width: 160px;
+  border-radius: 7px;
+  font-family: 'Kanit', sans-serif;
+}
+
+.info-button-custom {
+  color: #ffffff;
+  background-image: linear-gradient(to right, #4cc4ff, #4ca6ff);
+}
+
+.warning-button-custom {
+  color: #ffffff;
+  background-image: linear-gradient(to right, #fc0, #ffa100);
+}
+
+.success-button-custom {
+  color: #ffffff;
+  background-image: linear-gradient(to right, #5be1bd, #5be190);
+}
+
+.danger-button-custom {
+  color: #ffffff;
+  background-image: linear-gradient(to right, #ff4ca6, #ff4c6a);
+}
+
+.basic-button-custom {
+  color: #646464;
+  background: #ffffff;
+}
+/******************************************************************************/

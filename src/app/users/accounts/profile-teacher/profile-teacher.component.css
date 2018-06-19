@@ -1,0 +1,78 @@
+.profile-header {
+    background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%);
+    height: 100px;
+    color: #ffffff;
+    padding-top: 40px;
+    padding-left: 50px;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  
+  .profile-body {
+    box-shadow: 0px 4px 7px 0px #afafaf;
+    font-family: 'Kanit', sans-serif;
+    color: #777777;
+    padding-bottom: 70px;
+    padding-top: 50px;
+  }
+  
+  .profile-top {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  
+  .img-profile {
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 8px;
+    background: linear-gradient(141deg, #0080bd 0%, #6ee4ff 51%, #0090bb 75%);
+  }
+  .button-group{
+    text-align: right;
+    margin-right: 20px;
+  }
+  
+  /*
+    BUTTON
+    */
+  
+  .primary-button-custom {
+    height: 60px;
+    width: 160px;
+    border-radius: 7px;
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  .info-button-custom {
+    height: 60px;
+    width: 160px;
+    border-radius: 7px;
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  .warning-button-custom {
+    height: 60px;
+    width: 160px;
+    border-radius: 7px;
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  .success-button-custom {
+    height: 60px;
+    width: 160px;
+    border-radius: 7px;
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  .danger-button-custom {
+    height: 60px;
+    width: 160px;
+    border-radius: 7px;
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+  

@@ -79,3 +79,4 @@
 .logo-footer-angular {
   height: 30px;
 }
+button:focus {outline:0;}
