@@ -1,0 +1,38 @@
+.login {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%);
+  /* background: #999999; */
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-login {
+  width: 390px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 44px 55px 33px 55px;
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 600px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.info-button-custom {
+  margin-top: 20px;
+  height: 45px;
+  border-radius: 30px;
+  width: 250px;
+}
+
+mat-form-field {
+  width: 250px !important;
+  
+}

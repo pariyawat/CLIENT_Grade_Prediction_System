@@ -12,6 +12,7 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
 
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AppComponent } from './app.component';
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
     NgProgressRouterModule,
-    MaterialModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ],
   bootstrap: [AppComponent]

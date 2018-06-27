@@ -1,0 +1,42 @@
+.download-header {
+  background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%);
+  height: 100px;
+  color: #ffffff;
+  padding-top: 40px;
+  padding-left: 50px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.download-student {
+  padding-top: 50px;
+  text-align: center;
+  color: #777777;
+}
+
+.download-teacher {
+  padding-top: 50px;
+  text-align: center;
+  color: #777777;
+}
+
+.img-example {
+  width: 90%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 50px;
+}
+
+/*    BUTTON    */
+
+button:focus {
+  outline: 0;
+}
+
+.primary-button-custom {
+  height: 50px;
+  border-radius: 30px;
+  width: 180px;
+}

@@ -39,13 +39,13 @@
 }
 
 .year-list:hover {
-  color: #0093ca;
-}
-.year-list:focus {
   color: #ffffff;
   background-image: linear-gradient(to right, #0093ca,#ffffff);
   outline: 0;
   font-weight: 400;
+}
+.year-list:focus {
+  outline: 0;
 }
 
 

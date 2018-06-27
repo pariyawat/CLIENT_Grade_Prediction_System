@@ -4,15 +4,15 @@
     <nav class="header-nav">
       <button mat-button routerLink="home">
         <span>
-          <img class="logo-nav" src="../../assets/image/logoGPA.svg">
+          <img class="logo-nav" src="../../assets/image/logo/R-white.svg">
         </span>
         <span>HOME</span>
       </button>
       <button mat-button [matMenuTriggerFor]="predic">PREDICTION</button>
       <mat-menu #predic="matMenu">
-        <button mat-menu-item routerLink="">
+        <button mat-menu-item routerLink="prediction/single">
           <mat-icon>device_hub</mat-icon>PREDICTION</button>
-        <button mat-menu-item routerLink="">
+        <button mat-menu-item routerLink="prediction/group">
           <mat-icon>bubble_chart</mat-icon>GROUP PREDICTION</button>
       </mat-menu>
       <button mat-button routerLink="subject">SUBJECT LIST</button>
@@ -41,10 +41,10 @@
   <!-- ************** class content **************** -->
 
 
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
- 
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
 
 
 
@@ -55,7 +55,7 @@
     <div class="footer-list">
 
       <div class="footer-left">
-        <img class="logo-footer" src="../../assets/image/logoGPA.svg">
+        <img class="logo-footer" src="../../assets/image/logo/R-white.svg">
         <span>ABOUT SYSTEM
         </span>
       </div>

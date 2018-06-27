@@ -5,9 +5,10 @@ import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: 'users', loadChildren: 'src/app/users/users.module#UsersModule' },
-  { path: '', redirectTo: 'users', pathMatch: 'full' },
-  { path: '**', redirectTo: 'users' },
+  { path: 'pages', loadChildren: 'src/app/users/users.module#UsersModule' },
+  { path: 'login', loadChildren: 'src/app/login/login.module#LoginModule'},
+  { path: '', redirectTo: 'pages', pathMatch: 'full' },
+  { path: '**', redirectTo: 'pages' },
 ];
 
 const config: ExtraOptions = {

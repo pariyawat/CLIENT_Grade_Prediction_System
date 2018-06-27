@@ -17,16 +17,20 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path : 'download',
-        component : DowloadsComponent,
+        path: 'download',
+        component: DowloadsComponent,
       },
       {
         path: 'account',
-        loadChildren: './accounts/accounts-routing.module#AccountsRoutingModule',
+        loadChildren: './accounts/accounts.module#AccountsModule',
       },
       {
         path: 'subject',
         loadChildren: './subject-list/subject-list.module#SubjectListModule',
+      },
+      {
+        path: 'prediction',
+        loadChildren: './prediction/prediction.module#PredictionModule',
       },
       {
         path: '',

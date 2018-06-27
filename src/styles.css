@@ -38,10 +38,6 @@
 .primary-button-custom {
   color: #ffffff;
   background-image: linear-gradient(to right, #b57fff, #8a7fff);
-  height: 60px;
-  width: 160px;
-  border-radius: 7px;
-  font-family: 'Kanit', sans-serif;
 }
 
 .info-button-custom {
