@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+/*
+    BUTTON
+    */
+
+::ng-deep button:focus {
+  outline: 0px;
+}
