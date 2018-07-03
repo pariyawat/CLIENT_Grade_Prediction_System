@@ -27,7 +27,7 @@
       <mat-menu #user="matMenu">
         <button mat-menu-item routerLink="account">
           <mat-icon>account_circle</mat-icon>ACCOUNT</button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="onLogout()">
           <mat-icon>power_settings_new</mat-icon>LOGOUT</button>
       </mat-menu>
 

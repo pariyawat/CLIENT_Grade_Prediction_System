@@ -1,14 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+import { AuthenticationGuard } from './@common/guards/authentication.guard';
 
 
 
 const routes: Routes = [
-  { path: 'pages', loadChildren: 'src/app/users/users.module#UsersModule' },
-  { path: 'login', loadChildren: 'src/app/login/login.module#LoginModule'},
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  {
+    path: 'login',
+    loadChildren: 'src/app/login/login.module#LoginModule'
+  },
+  {
+    path: 'pages',
+    loadChildren: 'src/app/users/users.module#UsersModule',
+    canActivate: [AuthenticationGuard]
+  },
+
+  {
+    path: '',
+    redirectTo: 'pages',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'pages'
+  },
 ];
 
 const config: ExtraOptions = {

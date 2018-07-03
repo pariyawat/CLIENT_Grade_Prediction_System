@@ -32,7 +32,6 @@ button:focus {
   width: 250px;
 }
 
-mat-form-field {
-  width: 250px !important;
-  
+.mat-form-field {
+  width: 250px;
 }

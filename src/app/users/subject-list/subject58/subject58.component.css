@@ -2,6 +2,30 @@ table {
   width: 100%;
 }
 
+.mat-form-field {
+  width: 300px;
+  font-family: 'Kanit', sans-serif;
+}
+
+.tb-header {
+  font-family: 'Kanit', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  background: #0093ca;
+  color: white;
+}
+
+.filter-header {
+  text-align: right;
+  margin-right: 10px;
+}
+
+label{
+  font-size: 20px;
+  font-weight: 200;
+  font-family: 'Kanit', sans-serif;
+  margin-left: 20px;
+}
 /*
     BUTTON
     */

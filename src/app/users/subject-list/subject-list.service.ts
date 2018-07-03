@@ -8,7 +8,7 @@ export class SubjectListService {
     private connection: ConnectionService
   ) { }
 
-  getSubjectList(id): Promise<any> {
+  public getSubjectList(id): Promise<any> {
     return this.connection.requestGet('subject/' + id)
       .then((response) => {
         return response;

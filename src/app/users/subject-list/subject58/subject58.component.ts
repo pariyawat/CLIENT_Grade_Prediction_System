@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { SubjectListService } from '../subject-list.service';
 import { SubjectList } from '../subject-list.interface';
 
@@ -14,6 +14,7 @@ export class Subject58Component implements OnInit {
   dataSource: MatTableDataSource<SubjectList[]>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private subjectService: SubjectListService) { }
 
@@ -23,12 +24,20 @@ export class Subject58Component implements OnInit {
       .then((response) => {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
+  applyFilter(filterValue: String) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
 
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+
+  }
 
 }

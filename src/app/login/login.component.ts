@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+import { redirectLink } from '../@common/models/app.url';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private loginService: LoginService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -23,7 +28,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginForm) {
-    console.log(loginForm.value);
+    this.loginService.toLogin(loginForm.value)
+      .then(() => {
+        this.route.navigate([redirectLink.homePage]);
+      }).catch(() => {
+        alert('Something Wrong');
+      });
   }
 
 }

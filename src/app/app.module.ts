@@ -10,7 +10,7 @@ import { MaterialModule } from './material.module';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
-
+import { Ng2Webstorage } from 'ngx-webstorage';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
     NgbModule.forRoot(),
@@ -30,8 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
     NgProgressRouterModule,
-    FormsModule,
-    ReactiveFormsModule
+    Ng2Webstorage
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ],
   bootstrap: [AppComponent]
