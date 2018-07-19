@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Papa } from 'ngx-papaparse';
+import { GradeHistoryService } from '../grade-history.service';
 
 @Component({
   selector: 'app-grade-student',
@@ -7,8 +8,12 @@ import { Papa } from 'ngx-papaparse';
   styleUrls: ['./grade-student.component.css']
 })
 export class GradeStudentComponent implements OnInit {
+
   private data: any;
-  constructor(private papa: Papa) { }
+  private gradeData;
+
+  constructor(private papa: Papa, private gradeService: GradeHistoryService) { }
+
   @ViewChild('csvData') _file: ElementRef;
   ngOnInit() {
   }
@@ -20,10 +25,21 @@ export class GradeStudentComponent implements OnInit {
     const options = {
       header: true,
       complete: (results, file) => {
-        console.log(results, file);
+        this.gradeData = results;
+        console.log(this.gradeData);
       },
     };
 
     this.papa.parse(this.data, options, );
+  }
+
+  onAddGrade() {
+    this.gradeService.studentAddGrade(this.gradeData.data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 }

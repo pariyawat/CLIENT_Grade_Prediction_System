@@ -5,7 +5,8 @@
     <div class="col-md-8 his-body">
       <div class="file-upload">
         Upload
-        <input #csvData type="file" accept=".csv" (change)="onCSV()">
+        <input #csvData type="file" accept=".csv, .xlsx" (change)="onCSV()">
+        <button (click)="onAddGrade()">send data</button>
       </div>
     </div>
     <div class="col-md-2"></div>

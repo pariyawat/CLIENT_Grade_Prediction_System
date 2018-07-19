@@ -5,6 +5,7 @@ import { GradeTeacherComponent } from './grade-teacher/grade-teacher.component';
 import { GradeHistoryComponent } from './grade-history.component';
 import { GradeHistoryRoutingModule } from './grade-history-routing.module';
 import { MaterialModule } from '../../material.module';
+import { GradeHistoryService } from './grade-history.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,9 @@ import { MaterialModule } from '../../material.module';
     GradeStudentComponent,
     GradeTeacherComponent,
     GradeHistoryComponent
+  ],
+  providers: [
+    GradeHistoryService
   ]
 })
 export class GradeHistoryModule { }
