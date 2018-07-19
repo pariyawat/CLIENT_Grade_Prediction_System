@@ -34,6 +34,12 @@ export class GradeStudentComponent implements OnInit {
   }
 
   onAddGrade() {
+
+    this.gradeData.data.map(list=>{
+      list['std_id'] = 10000;
+      return list;
+    })
+
     this.gradeService.studentAddGrade(this.gradeData.data)
       .then((response) => {
         console.log(response);
