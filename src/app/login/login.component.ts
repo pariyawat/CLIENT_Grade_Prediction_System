@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit {
 
   onLogin(loginForm) {
     this.loginService.toLogin(loginForm.value)
-      .then(() => {
+      .then((response) => {
         this.route.navigate([redirectLink.homePage]);
       }).catch(() => {
-        alert('Something Wrong');
+         alert('Something Wrong');
       });
   }
 

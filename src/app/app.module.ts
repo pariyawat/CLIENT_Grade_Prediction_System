@@ -13,6 +13,7 @@ import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PapaParseModule } from 'ngx-papaparse';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
     NgProgressRouterModule,
-    Ng2Webstorage
+    Ng2Webstorage,
+    PapaParseModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ],
   bootstrap: [AppComponent]

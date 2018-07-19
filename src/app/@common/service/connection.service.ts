@@ -26,7 +26,7 @@ export class ConnectionService {
   }
 
   public requestPost(path: string, data: any): Promise<any> {
-    console.log('Path Connect to Server >>>>>>>>>>>>>>>>', appURL.ipServer + path);
+    console.log('Path Connect to Server >>>>>>>>>>>>>>>>>>>>>>', appURL.ipServer + path);
     console.log('Data Sendtoserver :', data);
     return this.http
       .post(appURL.ipServer + path, data)

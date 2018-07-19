@@ -31,6 +31,9 @@ const routes: Routes = [
       {
         path: 'prediction',
         loadChildren: './prediction/prediction.module#PredictionModule',
+      }, {
+        path: 'grade-history',
+        loadChildren: './grade-history/grade-history.module#GradeHistoryModule'
       },
       {
         path: '',

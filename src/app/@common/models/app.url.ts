@@ -5,5 +5,14 @@ export const appURL = {
 
 export const redirectLink = {
     homePage: 'pages/home',
-    loginPage: 'login'
+    loginPage: 'login',
+
+    // ---------- Profile ----------
+    studentProfile: 'pages/account/Student',
+    teacherProfile: 'pages/account/Teacher',
+    adminProfile: 'pages/account/Administrator',
+
+    // ---------- Grade History ---------
+    gradeStudent: 'pages/grade-history/student',
+    gradeTeacher: 'pages/grade-history/teacher',
 };

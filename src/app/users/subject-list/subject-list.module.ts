@@ -6,12 +6,14 @@ import { Subject50Component } from './subject50/subject50.component';
 import { Subject53Component } from './subject53/subject53.component';
 import { Subject58Component } from './subject58/subject58.component';
 import { SubjectListService } from './subject-list.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
         MaterialModule,
         SubjectListRoutingModule,
-        MaterialModule
+        MaterialModule,
+        CommonModule
 
     ],
     declarations: [
