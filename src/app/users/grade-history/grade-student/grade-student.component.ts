@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Papa } from 'ngx-papaparse';
+import { PapaParseService } from 'ngx-papaparse';
 import { GradeHistoryService } from '../grade-history.service';
+import { AuthenticationService } from '../../../@common/service/authentication.service';
+import { IActiveUser } from '../../../@common/models/login.interface';
 
 @Component({
   selector: 'app-grade-student',
@@ -9,12 +11,18 @@ import { GradeHistoryService } from '../grade-history.service';
 })
 export class GradeStudentComponent implements OnInit {
 
-  private data: any;
-  private gradeData;
-
-  constructor(private papa: Papa, private gradeService: GradeHistoryService) { }
+  constructor(
+    private papa: PapaParseService,
+    private gradeService: GradeHistoryService,
+    private authService: AuthenticationService) {
+  }
 
   @ViewChild('csvData') _file: ElementRef;
+  private data: any;
+  private gradeData;
+  private user: IActiveUser = this.authService.getActiveUser();
+
+
   ngOnInit() {
   }
   onCSV() {
@@ -34,17 +42,17 @@ export class GradeStudentComponent implements OnInit {
   }
 
   onAddGrade() {
-
-    this.gradeData.data.map(list=>{
-      list['std_id'] = 10000;
-      return list;
-    })
+    this.gradeData.data.map((student) => {
+      student['student_id'] = this.user.ID;
+      return student;
+    });
 
     this.gradeService.studentAddGrade(this.gradeData.data)
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
+        console.log("++++++++++++err++++++++++", error);
         throw error;
       });
   }
