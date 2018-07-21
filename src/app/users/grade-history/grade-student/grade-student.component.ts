@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { PapaParseService } from 'ngx-papaparse';
+import { PapaParseService  } from 'ngx-papaparse';
 import { GradeHistoryService } from '../grade-history.service';
 import { AuthenticationService } from '../../../@common/service/authentication.service';
 import { IActiveUser } from '../../../@common/models/login.interface';
@@ -52,7 +52,7 @@ export class GradeStudentComponent implements OnInit {
         console.log(response);
       })
       .catch((error) => {
-        console.log("++++++++++++err++++++++++", error);
+        console.log(error);
         throw error;
       });
   }
