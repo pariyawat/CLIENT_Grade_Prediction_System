@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { redirectLink } from '../@common/models/app.url';
+import { AuthenticationService } from '../@common/service/authentication.service';
+import { IActiveUser } from '../@common/models/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
-    private route: Router
+    private route: Router,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -30,6 +33,7 @@ export class LoginComponent implements OnInit {
   onLogin(loginForm) {
     this.loginService.toLogin(loginForm.value)
       .then((response) => {
+        this.authService.setActiveUser(<IActiveUser>response);
         this.route.navigate([redirectLink.homePage]);
       }).catch(() => {
          alert('Something Wrong');

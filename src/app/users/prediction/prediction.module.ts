@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../material.module';
 import { PredictionRoutingModule } from './prediction-routing.module';
 import { PredictionComponent } from './prediction.component';
@@ -9,6 +10,7 @@ import { PredictResultComponent } from './single/predict-result/predict-result.c
 import { SelectGroupComponent } from './group/select-group/select-group.component';
 import { PredictResultsComponent } from './group/predict-results/predict-results.component';
 import { SelectSubjectsComponent } from './group/select-subjects/select-subjects.component';
+import { PredictionService } from './prediction.service';
 
 
 
@@ -17,7 +19,8 @@ import { SelectSubjectsComponent } from './group/select-subjects/select-subjects
 @NgModule({
     imports: [
         MaterialModule,
-        PredictionRoutingModule
+        PredictionRoutingModule,
+        CommonModule
     ],
     declarations: [
         PredictionComponent,
@@ -28,6 +31,9 @@ import { SelectSubjectsComponent } from './group/select-subjects/select-subjects
         SelectGroupComponent,
         SelectSubjectsComponent,
         PredictResultsComponent
+    ],
+    providers: [
+        PredictionService
     ]
 })
 export class PredictionModule { }

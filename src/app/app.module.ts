@@ -14,6 +14,8 @@ import { Ng2Webstorage } from 'ngx-webstorage';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PapaParseModule } from 'ngx-papaparse';
+import { NgxAlertsModule } from '@ngx-plus/ngx-alerts';
+
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { PapaParseModule } from 'ngx-papaparse';
     NgProgressHttpModule,
     NgProgressRouterModule,
     Ng2Webstorage,
-    PapaParseModule
+    PapaParseModule,
+    NgxAlertsModule.forRoot(),
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ],
   bootstrap: [AppComponent]

@@ -7,12 +7,23 @@ export class GradeHistoryService {
   constructor(private connection: ConnectionService) { }
 
   public studentAddGrade(data): Promise<any> {
-    return this.connection.requestPost('add-grade-student', data)
+    return this.connection.requestPost('grade-history/student/add', data)
       .then((response) => {
         return response;
       })
       .catch((error) => {
         throw error;
       });
+  }
+
+  public studentGetGrade(id): Promise<any> {
+    return this.connection.requestGet('grade-history/student/' + id)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+
   }
 }
