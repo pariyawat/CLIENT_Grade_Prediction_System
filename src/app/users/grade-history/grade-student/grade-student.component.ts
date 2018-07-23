@@ -60,6 +60,16 @@ export class GradeStudentComponent implements OnInit {
     this.gradeService.studentAddGrade(this.gradeData.data)
       .then((response) => {
         console.log(response);
+        const item: any = {
+          title: `Status`,
+          text: `
+          Success: ${response.success}
+          Error: ${response.error}
+          Total: ${response.total}
+          `
+        };
+        this.alerts.alertSuccess(item);
+        this.getGrade();
       })
       .catch((error) => {
         console.log(error);
@@ -85,9 +95,5 @@ export class GradeStudentComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  public showAlert() {
-    this.alerts.alertInfo('55555555');
   }
 }
