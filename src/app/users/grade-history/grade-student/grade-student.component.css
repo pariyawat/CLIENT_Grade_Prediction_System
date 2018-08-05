@@ -59,6 +59,9 @@ label {
 .input-custom1{
   font-family: 'Kanit', sans-serif;
 }
+.uploadDialog{
+  width: 300px;
+}
 
 /*
     BUTTON

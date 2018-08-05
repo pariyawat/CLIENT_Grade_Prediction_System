@@ -10,12 +10,13 @@ import { IGetSubjectPredict } from '../../prediction.interface';
 })
 export class SelectSubjectComponent implements OnInit {
 
-  displayedColumns: string[] = ['SUB_CPE', 'SUB_ID', 'SUB_NAME', 'ACTION'];
+  displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'ACTION'];
   dataSource: MatTableDataSource<IGetSubjectPredict[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private predictService: PredictionService) { }
 
+  private subjectSelected = [];
   ngOnInit() {
     this.predictService.getSubjectPredict()
       .then((response) => {
@@ -33,6 +34,11 @@ export class SelectSubjectComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+
+  }
+  onSelectGrade(data) {
+    this.subjectSelected.push(data);
+    console.log(this.subjectSelected);
 
   }
 
