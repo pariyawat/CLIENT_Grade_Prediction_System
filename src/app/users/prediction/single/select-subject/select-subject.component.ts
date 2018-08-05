@@ -1,7 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { PredictionService } from '../../prediction.service';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { IGetSubjectPredict } from '../../prediction.interface';
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {
+  PredictionService
+} from '../../prediction.service';
+import {
+  MatTableDataSource,
+  MatPaginator,
+  MatSort
+} from '@angular/material';
+import {
+  IGetSubjectPredict
+} from '../../prediction.interface';
 
 @Component({
   selector: 'app-select-subject',
@@ -11,16 +23,19 @@ import { IGetSubjectPredict } from '../../prediction.interface';
 export class SelectSubjectComponent implements OnInit {
 
   displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'ACTION'];
-  dataSource: MatTableDataSource<IGetSubjectPredict[]>;
+  dataSource: MatTableDataSource < IGetSubjectPredict[] > ;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private predictService: PredictionService) { }
+  constructor(private predictService: PredictionService) {}
 
   private subjectSelected = [];
   ngOnInit() {
     this.predictService.getSubjectPredict()
       .then((response) => {
-        this.dataSource = new MatTableDataSource(response);
+        this.dataSource = new MatTableDataSource(response.map(list => {
+          list['IS_ACTIVE'] = false;
+          return list;
+        }));
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       })
@@ -36,9 +51,18 @@ export class SelectSubjectComponent implements OnInit {
     }
 
   }
-  onSelectGrade(data) {
-    this.subjectSelected.push(data);
+  async onSAVE() {
+    // this.subjectSelected.push(data);
+    this.subjectSelected = [];
+
+    await this.dataSource.data.forEach((list) => {
+      if (list['IS_ACTIVE']) {
+        this.subjectSelected.push(list);
+      }
+    });
+
     console.log(this.subjectSelected);
+
 
   }
 
