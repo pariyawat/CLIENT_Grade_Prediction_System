@@ -8,9 +8,9 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
-    <ng-container matColumnDef="SUB_CPE" >
-      <th  mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">รหัสวิชากลาง</th>
-      <td  mat-cell *matCellDef="let element">{{element.SUB_CPE}}</td>
+    <ng-container matColumnDef="SUB_CPE">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">รหัสวิชากลาง</th>
+      <td mat-cell *matCellDef="let element">{{element.SUB_CPE}}</td>
     </ng-container>
 
     <ng-container matColumnDef="SUB_ID">
@@ -21,6 +21,16 @@
     <ng-container matColumnDef="SUB_NAME">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">ชื่อวิชา</th>
       <td mat-cell *matCellDef="let element"> {{element.SUB_NAME}} </td>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container matColumnDef="ACTION">
+      <th mat-header-cell *matHeaderCellDef class="tb-header">เลือกวิชา</th>
+      <td mat-cell *matCellDef="let row; let i=index;">
+          <button mat-icon-button color="accent" (click)="onSelectGrade(i, row.SUB_CPE, row.SUB_ID, row.SUB_NAME)">
+            <mat-icon aria-label="Add">add_circle_outline</mat-icon>
+          </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -10,7 +10,7 @@ import { IGetSubjectPredict } from '../../prediction.interface';
 })
 export class SelectSubjectComponent implements OnInit {
 
-  displayedColumns: string[] = ['SUB_CPE', 'SUB_ID', 'SUB_NAME'];
+  displayedColumns: string[] = ['SUB_CPE', 'SUB_ID', 'SUB_NAME', 'ACTION'];
   dataSource: MatTableDataSource<IGetSubjectPredict[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

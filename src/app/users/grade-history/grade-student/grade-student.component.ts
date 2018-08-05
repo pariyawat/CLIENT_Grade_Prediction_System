@@ -18,7 +18,7 @@ export class GradeStudentComponent implements OnInit {
   private gradeData;
   private user: IActiveUser = this.authService.getActiveUser();
 
-  private displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'GRADE', 'COURSE'];
+  private displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'GRADE', 'COURSE', 'ACTION'];
   private dataSource: MatTableDataSource<IStudentSubject[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -52,10 +52,6 @@ export class GradeStudentComponent implements OnInit {
   }
 
   public onAddGrade() {
-    this.gradeData.data.map((student) => {
-      student['student_id'] = this.user.ID;
-      return student;
-    });
 
     this.gradeService.studentAddGrade(this.gradeData.data)
       .then((response) => {
@@ -66,9 +62,10 @@ export class GradeStudentComponent implements OnInit {
           Success: ${response.success}
           Error: ${response.error}
           Total: ${response.total}
+          Message: ${response.errorItem}
           `
         };
-        this.alerts.alertSuccess(item);
+        this.alerts.alertInfo(item);
         this.getGrade();
       })
       .catch((error) => {

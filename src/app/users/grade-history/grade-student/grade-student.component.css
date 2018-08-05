@@ -47,8 +47,19 @@ label {
 }
 
 .file-upload{
-  margin-top: 50px;
+  margin-top: 70px;
+  /* margin-left: 100px;
+  margin-right: 100px; */
+  padding-top: 40px; 
+  padding-bottom: 40px;
+  text-align: center;
+  border: 2px dashed rgb(190, 190, 190);
+  border-radius: 5px;
 }
+.input-custom1{
+  font-family: 'Kanit', sans-serif;
+}
+
 /*
     BUTTON
     */
@@ -86,8 +97,6 @@ label {
 .success-button-custom {
   color: #ffffff;
   background-image: linear-gradient(to right, #5be1bd, #5be190);
-  height: 60px;
-  width: 160px;
   border-radius: 7px;
   text-align: center;
   font-family: 'Kanit', sans-serif;

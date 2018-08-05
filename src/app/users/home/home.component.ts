@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../@common/service/authentication.service';
+import { Router } from '@angular/router';
+import { redirectLink } from '../../@common/models/app.url';
+import { IActiveUser } from '../../@common/models/login.interface';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +10,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  private user: IActiveUser;
+  constructor(private authService: AuthenticationService, private route: Router) {
+    this.user = this.authService.getActiveUser();
+  }
 
   ngOnInit() {
   }
 
+  public goPrediction() {
+
+    if (this.user.Role === 'Student') {
+      this.route.navigate([redirectLink.singlePrediction]);
+    } else if (this.user.Role === 'Teacher') {
+      this.route.navigate([redirectLink.groupPrediction]);
+    } else {
+      this.route.navigate([redirectLink.adminProfile]);
+    }
+
+  }
 }
