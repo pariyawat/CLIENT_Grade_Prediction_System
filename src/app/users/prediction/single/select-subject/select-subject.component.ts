@@ -1,19 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ViewChild
-} from '@angular/core';
-import {
-  PredictionService
-} from '../../prediction.service';
-import {
-  MatTableDataSource,
-  MatPaginator,
-  MatSort
-} from '@angular/material';
-import {
-  IGetSubjectPredict
-} from '../../prediction.interface';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PredictionService } from '../../prediction.service';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { IGetSubjectPredict } from '../../prediction.interface';
 
 @Component({
   selector: 'app-select-subject',
@@ -23,10 +11,10 @@ import {
 export class SelectSubjectComponent implements OnInit {
 
   displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'ACTION'];
-  dataSource: MatTableDataSource < IGetSubjectPredict[] > ;
+  dataSource: MatTableDataSource<IGetSubjectPredict[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private predictService: PredictionService) {}
+  constructor(private predictService: PredictionService) { }
 
   private subjectSelected = [];
   ngOnInit() {
@@ -52,7 +40,6 @@ export class SelectSubjectComponent implements OnInit {
 
   }
   async onSAVE() {
-    // this.subjectSelected.push(data);
     this.subjectSelected = [];
 
     await this.dataSource.data.forEach((list) => {
@@ -62,8 +49,10 @@ export class SelectSubjectComponent implements OnInit {
     });
 
     console.log(this.subjectSelected);
+  }
 
-
+  onPrediction() {
+    alert(JSON.stringify(this.subjectSelected));
   }
 
 }
