@@ -43,6 +43,7 @@ label {
   font-weight: 300;
   font-size: 15px;
   position: sticky;
+  overflow: auto;
   top: 80px;
 }
 
