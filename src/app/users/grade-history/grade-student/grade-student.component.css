@@ -62,6 +62,9 @@ label {
 .uploadDialog{
   width: 300px;
 }
+.deleteDialog{
+  width: 500px;
+}
 
 /*
     BUTTON

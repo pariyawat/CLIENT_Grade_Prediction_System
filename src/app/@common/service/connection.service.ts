@@ -21,8 +21,7 @@ export class ConnectionService {
   }
 
 
-  setHeader() {
-
+  private setHeader() {
     const userID: IActiveUser = this.authService.getActiveUser();
     if (userID !== null) {
       this.myHeaders.set('userID', userID.ID);
@@ -40,7 +39,7 @@ export class ConnectionService {
       .then((response: Response) => {
         return response.json();
       })
-      .catch((error) => {
+      .catch((error: HttpErrorResponse) => {
         throw error;
       });
   }
@@ -50,6 +49,19 @@ export class ConnectionService {
     console.log('Data Sendtoserver :', data);
     return this.http
       .post(appURL.ipServer + path, data, { headers: this.setHeader() })
+      .toPromise()
+      .then((response: Response) => {
+        return response.json();
+      })
+      .catch((error: HttpErrorResponse) => {
+        throw error;
+      });
+  }
+
+  public requestDelete(path: string): Promise<any> {
+    console.log('Path Connect to Server >>>>>>>>>>>>>>>>>>>>>>', appURL.ipServer + path);
+    return this.http
+      .delete(appURL.ipServer + path, { headers: this.setHeader() })
       .toPromise()
       .then((response: Response) => {
         return response.json();

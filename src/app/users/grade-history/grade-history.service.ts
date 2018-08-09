@@ -26,4 +26,14 @@ export class GradeHistoryService {
       });
 
   }
+
+  public studentDeleteGrade(id): Promise<any> {
+    return this.connection.requestDelete('grade-history/student/delete/' + id)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

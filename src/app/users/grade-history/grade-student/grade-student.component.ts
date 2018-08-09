@@ -16,12 +16,14 @@ import { IStudentSubject } from '../grade-history.interface';
 export class GradeStudentComponent implements OnInit {
   @ViewChild('csvData') _file: ElementRef;
   @ViewChild('statusUploadDialog') uploadDialog: TemplateRef<any>;
+  @ViewChild('deleteDialog') deleteDialog: TemplateRef<any>;
   private data: any;
   private gradeData;
-  private uploadStatus;
+  public uploadStatus;
+  public deleteItem;
   private user: IActiveUser = this.authService.getActiveUser();
 
-  private displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'GRADE', 'COURSE', 'ACTION'];
+  public displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'GRADE', 'COURSE', 'ACTION'];
   private dataSource: MatTableDataSource<IStudentSubject[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -40,7 +42,7 @@ export class GradeStudentComponent implements OnInit {
   }
 
 
-  private onCSV() {
+  public onCSV() {
     const files = this._file.nativeElement.files;
     const blob: Blob = new Blob(files, { type: 'text/csv' });
     this.data = blob;
@@ -56,31 +58,32 @@ export class GradeStudentComponent implements OnInit {
     this.papa.parse(this.data, options, );
   }
 
-  private onAddGrade() {
+  public onAddGrade() {
     if (!this.gradeData) {
-      this.toastr.error('Please select your CSV file', 'Error');
+      this.toastr.warning('กรุณาเลือกไฟล์ CSV ของคุณ', 'Warning');
+    } else {
+      this.gradeService.studentAddGrade(this.gradeData.data)
+        .then((response) => {
+          console.log(response);
+          this.uploadStatus = response;
+          // const item: any = {
+          //   title: `Status`,
+          //   text: `
+          //   Success: ${response.success}
+          //   Error: ${response.error}
+          //   Total: ${response.total}
+          //   Message: ${response.errorItem}
+          //   `
+          // };
+          // this.alerts.alertInfo(item);
+          this.onUploadDialog();
+          this.getGrade();
+        })
+        .catch((error) => {
+          console.log(error);
+          throw error;
+        });
     }
-    this.gradeService.studentAddGrade(this.gradeData.data)
-      .then((response) => {
-        console.log(response);
-        this.uploadStatus = response;
-        // const item: any = {
-        //   title: `Status`,
-        //   text: `
-        //   Success: ${response.success}
-        //   Error: ${response.error}
-        //   Total: ${response.total}
-        //   Message: ${response.errorItem}
-        //   `
-        // };
-        // this.alerts.alertInfo(item);
-        this.onUploadDialog();
-        this.getGrade();
-      })
-      .catch((error) => {
-        console.log(error);
-        throw error;
-      });
   }
 
   private getGrade() {
@@ -95,7 +98,7 @@ export class GradeStudentComponent implements OnInit {
       });
   }
 
-  private applyFilter(filterValue: String) {
+  public applyFilter(filterValue: String) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
 
     if (this.dataSource.paginator) {
@@ -105,5 +108,24 @@ export class GradeStudentComponent implements OnInit {
 
   private onUploadDialog() {
     this.dialog.open(this.uploadDialog);
+  }
+
+  public onEditGrade(data) {
+    alert(data);
+  }
+
+  public onDeleteGrade(SUB_ID) {
+    this.gradeService.studentDeleteGrade(SUB_ID)
+      .then((response) => {
+        console.log(response);
+        this.getGrade();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+  public onDeleteDialog(item) {
+    this.deleteItem = item;
+    this.dialog.open(this.deleteDialog);
   }
 }

@@ -14,4 +14,14 @@ export class PredictionService {
         throw error;
       });
   }
+
+  studentPredict(subject): Promise<any> {
+    return this.connection.requestPost('student-prediction', subject)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

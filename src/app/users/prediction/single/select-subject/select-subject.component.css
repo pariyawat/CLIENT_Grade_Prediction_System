@@ -43,10 +43,23 @@ label {
   font-weight: 300;
   font-size: 15px;
   position: sticky;
-  overflow: auto;
+  /* overflow: auto; */
   top: 80px;
 }
 
-.rightBar {
-  height: 50%;
+.itemList {
+  height: 57vh;
+  overflow: auto;
+}
+
+.noItem{
+  font-size: 18px;
+  font-weight: 200;
+  font-family: 'Kanit', sans-serif;
+  text-align: center;
+  border: 2px dashed rgb(190, 190, 190);
+  border-radius: 5px;
+  margin-top: 70px;
+  padding-top: 40px; 
+  padding-bottom: 40px;
 }
