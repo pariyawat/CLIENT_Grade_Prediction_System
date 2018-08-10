@@ -1,7 +1,17 @@
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-7 single-body">
-    <label>เลือกวิชาที่จะทำนาย </label>
+    <div class="row">
+      <div class="col-md-6">
+        <label>เลือกวิชาที่จะทำนาย </label>
+      </div>
+      <div class="col-md-6" style="text-align: right;">
+        <button mat-raised-button class="warning-button-custom" (click)="onHistory()">
+          <mat-icon>build</mat-icon>
+          <span> จัดการผลการเรียน</span>
+        </button>
+      </div>
+    </div>
     <hr>
     <div class="filter-header">
       <mat-form-field>
@@ -25,11 +35,13 @@
         <ng-container matColumnDef="ACTION">
           <th mat-header-cell *matHeaderCellDef class="tb-header">เลือกวิชา</th>
           <td mat-cell *matCellDef="let row; let i=index;">
-            <button *ngIf="!row.IS_ACTIVE" mat-icon-button color="accent" (click)="row.IS_ACTIVE = true" (click)="onSAVE()">
+            <button *ngIf="!row.IS_ACTIVE" mat-raised-button class="primary-button-custom" (click)="row.IS_ACTIVE = true" (click)="onSAVE()">
               <mat-icon>add_circle_outline</mat-icon>
+              <span> เพิ่ม</span>
             </button>
-            <button *ngIf="row.IS_ACTIVE" mat-icon-button color="accent" (click)="row.IS_ACTIVE = false" (click)="onSAVE()">
-              <mat-icon>remove_circle</mat-icon>
+            <button *ngIf="row.IS_ACTIVE" mat-raised-button class="danger-button-custom" (click)="row.IS_ACTIVE = false" (click)="onSAVE()">
+              <mat-icon>remove_circle_outline</mat-icon>
+              <span> ลบ</span>
             </button>
           </td>
         </ng-container>
@@ -44,7 +56,8 @@
     <div class="selectedList">
       <label style="margin-left: 0px;">รายการที่เลือก </label>
       <span style="margin-left: 30px;">
-        <button mat-raised-button color="accent" (click)="onPrediction()" style=" font-family: 'Kanit', sans-serif;  border-radius: 5px; ">ทำนายผลการเรียน</button>
+        <button *ngIf="subjectSelected.length > 0" mat-raised-button class="success-button-custom" (click)="onPrediction()" style="font-size: 16px;">ทำนายผลการเรียน</button>
+        <button *ngIf="subjectSelected <=0" mat-raised-button class="disabled-button-custom" disabled style="font-size: 16px;">ทำนายผลการเรียน</button>
       </span>
       <hr>
       <div class="itemList">

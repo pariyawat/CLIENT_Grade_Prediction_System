@@ -21,7 +21,7 @@ table {
   width: 100%;
 }
 
-.mat-form-field {
+.form-field {
   width: 300px;
   font-family: 'Kanit', sans-serif;
 }
@@ -65,58 +65,14 @@ label {
 .deleteDialog{
   width: 500px;
 }
-
-/*
-    BUTTON
-    */
-
-.primary-button-custom {
-  color: #ffffff;
-  background-image: linear-gradient(to right, #b57fff, #8a7fff);
-  height: 60px;
-  width: 160px;
-  border-radius: 7px;
-  text-align: center;
+.deleteItem{
+  color: #777777;
   font-family: 'Kanit', sans-serif;
 }
-
-.info-button-custom {
-  color: #ffffff;
-  background-image: linear-gradient(to right, #4cc4ff, #4ca6ff);
-  height: 60px;
-  width: 160px;
-  border-radius: 7px;
-  text-align: center;
-  font-family: 'Kanit', sans-serif;
+.editDilog{
+  width: 500px;
 }
 
-.warning-button-custom {
-  color: #ffffff;
-  background-image: linear-gradient(to right, #fc0, #ffa100);
-  height: 60px;
-  width: 160px;
-  border-radius: 7px;
-  text-align: center;
-  font-family: 'Kanit', sans-serif;
-}
-
-.success-button-custom {
-  color: #ffffff;
-  background-image: linear-gradient(to right, #5be1bd, #5be190);
-  border-radius: 7px;
-  text-align: center;
-  font-family: 'Kanit', sans-serif;
-}
-
-.danger-button-custom {
-  color: #ffffff;
-  background-image: linear-gradient(to right, #ff4ca6, #ff4c6a);
-  height: 60px;
-  width: 160px;
-  border-radius: 7px;
-  text-align: center;
-  font-family: 'Kanit', sans-serif;
-}
 
 button:focus {
   outline: 0;

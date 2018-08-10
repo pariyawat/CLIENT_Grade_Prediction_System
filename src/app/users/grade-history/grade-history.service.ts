@@ -36,4 +36,14 @@ export class GradeHistoryService {
         throw error;
       });
   }
+
+  public studentEditGrade(data): Promise<any> {
+    return this.connection.requestPut('grade-history/student/edit', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

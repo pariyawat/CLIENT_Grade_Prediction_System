@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { PredictionService } from '../../prediction.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { IGetSubjectPredict } from '../../prediction.interface';
+import { redirectLink } from '../../../../@common/models/app.url';
 
 @Component({
   selector: 'app-select-subject',
@@ -17,7 +19,8 @@ export class SelectSubjectComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(
     private predictService: PredictionService,
-    private toastr: ToastrService, ) { }
+    private toastr: ToastrService,
+    private route: Router ) { }
 
   private subjectSelected = [];
   ngOnInit() {
@@ -42,6 +45,9 @@ export class SelectSubjectComponent implements OnInit {
     }
 
   }
+  onHistory() {
+    this.route.navigate([redirectLink.gradeStudent]);
+  }
   async onSAVE() {
     this.subjectSelected = [];
 
@@ -50,8 +56,6 @@ export class SelectSubjectComponent implements OnInit {
         this.subjectSelected.push(list);
       }
     });
-
-    console.log(this.subjectSelected);
   }
 
   onPrediction() {

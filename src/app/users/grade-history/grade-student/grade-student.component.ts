@@ -17,11 +17,15 @@ export class GradeStudentComponent implements OnInit {
   @ViewChild('csvData') _file: ElementRef;
   @ViewChild('statusUploadDialog') uploadDialog: TemplateRef<any>;
   @ViewChild('deleteDialog') deleteDialog: TemplateRef<any>;
+  @ViewChild('editDilog') editDilog: TemplateRef<any>;
   private data: any;
   private gradeData;
   public uploadStatus;
   public deleteItem;
+  public editItem;
   private user: IActiveUser = this.authService.getActiveUser();
+  public grade: string[] = ['A', 'B', 'B+', 'C', 'C+', 'D', 'D+'];
+  public gradeValue: string;
 
   public displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'GRADE', 'COURSE', 'ACTION'];
   private dataSource: MatTableDataSource<IStudentSubject[]>;
@@ -59,7 +63,7 @@ export class GradeStudentComponent implements OnInit {
   }
 
   public onAddGrade() {
-    if (!this.gradeData) {
+    if (!this.gradeData || this.gradeData.data.length <= 0) {
       this.toastr.warning('กรุณาเลือกไฟล์ CSV ของคุณ', 'Warning');
     } else {
       this.gradeService.studentAddGrade(this.gradeData.data)
@@ -77,7 +81,6 @@ export class GradeStudentComponent implements OnInit {
           // };
           // this.alerts.alertInfo(item);
           this.onUploadDialog();
-          this.getGrade();
         })
         .catch((error) => {
           console.log(error);
@@ -110,14 +113,34 @@ export class GradeStudentComponent implements OnInit {
     this.dialog.open(this.uploadDialog);
   }
 
-  public onEditGrade(data) {
-    alert(data);
+  public onEditGrade() {
+    const data = {
+      SUB_ID: this.editItem.SUB_ID,
+      GRADE: this.gradeValue
+    };
+
+    this.gradeService.studentEditGrade(data)
+      .then((response) => {
+        this.toastr.success(`แก้ไข ${this.editItem.SUB_NAME}\n เป็น ${data.GRADE} แล้ว`, 'Success');
+        this.dialog.closeAll();
+        this.getGrade();
+      })
+      .catch((error) => {
+        throw error;
+      });
+    this.gradeValue = '';
   }
 
-  public onDeleteGrade(SUB_ID) {
-    this.gradeService.studentDeleteGrade(SUB_ID)
+  public onEditDialog(item) {
+    this.editItem = item;
+    this.dialog.open(this.editDilog);
+  }
+
+  public onDeleteGrade() {
+    this.gradeService.studentDeleteGrade(this.deleteItem.SUB_ID)
       .then((response) => {
-        console.log(response);
+        this.toastr.success(`ลบ ${this.deleteItem.SUB_NAME} แล้ว`, 'Success');
+        this.dialog.closeAll();
         this.getGrade();
       })
       .catch((error) => {

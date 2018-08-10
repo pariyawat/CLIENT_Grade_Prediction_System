@@ -70,4 +70,18 @@ export class ConnectionService {
         throw error;
       });
   }
+
+  public requestPut(path: string, data: any): Promise<any> {
+    console.log('Path Connect to Server >>>>>>>>>>>>>>>>>>>>>>', appURL.ipServer + path);
+    console.log('Data Sendtoserver :', data);
+    return this.http
+      .put(appURL.ipServer + path, data, { headers: this.setHeader() })
+      .toPromise()
+      .then((response: Response) => {
+        return response.json();
+      })
+      .catch((error: HttpErrorResponse) => {
+        throw error;
+      });
+  }
 }
