@@ -6,7 +6,7 @@
         <label>เลือกวิชาที่จะทำนาย </label>
       </div>
       <div class="col-md-6" style="text-align: right;">
-        <button mat-raised-button class="warning-button-custom" (click)="onHistory()">
+        <button mat-raised-button class="danger-button-custom" style="width: auto; height: 40px;" (click)="onHistory()">
           <mat-icon>build</mat-icon>
           <span> จัดการผลการเรียน</span>
         </button>
@@ -67,7 +67,7 @@
         <div *ngFor="let item of subjectSelected">
           <span>
             <button mat-icon-button color="warn" (click)="item.IS_ACTIVE = false" (click)="onSAVE()">
-              <mat-icon>remove_circle</mat-icon>
+              <mat-icon>remove_circle_outline</mat-icon>
             </button>
           </span> {{item.SUB_NAME}}</div>
       </div>

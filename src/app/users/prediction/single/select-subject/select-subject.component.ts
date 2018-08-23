@@ -5,6 +5,8 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { IGetSubjectPredict } from '../../prediction.interface';
 import { redirectLink } from '../../../../@common/models/app.url';
+import { AuthenticationService } from '../../../../@common/service/authentication.service';
+import { IActiveUser } from '../../../../@common/models/login.interface';
 
 @Component({
   selector: 'app-select-subject',
@@ -20,9 +22,14 @@ export class SelectSubjectComponent implements OnInit {
   constructor(
     private predictService: PredictionService,
     private toastr: ToastrService,
-    private route: Router ) { }
+    private authService: AuthenticationService,
+    private route: Router) { }
 
   private subjectSelected = [];
+  private user: IActiveUser = this.authService.getActiveUser();
+  private dataToserver = [];
+
+
   ngOnInit() {
     this.predictService.getSubjectPredict()
       .then((response) => {
@@ -59,10 +66,14 @@ export class SelectSubjectComponent implements OnInit {
   }
 
   onPrediction() {
+    this.dataToserver = [];
     if (this.subjectSelected.length <= 0) {
       this.toastr.warning('กรุณาเลือกวิชาที่ต้องการทำนาย', 'Warning');
     } else {
-      this.predictService.studentPredict(this.subjectSelected)
+      this.subjectSelected.forEach(item => {
+        this.dataToserver.push({STD_ID: this.user.ID, SUB_CPE: item.SUB_CPE, SUB_NAME: item.SUB_NAME});
+      });
+      this.predictService.studentPredict(this.dataToserver)
         .then((response) => {
           console.log(response);
         })

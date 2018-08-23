@@ -77,3 +77,9 @@ label {
 button:focus {
   outline: 0;
 }
+
+.primary-button-custom{
+height: 40px;
+border-radius: 7px;
+font-family: 'Kanit', sans-serif;
+}

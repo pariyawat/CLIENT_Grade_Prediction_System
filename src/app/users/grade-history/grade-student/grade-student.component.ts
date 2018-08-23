@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { PapaParseService } from 'ngx-papaparse';
 import { ToastrService } from 'ngx-toastr';
 import { GradeHistoryService } from '../grade-history.service';
@@ -7,6 +8,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/m
 import { NgxAlertsService } from '@ngx-plus/ngx-alerts';
 import { IActiveUser } from '../../../@common/models/login.interface';
 import { IStudentSubject } from '../grade-history.interface';
+import { redirectLink } from '../../../@common/models/app.url';
 
 @Component({
   selector: 'app-grade-student',
@@ -33,6 +35,7 @@ export class GradeStudentComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
+    private route: Router,
     private papa: PapaParseService,
     private gradeService: GradeHistoryService,
     private authService: AuthenticationService,
@@ -44,7 +47,9 @@ export class GradeStudentComponent implements OnInit {
   ngOnInit() {
     this.getGrade();
   }
-
+  public goPrediction() {
+    this.route.navigate([redirectLink.singlePrediction]);
+  }
 
   public onCSV() {
     const files = this._file.nativeElement.files;

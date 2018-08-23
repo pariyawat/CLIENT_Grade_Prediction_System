@@ -3,7 +3,17 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 his-body">
-      <label>ประวัติผลการเรียน </label>
+      <div class="row">
+        <div class="col-md-6">
+          <label>ประวัติผลการเรียน </label>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+          <button mat-raised-button class="primary-button-custom"  (click)="goPrediction()">
+            <mat-icon>timeline</mat-icon>
+            <span> ทำนายผลการเรียน</span>
+          </button>
+        </div>
+      </div>
       <div class="filter-header">
         <mat-form-field class="form-field">
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ค้นหารายวิชา">
