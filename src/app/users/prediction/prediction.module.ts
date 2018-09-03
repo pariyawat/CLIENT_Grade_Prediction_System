@@ -11,6 +11,7 @@ import { SelectGroupComponent } from './group/select-group/select-group.componen
 import { PredictResultsComponent } from './group/predict-results/predict-results.component';
 import { SelectSubjectsComponent } from './group/select-subjects/select-subjects.component';
 import { PredictionService } from './prediction.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -20,7 +21,8 @@ import { PredictionService } from './prediction.service';
     imports: [
         MaterialModule,
         PredictionRoutingModule,
-        CommonModule
+        CommonModule,
+        NgbModule
     ],
     declarations: [
         PredictionComponent,

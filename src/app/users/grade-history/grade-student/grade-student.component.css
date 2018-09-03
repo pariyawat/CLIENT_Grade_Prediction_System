@@ -26,6 +26,11 @@ table {
   font-family: 'Kanit', sans-serif;
 }
 
+.form-add{
+  width: 100%;
+  font-family: 'Kanit', sans-serif;
+}
+
 .tb-header {
   font-family: 'Kanit', sans-serif;
   font-size: 15px;

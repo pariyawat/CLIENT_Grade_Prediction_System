@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { PapaParseService } from 'ngx-papaparse';
 import { ToastrService } from 'ngx-toastr';
 import { GradeHistoryService } from '../grade-history.service';
@@ -26,8 +27,9 @@ export class GradeStudentComponent implements OnInit {
   public deleteItem;
   public editItem;
   private user: IActiveUser = this.authService.getActiveUser();
-  public grade: string[] = ['A', 'B', 'B+', 'C', 'C+', 'D', 'D+'];
+  public grade: string[] = ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D'];
   public gradeValue: string;
+  public addGradeForm: FormGroup;
 
   public displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'GRADE', 'COURSE', 'ACTION'];
   private dataSource: MatTableDataSource<IStudentSubject[]>;
@@ -36,6 +38,7 @@ export class GradeStudentComponent implements OnInit {
 
   constructor(
     private route: Router,
+    private fb: FormBuilder,
     private papa: PapaParseService,
     private gradeService: GradeHistoryService,
     private authService: AuthenticationService,
@@ -46,6 +49,7 @@ export class GradeStudentComponent implements OnInit {
 
   ngOnInit() {
     this.getGrade();
+    this.createAddForm();
   }
   public goPrediction() {
     this.route.navigate([redirectLink.singlePrediction]);
@@ -64,7 +68,7 @@ export class GradeStudentComponent implements OnInit {
       },
     };
 
-    this.papa.parse(this.data, options, );
+    this.papa.parse(this.data, options);
   }
 
   public onAddGrade() {
@@ -155,5 +159,31 @@ export class GradeStudentComponent implements OnInit {
   public onDeleteDialog(item) {
     this.deleteItem = item;
     this.dialog.open(this.deleteDialog);
+  }
+
+  public createAddForm() {
+    this.addGradeForm = this.fb.group({
+      subject_id: [null, Validators.compose([Validators.required, Validators.nullValidator])],
+      grade: [null, Validators.compose([Validators.required, Validators.nullValidator])]
+    });
+
+  }
+
+  public onSubmitAddGrade(data) {
+    const dataArr = [data];
+    this.gradeService.studentAddGrade(dataArr)
+      .then((response) => {
+        console.log(response);
+        if (response.success) {
+          this.toastr.success(`เพิ่ม ${data.subject_id} แล้ว`, 'Success');
+          this.getGrade();
+        } else if (response.error) {
+          this.toastr.error(`ไม่พบรหัส ${data.subject_id} ในฐาข้อมูล`, 'Error');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
   }
 }

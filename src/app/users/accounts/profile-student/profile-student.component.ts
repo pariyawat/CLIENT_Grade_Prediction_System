@@ -5,6 +5,9 @@ import { StudentProfile } from '../profile.interface';
 import { IActiveUser } from '../../../@common/models/login.interface';
 import { Router } from '@angular/router';
 import { redirectLink } from '../../../@common/models/app.url';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { StudentPasswordComponent } from './student-password/student-password.component';
+import { StudentEmailComponent } from './student-email/student-email.component';
 
 @Component({
   selector: 'app-profile-student',
@@ -25,12 +28,18 @@ export class ProfileStudentComponent implements OnInit {
   constructor(
     private accountService: AccountsService,
     private authService: AuthenticationService,
-    private route: Router
+    private route: Router,
+    private dialog: MatDialog
   ) {
     this.user = this.authService.getActiveUser();
   }
 
   ngOnInit() {
+    this.getprofile();
+  }
+
+  getprofile() {
+
     this.accountService.gettProfile(this.user.ID, this.user.Role)
       .then((response) => {
 
@@ -55,6 +64,18 @@ export class ProfileStudentComponent implements OnInit {
   }
   onHistory() {
     this.route.navigate([redirectLink.gradeStudent]);
+  }
+
+  onChangePassword() {
+    this.dialog.open(StudentPasswordComponent);
+
+  }
+
+  onChangeEmail() {
+    this.dialog.open(StudentEmailComponent);
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.getprofile();
+    });
   }
 
 

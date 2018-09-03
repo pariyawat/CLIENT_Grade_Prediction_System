@@ -35,11 +35,13 @@
         <ng-container matColumnDef="ACTION">
           <th mat-header-cell *matHeaderCellDef class="tb-header">เลือกวิชา</th>
           <td mat-cell *matCellDef="let row; let i=index;">
-            <button *ngIf="!row.IS_ACTIVE" mat-raised-button class="primary-button-custom" (click)="row.IS_ACTIVE = true" (click)="onSAVE()">
+            <button *ngIf="!row.IS_ACTIVE" mat-raised-button class="primary-button-custom" (click)="row.IS_ACTIVE = true"
+              (click)="onSAVE()">
               <mat-icon>add_circle_outline</mat-icon>
               <span> เพิ่ม</span>
             </button>
-            <button *ngIf="row.IS_ACTIVE" mat-raised-button class="danger-button-custom" (click)="row.IS_ACTIVE = false" (click)="onSAVE()">
+            <button *ngIf="row.IS_ACTIVE" mat-raised-button class="danger-button-custom" (click)="row.IS_ACTIVE = false"
+              (click)="onSAVE()">
               <mat-icon>remove_circle_outline</mat-icon>
               <span> ลบ</span>
             </button>
@@ -56,7 +58,8 @@
     <div class="selectedList">
       <label style="margin-left: 0px;">รายการที่เลือก </label>
       <span style="margin-left: 30px;">
-        <button *ngIf="subjectSelected.length > 0" mat-raised-button class="success-button-custom" (click)="onPrediction()" style="font-size: 16px;">ทำนายผลการเรียน</button>
+        <button *ngIf="subjectSelected.length > 0" mat-raised-button class="success-button-custom" (click)="onPrediction()"
+          style="font-size: 16px;">ทำนายผลการเรียน</button>
         <button *ngIf="subjectSelected <=0" mat-raised-button class="disabled-button-custom" disabled style="font-size: 16px;">ทำนายผลการเรียน</button>
       </span>
       <hr>
@@ -74,3 +77,22 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #loadingDialog>
+
+  <div class="breeding-rhombus-spinner">
+    <div class="rhombus child-1"></div>
+    <div class="rhombus child-2"></div>
+    <div class="rhombus child-3"></div>
+    <div class="rhombus child-4"></div>
+    <div class="rhombus child-5"></div>
+    <div class="rhombus child-6"></div>
+    <div class="rhombus child-7"></div>
+    <div class="rhombus child-8"></div>
+    <div class="rhombus big"></div>
+  </div>
+  <div style="font-family: 'Kanit', sans-serif; color: #ff1d5e;">กำลังโหลด</div>
+
+
+</ng-template>

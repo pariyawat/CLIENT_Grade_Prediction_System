@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountsRoutingModule } from './accounts-routing.module';
 import { AccountsComponent } from './accounts.component';
 import { ProfileStudentComponent } from './profile-student/profile-student.component';
@@ -24,7 +25,9 @@ import { AdminGroupManageComponent } from './profile-admin/admin-group-manage/ad
     imports: [
         MaterialModule,
         AccountsRoutingModule,
-        CommonModule
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AccountsComponent,

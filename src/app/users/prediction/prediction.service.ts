@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ConnectionService } from '../../@common/service/connection.service';
+import { IPredictResult } from './prediction.interface';
 
 @Injectable()
 export class PredictionService {
+  public myResult: IPredictResult;
 
   constructor(private connection: ConnectionService) { }
 
@@ -23,5 +25,13 @@ export class PredictionService {
       .catch((error) => {
         throw error;
       });
+  }
+
+  saveResult(data) {
+    this.myResult = data;
+  }
+
+  getResult() {
+    return this.myResult;
   }
 }

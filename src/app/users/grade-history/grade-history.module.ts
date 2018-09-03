@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GradeStudentComponent } from './grade-student/grade-student.component';
 import { GradeTeacherComponent } from './grade-teacher/grade-teacher.component';
 import { GradeHistoryComponent } from './grade-history.component';
@@ -13,7 +13,8 @@ import { GradeHistoryService } from './grade-history.service';
     CommonModule,
     GradeHistoryRoutingModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     GradeStudentComponent,

@@ -1,3 +1,22 @@
-<p>
-  student-email works!
-</p>
+<div class="example-form">
+  <h4 matDialogTitle>Change your email!</h4>
+  <hr>
+  <form>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email" [formControl]="emailFormControl">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <hr>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button color="primary" (click)="onChangeEmail()"  [disabled]="!emailFormControl.valid">Change</button>
+        <span>
+          <button style="margin-left: 10px;" mat-stroked-button matDialogClose color="warn">Dismiss</button>
+        </span>
+      </mat-dialog-actions>
+  </form>
+</div>

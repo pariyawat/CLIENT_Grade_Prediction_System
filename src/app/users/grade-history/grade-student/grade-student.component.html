@@ -8,7 +8,7 @@
           <label>ประวัติผลการเรียน </label>
         </div>
         <div class="col-md-6" style="text-align: right;">
-          <button mat-raised-button class="primary-button-custom"  (click)="goPrediction()">
+          <button mat-raised-button class="primary-button-custom" (click)="goPrediction()">
             <mat-icon>timeline</mat-icon>
             <span> ทำนายผลการเรียน</span>
           </button>
@@ -63,6 +63,42 @@
         <mat-paginator [pageSizeOptions]="[10, 15, 20, 25, 100]" showFirstLastButtons></mat-paginator>
       </div>
 
+      
+      <!-- FORM ADD GRADE -->
+      <div class="file-upload">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <label>เพิ่มผลการเรียน</label>
+              <br>
+              <form [formGroup]="addGradeForm" (ngSubmit)="onSubmitAddGrade(addGradeForm.value)">
+                <mat-form-field class="form-group form-add" >
+                  <input matInput type="text" formControlName="subject_id" placeholder="รหัสวิชา" required>
+                  <mat-error>กรุณากรอก
+                    <strong>รหัสวิชา</strong>
+                  </mat-error>
+                </mat-form-field>
+  
+                <mat-form-field class="form-group form-add">
+                  <mat-select placeholder="เลือกเกรด" formControlName="grade">
+                      <mat-option>--</mat-option>
+                    <mat-option *ngFor="let grades of grade" [value]="grades">
+                      {{grades}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error>กรุณาเลือก
+                    <strong>เกรด</strong>
+                  </mat-error>
+                </mat-form-field>
+                <br>
+  
+                <button color="accent" mat-raised-button type="submit" [disabled]="!addGradeForm.valid" style=" font-family: 'Kanit', sans-serif;  border-radius: 7px; ">เพิ่มผลการเรียน</button>
+              </form>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+  
       <!-- UPLOAD -->
       <div class="file-upload">
         <div class="row">
@@ -77,7 +113,6 @@
           <div class="col-md-4"></div>
         </div>
       </div>
-
 
     </div>
     <div class="col-md-2"></div>
@@ -148,7 +183,7 @@
     </div>
     <div>
       <mat-form-field color="accent">
-        <mat-select placeholder="เลือกเกรด" [(ngModel)]="gradeValue" >
+        <mat-select placeholder="เลือกเกรด" [(ngModel)]="gradeValue">
           <mat-option *ngFor="let grades of grade" [value]="grades">
             {{grades}}
           </mat-option>
@@ -157,8 +192,8 @@
     </div>
     <hr>
     <mat-dialog-actions align="end">
-      <button *ngIf="!gradeValue" mat-stroked-button  disabled>Update</button>
-      <button *ngIf="gradeValue" mat-stroked-button  color="primary" (click)="onEditGrade()">Update</button>
+      <button *ngIf="!gradeValue" mat-stroked-button disabled>Update</button>
+      <button *ngIf="gradeValue" mat-stroked-button color="primary" (click)="onEditGrade()">Update</button>
       <span>
         <button style="margin-left: 10px;" mat-stroked-button matDialogClose color="warn" (click)="gradeValue = ''">Dismiss</button>
       </span>

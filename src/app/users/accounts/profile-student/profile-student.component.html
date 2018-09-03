@@ -19,13 +19,16 @@
         <div class="col-md-3 col-xxxl-4">
           <div class="button-group">
             <button mat-button class="primary-button-custom" style="margin-bottom: 15px; margin-top: 10px;" (click)="onHistory()">
-              <mat-icon>history</mat-icon> ประวัติผลการเรียน</button>
+              <mat-icon>history</mat-icon> ประวัติผลการเรียน
+            </button>
             <br>
-            <button mat-button class="info-button-custom" style="margin-bottom: 15px; height: 45px;">
-              <mat-icon>error_outline</mat-icon> เปลี่ยน Email</button>
+            <button mat-button (click)="onChangeEmail()" class="info-button-custom" style="margin-bottom: 15px; height: 45px;">
+              <mat-icon>error_outline</mat-icon> เปลี่ยน Email
+            </button>
             <br>
-            <button mat-button class="warning-button-custom" style="height: 45px;">
-              <mat-icon>error_outline</mat-icon> เปลี่ยน Password</button>
+            <button mat-button (click)="onChangePassword()" class="warning-button-custom" style="height: 45px;">
+              <mat-icon>error_outline</mat-icon> เปลี่ยน Password
+            </button>
           </div>
         </div>
         <div class="col-md-5">

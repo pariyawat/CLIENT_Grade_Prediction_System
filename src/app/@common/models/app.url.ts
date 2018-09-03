@@ -18,5 +18,6 @@ export const redirectLink = {
 
     // ---------- Prediction ---------
     singlePrediction: 'pages/prediction/single',
+    singleResult: 'pages/prediction/single/result',
     groupPrediction: 'pages/prediction/group',
 };

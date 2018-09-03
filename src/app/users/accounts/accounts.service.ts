@@ -18,4 +18,14 @@ export class AccountsService {
       });
 
   }
+
+  changeEmail(email): Promise<any> {
+    return this.connect.requestPut('profile/change-email', email)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { PredictionService } from '../../prediction.service';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { IGetSubjectPredict } from '../../prediction.interface';
 import { redirectLink } from '../../../../@common/models/app.url';
@@ -19,11 +19,13 @@ export class SelectSubjectComponent implements OnInit {
   dataSource: MatTableDataSource<IGetSubjectPredict[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('loadingDialog') loadingDialog: TemplateRef<any>;
   constructor(
     private predictService: PredictionService,
     private toastr: ToastrService,
     private authService: AuthenticationService,
-    private route: Router) { }
+    private route: Router,
+    private dialog: MatDialog) { }
 
   private subjectSelected = [];
   private user: IActiveUser = this.authService.getActiveUser();
@@ -71,14 +73,22 @@ export class SelectSubjectComponent implements OnInit {
       this.toastr.warning('กรุณาเลือกวิชาที่ต้องการทำนาย', 'Warning');
     } else {
       this.subjectSelected.forEach(item => {
-        this.dataToserver.push({STD_ID: this.user.ID, SUB_CPE: item.SUB_CPE, SUB_NAME: item.SUB_NAME});
+        this.dataToserver.push({ STD_ID: this.user.ID, SUB_CPE: item.SUB_CPE, SUB_NAME: item.SUB_NAME });
       });
+      this.dialog.open(this.loadingDialog, { disableClose: true, position: { top: '80px' } });
       this.predictService.studentPredict(this.dataToserver)
         .then((response) => {
-          console.log(response);
+          console.log('=======', response);
+          if (response) {
+            this.predictService.saveResult(response);
+            this.dialog.closeAll();
+            this.route.navigate([redirectLink.singleResult]);
+          }
         })
         .catch((error) => {
-          throw error;
+          console.log(error);
+          this.dialog.closeAll();
+          this.toastr.error('ไม่สามารถทำนายผลการเรียนได้', 'Error');
         });
     }
   }

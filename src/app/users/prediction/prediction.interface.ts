@@ -5,3 +5,21 @@ export interface IGetSubjectPredict {
     IS_ACTIVE: boolean;
 
 }
+
+export interface DT {
+    Grade: string;
+    Accuracy: string;
+}
+
+export interface ASSO {
+    Grade: string;
+    Confidence: string;
+    Lift: string;
+}
+
+export interface IPredictResult {
+    STD_ID: string;
+    SUB_NAME: string;
+    DT: DT;
+    ASSO: ASSO;
+}
