@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { PredictionService } from '../../prediction.service';
 import { IPredictResult } from '../../prediction.interface';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class PredictResultComponent implements OnInit {
     private route: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.myResult = this.predictService.getResult();
     if (!this.myResult) {
       this.route.navigate([redirectLink.singlePrediction]);

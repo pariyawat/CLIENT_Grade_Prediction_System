@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { PredictionService } from '../../prediction.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
@@ -25,7 +26,8 @@ export class SelectSubjectComponent implements OnInit {
     private toastr: ToastrService,
     private authService: AuthenticationService,
     private route: Router,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private modalService: NgbModal) { }
 
   private subjectSelected = [];
   private user: IActiveUser = this.authService.getActiveUser();
@@ -75,7 +77,7 @@ export class SelectSubjectComponent implements OnInit {
       this.subjectSelected.forEach(item => {
         this.dataToserver.push({ STD_ID: this.user.ID, SUB_CPE: item.SUB_CPE, SUB_NAME: item.SUB_NAME });
       });
-      this.dialog.open(this.loadingDialog, { disableClose: true, position: { top: '80px' } });
+      this.dialog.open(this.loadingDialog, { disableClose: true, position: { top: '150px' } });
       this.predictService.studentPredict(this.dataToserver)
         .then((response) => {
           console.log('=======', response);
