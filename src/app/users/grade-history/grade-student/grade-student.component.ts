@@ -173,10 +173,13 @@ export class GradeStudentComponent implements OnInit {
     const dataArr = [data];
     this.gradeService.studentAddGrade(dataArr)
       .then((response) => {
+
         console.log(response);
+        this.addGradeForm.reset();
         if (response.success) {
           this.toastr.success(`เพิ่ม ${data.subject_id} แล้ว`, 'Success');
           this.getGrade();
+          window.scrollTo(0, 0);
         } else if (response.error) {
           this.toastr.error(`ไม่พบรหัส ${data.subject_id} ในฐาข้อมูล`, 'Error');
         }

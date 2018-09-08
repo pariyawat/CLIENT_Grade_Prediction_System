@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { redirectLink } from '../@common/models/app.url';
 import { AuthenticationService } from '../@common/service/authentication.service';
 import { IActiveUser } from '../@common/models/login.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private loginService: LoginService,
     private route: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.authService.setActiveUser(<IActiveUser>response);
         this.route.navigate([redirectLink.homePage]);
       }).catch(() => {
-         alert('Something Wrong');
+        this.toastr.error(`Login ไม่สำเร็จ`, 'Error');
       });
   }
 

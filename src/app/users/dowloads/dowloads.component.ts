@@ -11,5 +11,11 @@ export class DowloadsComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  stdDownload() {
+    // window.open('src/assets/image/angular.svg', '_blank');
+    const link = document.createElement('a');
+    // link.download = 'filename';
+    link.href = 'assets/csv/student_model.csv';
+    link.click();
+  }
 }

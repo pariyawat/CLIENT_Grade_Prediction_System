@@ -28,4 +28,14 @@ export class AccountsService {
         throw error;
       });
   }
+
+  changePassword(password): Promise<any> {
+    return this.connect.requestPost('profile/change-password', password)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

@@ -88,9 +88,9 @@ export class SelectSubjectComponent implements OnInit {
           }
         })
         .catch((error) => {
-          console.log(error);
           this.dialog.closeAll();
           this.toastr.error('ไม่สามารถทำนายผลการเรียนได้', 'Error');
+          throw error;
         });
     }
   }

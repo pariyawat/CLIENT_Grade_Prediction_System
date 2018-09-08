@@ -29,8 +29,6 @@
     "@ngx-progressbar/router": "^5.0.1",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
-    "devextreme": "^18.1.3",
-    "devextreme-angular": "^18.1.3",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
