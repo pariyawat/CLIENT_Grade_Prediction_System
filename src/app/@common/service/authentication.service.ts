@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { SessionStorageService } from 'ngx-webstorage';
 import { IActiveUser } from '../models/login.interface';
 
 @Injectable({
@@ -9,15 +9,15 @@ export class AuthenticationService {
 
   constructor(private sessionService: SessionStorageService) { }
 
-  setActiveUser(data: IActiveUser) {
+  public setActiveUser(data: IActiveUser) {
     this.sessionService.store('ACTIVE_USER', data);
   }
 
-  getActiveUser() {
+  public getActiveUser() {
     return this.sessionService.retrieve('ACTIVE_USER');
   }
 
-  clearActiveUser() {
+  public clearActiveUser() {
     this.sessionService.clear('ACTIVE_USER');
   }
 }

@@ -5,6 +5,9 @@ import { AccountsService } from '../accounts.service';
 import { AuthenticationService } from '../../../@common/service/authentication.service';
 import { Router } from '@angular/router';
 import { redirectLink } from '../../../@common/models/app.url';
+import { MatDialog } from '@angular/material';
+import { TeacherEmailComponent } from './teacher-email/teacher-email.component';
+import { TeacherPasswordComponent } from './teacher-password/teacher-password.component';
 
 @Component({
   selector: 'app-profile-teacher',
@@ -24,12 +27,17 @@ export class ProfileTeacherComponent implements OnInit {
   constructor(
     private accountService: AccountsService,
     private authService: AuthenticationService,
-    private route: Router
+    private route: Router,
+    private dialog: MatDialog
   ) {
     this.user = this.authService.getActiveUser();
   }
 
   ngOnInit() {
+    this.getprofile();
+  }
+
+  getprofile() {
     this.accountService.gettProfile(this.user.ID, this.user.Role)
       .then((response) => {
         this.dataRes = response;
@@ -47,8 +55,22 @@ export class ProfileTeacherComponent implements OnInit {
         throw error;
       });
   }
-  groupList() {
-    this.route.navigate([redirectLink.gradeTeacher]);
+
+  groupPredict() {
+    this.route.navigate([redirectLink.groupPrediction]);
+  }
+
+
+  onChangeEmail() {
+    this.dialog.open(TeacherEmailComponent);
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.getprofile();
+    });
+  }
+
+  onChangePassword() {
+    this.dialog.open(TeacherPasswordComponent);
+
   }
 
 }

@@ -15,11 +15,7 @@ export class UsersComponent implements OnInit {
   FirstName: string;
   LastName: string;
   Role: string;
-  constructor(private authService: AuthenticationService, private route: Router) {
-
-  }
-
-  ngOnInit() {
+  constructor (private authService: AuthenticationService, private route: Router) {
     this.user = this.authService.getActiveUser();
     this.FirstName = this.user.FirstName;
     this.LastName = this.user.LastName;
@@ -30,7 +26,9 @@ export class UsersComponent implements OnInit {
     } else {
       this.Role = 'ผู้ดูแล';
     }
+  }
 
+  ngOnInit() {
   }
 
   onLogout() {

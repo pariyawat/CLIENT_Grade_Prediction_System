@@ -1,3 +1,158 @@
-<p>
-  select-group works!
-</p>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-7 single-body">
+
+    <div class="select-group">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <label>เลือกกลุ่มนักศึกษา</label>
+          <br>
+          <form [formGroup]="selectFormForm">
+            <mat-form-field class="form-group form-select">
+              <mat-select placeholder="เลือกกลุ่ม" formControlName="group">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let groups of group" [value]="groups.group_name">
+                  {{groups.group_name}}
+                </mat-option>
+              </mat-select>
+              <mat-error>กรุณาเลือก
+                <strong>กลุ่ม</strong>
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <button color="primary" mat-raised-button (click)="onSubmitGroup(selectFormForm.value)" [disabled]="!selectFormForm.valid"
+              style=" font-family: 'Kanit', sans-serif;  border-radius: 7px; margin-right: 7px;">แสดงข้อมูล</button>
+            <button color="accent" mat-raised-button (click)="onSubjectByGroup(selectFormForm.value)" [disabled]="!selectFormForm.valid"
+              style=" font-family: 'Kanit', sans-serif;  border-radius: 7px;  margin-left: 7px;">ทำนายกลุ่มนี้</button>
+          </form>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+
+    <!-- ******** ตารางแสดงนักเรียน ************* -->
+    <div class="row" *ngIf="showStudentTable">
+      <div class="col-md-12">
+        <hr>
+        <div class="filter-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ค้นหานักศึกษา">
+          </mat-form-field>
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="STD_ID">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">รหัสนักศึกษา</th>
+              <td mat-cell *matCellDef="let element"> {{element.STD_ID}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="STD_NAME">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">ชื่อ-นามสกุล</th>
+              <td mat-cell *matCellDef="let element"> {{element.STD_NAME}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ACT_SUB">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">ประวัติ</th>
+              <td mat-cell *matCellDef="let element"> {{element.ACT_SUB}} วิชา </td>
+            </ng-container>
+
+            <!-- actions -->
+            <ng-container matColumnDef="MANAGE">
+              <th mat-header-cell *matHeaderCellDef class="tb-header">ผลการเรียน</th>
+              <td mat-cell *matCellDef="let row; let i=index;">
+                <div (click)="onManageSTD(row.STD_ID)"><span class="badge badge-primary"> <i class="fa fa-cog "
+                      aria-hidden="true"></i> จัดการ</span></div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="PREDICT">
+              <th mat-header-cell *matHeaderCellDef class="tb-header">ทำนาย</th>
+              <td mat-cell *matCellDef="let row; let i=index;">
+                <div *ngIf="row.ACT_SUB >= 7"><span class="badge badge-warning"> <i class="fa fa-magic" aria-hidden="true"></i>
+                    ทำนาย</span></div>
+                <div (click)="stdWarnAlertB(row.STD_NAME)" *ngIf="row.ACT_SUB < 7"><span class="badge badge-secondary"
+                    style="cursor: default"> <i class="fa fa-magic" aria-hidden="true"></i> ทำนาย</span></div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[10, 15, 20, 25, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <!-- ******** ตารางแสดงรายวิชา ************* -->
+    <div class="row" *ngIf="showSubjectTable">
+      <div class="col-md-12">
+        <hr>
+        <div class="filter-header">
+          <mat-form-field>
+            <input matInput (keyup)="subjectFilter($event.target.value)" placeholder="ค้นหารายวิชา">
+          </mat-form-field>
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSubject" matSort>
+
+            <ng-container matColumnDef="SUB_ID">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">รหัสวิชา</th>
+              <td mat-cell *matCellDef="let element"> {{element.SUB_ID}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="SUB_NAME">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">ชื่อวิชา</th>
+              <td mat-cell *matCellDef="let element"> {{element.SUB_NAME}} </td>
+            </ng-container>
+
+            <!-- actions -->
+            <ng-container matColumnDef="ACTION">
+              <th mat-header-cell *matHeaderCellDef class="tb-header">เลือกวิชา</th>
+              <td mat-cell *matCellDef="let row; let i=index;">
+                <button *ngIf="!row.IS_ACTIVE" mat-raised-button class="primary-button-custom" (click)="row.IS_ACTIVE = true"
+                  (click)="onSAVE()">
+                  <mat-icon>add_circle_outline</mat-icon>
+                  <span> เพิ่ม</span>
+                </button>
+                <button *ngIf="row.IS_ACTIVE" mat-raised-button class="danger-button-custom" (click)="row.IS_ACTIVE = false"
+                  (click)="onSAVE()">
+                  <mat-icon>remove_circle_outline</mat-icon>
+                  <span> ลบ</span>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedSubject"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedSubject;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[10, 15, 20, 25, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="selectedList">
+      <label style="margin-left: 0px; font-size: 18px;">วิชาที่เลือก</label>
+      <label style="margin-left: 5px; font-size: 13px;"> ({{stdSelected.length}} วิชา)</label>
+      <span style="margin-left: 20px;">
+        <button [disabled]="stdSelected <=0" color="warn" mat-raised-button style=" font-family: 'Kanit', sans-serif;  border-radius: 7px; ">ทำนายผลการเรียน</button>
+      </span>
+      <hr>
+      <div class="itemList">
+        <div class="noItem" *ngIf="stdSelected <=0 ">
+          ไม่มีวิชาที่เลือก
+        </div>
+        <div *ngFor="let item of stdSelected">
+          <span>
+            <button mat-icon-button color="warn" (click)="item.IS_ACTIVE = false" (click)="onSAVE()">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </span> {{item.SUB_NAME}}</div>
+
+      </div>
+    </div>
+  </div>
+</div>

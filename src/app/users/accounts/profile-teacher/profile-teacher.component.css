@@ -38,35 +38,35 @@
     */
   
   .primary-button-custom {
-    height: 60px;
+    height: 40px;
     width: 160px;
     border-radius: 7px;
     font-family: 'Kanit', sans-serif;
   }
   
   .info-button-custom {
-    height: 60px;
+    height: 40px;
     width: 160px;
     border-radius: 7px;
     font-family: 'Kanit', sans-serif;
   }
   
   .warning-button-custom {
-    height: 60px;
+    height: 40px;
     width: 160px;
     border-radius: 7px;
     font-family: 'Kanit', sans-serif;
   }
   
   .success-button-custom {
-    height: 60px;
+    height: 40px;
     width: 160px;
     border-radius: 7px;
     font-family: 'Kanit', sans-serif;
   }
   
   .danger-button-custom {
-    height: 60px;
+    height: 40px;
     width: 160px;
     border-radius: 7px;
     font-family: 'Kanit', sans-serif;

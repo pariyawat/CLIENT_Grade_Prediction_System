@@ -8,7 +8,8 @@
         </span>
         <span>HOME</span>
       </button>
-      <button mat-button [matMenuTriggerFor]="predic">PREDICTION</button>
+      <button *ngIf="Role === 'นักศึกษา'" routerLink="prediction/single" mat-button>PREDICTION</button>
+      <button *ngIf="Role === 'อาจารย์'" mat-button [matMenuTriggerFor]="predic">PREDICTION</button>
       <mat-menu #predic="matMenu">
         <button mat-menu-item routerLink="prediction/single">
           <mat-icon>device_hub</mat-icon>PREDICTION</button>

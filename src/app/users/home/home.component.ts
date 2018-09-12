@@ -11,8 +11,10 @@ import { IActiveUser } from '../../@common/models/login.interface';
 })
 export class HomeComponent implements OnInit {
   private user: IActiveUser;
+  private userRole: String;
   constructor(private authService: AuthenticationService, private route: Router) {
     this.user = this.authService.getActiveUser();
+    this.userRole = this.user.Role;
   }
 
   ngOnInit() {

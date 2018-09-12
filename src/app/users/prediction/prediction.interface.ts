@@ -23,3 +23,12 @@ export interface IPredictResult {
     DT: DT;
     ASSO: ASSO;
 }
+
+export interface IStudenByGroup {
+    STD_ID: string;
+    STD_NAME: string;
+    STD_GROUP: string;
+    ACT_SUB: number;
+}
+
+

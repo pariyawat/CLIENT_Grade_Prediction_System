@@ -12,6 +12,7 @@ import { PredictResultsComponent } from './group/predict-results/predict-results
 import { SelectSubjectsComponent } from './group/select-subjects/select-subjects.component';
 import { PredictionService } from './prediction.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,7 +23,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MaterialModule,
         PredictionRoutingModule,
         CommonModule,
-        NgbModule
+        NgbModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         PredictionComponent,

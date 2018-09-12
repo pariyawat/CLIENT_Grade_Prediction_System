@@ -9,7 +9,7 @@ export class PredictionService {
   constructor(private connection: ConnectionService) { }
 
   getSubjectPredict(): Promise<any> {
-    return this.connection.requestGet('subject-prediction')
+    return this.connection.requestGet('prediction/single/get-subject')
       .then((response) => {
         return response;
       }).catch((error) => {
@@ -18,13 +18,43 @@ export class PredictionService {
   }
 
   studentPredict(subject): Promise<any> {
-    return this.connection.requestPost('student-prediction', subject)
+    return this.connection.requestPost('prediction/single/std-predict', subject)
       .then((response) => {
         return response;
       })
       .catch((error) => {
         throw error;
       });
+  }
+
+  getGroupByTeacher(): Promise<any> {
+    return this.connection.requestGet('prediction/group/get-group')
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  getStudentByGroup(group): Promise<any> {
+    return this.connection.requestGet('prediction/group/get-student/' + group)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      throw error;
+    });
+  }
+
+  getSubjectByGroup(group): Promise<any> {
+    return this.connection.requestGet('prediction/group/get-subject/t/' + group)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      throw error;
+    });
   }
 
   saveResult(data) {

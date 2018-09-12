@@ -1,0 +1,115 @@
+/* *******************BODY********************* */
+.single-body {
+  box-shadow: 0px 4px 7px 0px #afafaf;
+  color: #777777;
+  padding-bottom: 70px;
+  padding-top: 50px;
+}
+
+label {
+  font-size: 20px;
+  font-weight: 200;
+  font-family: 'Kanit', sans-serif;
+  margin-left: 20px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+/* *******************FORM SELECT********************* */
+.select-group {
+  margin-bottom: 50px;
+  /* margin-left: 100px;
+    margin-right: 100px; */
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+  border: 2px dashed rgb(190, 190, 190);
+  border-radius: 5px;
+}
+
+.form-select {
+  width: 100%;
+  font-family: 'Kanit', sans-serif;
+}
+
+/* *******************TABLE********************* */
+.filter-header {
+  text-align: right;
+  margin-right: 10px;
+}
+
+table {
+  width: 100%;
+}
+
+
+.mat-form-field {
+  font-family: 'Kanit', sans-serif;
+}
+
+.tb-header {
+  font-family: 'Kanit', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  background: #0093ca;
+  color: white;
+}
+
+.badge {
+  font-family: 'Kanit', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+/* *******************SIDE BAR********************* */
+.selectedList {
+  margin-left: 15px;
+  margin-top: 20px;
+  height: 67vh;
+  border-left: 4px solid #0093ca;
+  padding-left: 20px;
+  font-weight: 300;
+  font-size: 15px;
+  position: sticky;
+  /* overflow: auto; */
+  top: 80px;
+}
+
+.itemList {
+  height: 57vh;
+  overflow: auto;
+}
+
+.noItem {
+  font-size: 18px;
+  font-weight: 200;
+  font-family: 'Kanit', sans-serif;
+  text-align: center;
+  border: 2px dashed rgb(190, 190, 190);
+  border-radius: 5px;
+  margin-top: 70px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+
+/*
+    BUTTON
+    */
+
+.primary-button-custom {
+  height: 34px;
+  width: 80px;
+  border-radius: 7px;
+  font-family: 'Kanit', sans-serif;
+}
+
+.danger-button-custom {
+  height: 34px;
+  width: 80px;
+  border-radius: 7px;
+  font-family: 'Kanit', sans-serif;
+}
