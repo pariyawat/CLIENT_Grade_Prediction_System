@@ -80,7 +80,7 @@
                 </mat-form-field>
   
                 <mat-form-field class="form-group form-add">
-                  <mat-select placeholder="เลือกเกรด" formControlName="grade">
+                  <mat-select placeholder="เลือกเกรด" formControlName="grade" required>
                       <mat-option>--</mat-option>
                     <mat-option *ngFor="let grades of grade" [value]="grades">
                       {{grades}}

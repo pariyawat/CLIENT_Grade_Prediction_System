@@ -17,10 +17,10 @@
       </div>
     </div>
     <hr>
-    <div class="result-box">
+    <div class="result-box" *ngFor="let Rusult of myResult">
       <div class="card border-card ">
         <div class="card-header bg-head-card text-center">
-          {{myResult.SUB_NAME}}
+          {{Rusult.SUB_NAME}}
         </div>
         <div class="card-body">
           <div class="row">
@@ -31,12 +31,12 @@
                 </div>
                 <div class="card-body card-body-in" style="text-align: center">
                   <div class="grade-reult">
-                    <p>{{myResult.DT.Grade}}</p>
+                    <p>{{Rusult.DT.Grade}}</p>
                   </div>
-                  <div style="margin-top: 10px; font-size: 15px;">Accuracy : {{myResult.DT.Accuracy}} %</div>
+                  <div style="margin-top: 10px; font-size: 15px;">Accuracy : {{Rusult.DT.Accuracy}} %</div>
                   <hr>
                   <p>
-                    <ngb-progressbar [showValue]="true" type="info" value="{{myResult.DT.Accuracy}}"></ngb-progressbar>
+                    <ngb-progressbar [showValue]="true" type="info" value="{{Rusult.DT.Accuracy}}"></ngb-progressbar>
                   </p>
                 </div>
               </div>
@@ -48,12 +48,12 @@
                 </div>
                 <div class="card-body card-body-in" style="text-align: center">
                   <div class="grade-reult">
-                    <p>{{myResult.ASSO.Grade}}</p>
+                    <p>{{Rusult.ASSO.Grade}}</p>
                   </div>
-                  <div style="margin-top: 10px; font-size: 15px;">Confidence : {{myResult.ASSO.Confidence}} % | Lift : {{myResult.ASSO.Lift}}</div>
+                  <div style="margin-top: 10px; font-size: 15px;">Confidence : {{Rusult.ASSO.Confidence}} % </div>
                   <hr>
                   <p>
-                    <ngb-progressbar [showValue]="true" type="info" value="{{myResult.ASSO.Confidence}}"></ngb-progressbar>
+                    <ngb-progressbar [showValue]="true" type="info" value="{{Rusult.ASSO.Confidence}}"></ngb-progressbar>
                   </p>
                 </div>
               </div>

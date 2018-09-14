@@ -4,7 +4,7 @@ import { IPredictResult } from './prediction.interface';
 
 @Injectable()
 export class PredictionService {
-  public myResult: IPredictResult;
+  public myResult;
 
   constructor(private connection: ConnectionService) { }
 

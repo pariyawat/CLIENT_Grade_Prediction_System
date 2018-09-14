@@ -14,7 +14,6 @@ export interface DT {
 export interface ASSO {
     Grade: string;
     Confidence: string;
-    Lift: string;
 }
 
 export interface IPredictResult {

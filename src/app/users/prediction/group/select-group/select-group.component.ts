@@ -37,8 +37,9 @@ export class SelectGroupComponent implements OnInit {
   public showSubjectTable: boolean;
   public group: string[];
   public selectFormForm: FormGroup;
-  private stdSelected = [];
-  private studentInGroup: IStudenByGroup[];
+  private sbjSelected = [];
+  private studentCanUse = [];
+  private dataToServer = [];
 
 
   ngOnInit() {
@@ -67,6 +68,7 @@ export class SelectGroupComponent implements OnInit {
   public onSubmitGroup(value) {
     this.showStudentTable = true;
     this.showSubjectTable = false;
+    this.sbjSelected = [];
     this.predictService.getStudentByGroup(value.group)
       .then((response) => {
         this.dataSource = new MatTableDataSource(response);
@@ -100,6 +102,8 @@ export class SelectGroupComponent implements OnInit {
   public onSubjectByGroup(value) {
     this.showStudentTable = false;
     this.showSubjectTable = true;
+    this.sbjSelected = [];
+    this.studentCanUse = [];
     this.predictService.getSubjectByGroup(value.group)
       .then((response) => {
         this.dataSubject = new MatTableDataSource(response.map(list => {
@@ -115,7 +119,11 @@ export class SelectGroupComponent implements OnInit {
 
     this.predictService.getStudentByGroup(value.group)
       .then((response) => {
-        this.studentInGroup = response;
+        response.forEach((std) => {
+          if (std.ACT_SUB >= 7) {
+            this.studentCanUse.push(std);
+          }
+        });
       })
       .catch((error) => {
         throw error;
@@ -131,13 +139,31 @@ export class SelectGroupComponent implements OnInit {
   }
 
   public async onSAVE() {
-    this.stdSelected = [];
+    this.sbjSelected = [];
 
     await this.dataSubject.data.forEach((list) => {
       if (list['IS_ACTIVE']) {
-        this.stdSelected.push(list);
+        this.sbjSelected.push(list);
       }
     });
+  }
+
+  public onTeacherPredict() {
+    this.dataToServer = [];
+    for (const student of this.studentCanUse) {
+      for (const subject of this.sbjSelected) {
+
+        const data = {
+          STD_ID: student['STD_ID'],
+          STD_NAME: student['STD_NAME'],
+          SUB_CPE: subject['SUB_CPE'],
+          SUB_NAME: subject['SUB_NAME']
+        };
+
+        this.dataToServer.push(data);
+      }
+    }
+    console.log(this.dataToServer);
   }
 
 }

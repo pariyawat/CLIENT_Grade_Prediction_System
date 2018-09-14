@@ -113,3 +113,10 @@ table {
   border-radius: 7px;
   font-family: 'Kanit', sans-serif;
 }
+
+.basic-button-custom {
+  height: 34px;
+  width: 80px;
+  border-radius: 7px;
+  font-family: 'Kanit', sans-serif;
+}
