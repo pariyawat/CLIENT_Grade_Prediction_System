@@ -9,13 +9,8 @@
         <span>HOME</span>
       </button>
       <button *ngIf="Role === 'นักศึกษา'" routerLink="prediction/single" mat-button>PREDICTION</button>
-      <button *ngIf="Role === 'อาจารย์'" mat-button [matMenuTriggerFor]="predic">PREDICTION</button>
-      <mat-menu #predic="matMenu">
-        <button mat-menu-item routerLink="prediction/single">
-          <mat-icon>device_hub</mat-icon>PREDICTION</button>
-        <button mat-menu-item routerLink="prediction/group">
-          <mat-icon>bubble_chart</mat-icon>GROUP PREDICTION</button>
-      </mat-menu>
+      <button *ngIf="Role === 'อาจารย์'" routerLink="prediction/group" mat-button>PREDICTION</button>
+
       <button mat-button routerLink="subject">SUBJECT LIST</button>
       <button mat-button routerLink="download">DOWNLOAD</button>
 
@@ -27,9 +22,11 @@
       </button>
       <mat-menu #user="matMenu">
         <button mat-menu-item (click)="onAccount()">
-          <mat-icon>account_circle</mat-icon>ACCOUNT</button>
+          <mat-icon>account_circle</mat-icon>ACCOUNT
+        </button>
         <button mat-menu-item (click)="onLogout()">
-          <mat-icon>power_settings_new</mat-icon>LOGOUT</button>
+          <mat-icon>power_settings_new</mat-icon>LOGOUT
+        </button>
       </mat-menu>
 
     </nav>
