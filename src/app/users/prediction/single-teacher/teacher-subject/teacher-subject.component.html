@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-7 single-body">
+    <div class="row">
+      <div class="col-md-6">
+        <label>ทำนายผลการเรียนของ {{studentNAME}} </label>
+      </div>
+      <div class="col-md-6" style="text-align: right;">
+        <button mat-raised-button class="danger-button-custom" style="width: auto; height: 40px;" (click)="onHistory()">
+          <mat-icon>build</mat-icon>
+          <span> จัดการผลการเรียน</span>
+        </button>
+      </div>
+    </div>
+    <hr>
+    <div class="filter-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ค้นหารายวิชา">
+      </mat-form-field>
+    </div>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="SUB_ID">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">รหัสวิชา</th>
+          <td mat-cell *matCellDef="let element"> {{element.SUB_ID}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="SUB_NAME">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">ชื่อวิชา</th>
+          <td mat-cell *matCellDef="let element"> {{element.SUB_NAME}} </td>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="ACTION">
+          <th mat-header-cell *matHeaderCellDef class="tb-header">เลือกวิชา</th>
+          <td mat-cell *matCellDef="let row; let i=index;">
+            <button *ngIf="!row.IS_ACTIVE" mat-raised-button class="primary-button-custom" (click)="row.IS_ACTIVE = true"
+              (click)="onSAVE()">
+              <mat-icon>add_circle_outline</mat-icon>
+              <span> เพิ่ม</span>
+            </button>
+            <button *ngIf="row.IS_ACTIVE" mat-raised-button class="danger-button-custom" (click)="row.IS_ACTIVE = false"
+              (click)="onSAVE()">
+              <mat-icon>remove_circle_outline</mat-icon>
+              <span> ลบ</span>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 15, 20, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="selectedList">
+      <label style="margin-left: 0px;">รายการที่เลือก </label>
+      <span style="margin-left: 30px;">
+        <button *ngIf="subjectSelected.length > 0" mat-raised-button class="success-button-custom" (click)="onPrediction()"
+          style="font-size: 16px;">ทำนายผลการเรียน</button>
+        <button *ngIf="subjectSelected <=0" mat-raised-button class="disabled-button-custom" disabled style="font-size: 16px;">ทำนายผลการเรียน</button>
+      </span>
+      <hr>
+      <div class="itemList">
+        <div class="noItem" *ngIf="subjectSelected <=0 ">
+          ไม่มีวิชาที่เลือก
+        </div>
+        <div *ngFor="let item of subjectSelected">
+          <span>
+            <button mat-icon-button color="warn" (click)="item.IS_ACTIVE = false" (click)="onSAVE()">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </span> {{item.SUB_NAME}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingDialog>
+
+  <div class="semipolar-spinner" :style="spinnerStyle">
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+    </div>
+<div style="font-family: 'Kanit', sans-serif; color: #ff1d5e;">กำลังโหลด</div>
+
+
+</ng-template>

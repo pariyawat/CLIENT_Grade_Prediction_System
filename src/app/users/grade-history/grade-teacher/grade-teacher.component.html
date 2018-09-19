@@ -3,8 +3,119 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 his-body">
+      <div class="row">
+        <div class="col-md-6">
+          <label>ประวัติผลการเรียน | {{studentNAME}} </label> 
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+          <button mat-raised-button class="primary-button-custom" (click)="goPrediction()">
+            <mat-icon>playlist_add</mat-icon>
+            <span> เพิ่มผลการเรียน</span>
+          </button>
+        </div>
+      </div>
+      <div class="filter-header">
+        <mat-form-field class="form-field">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ค้นหารายวิชา">
+        </mat-form-field>
+      </div>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
 
+          <ng-container matColumnDef="SUB_ID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">รหัสวิชา</th>
+            <td mat-cell *matCellDef="let element">{{element.SUB_ID}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="SUB_NAME">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">ชื่อวิชา</th>
+            <td mat-cell *matCellDef="let element"> {{element.SUB_NAME}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="GRADE">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">เกรด</th>
+            <td mat-cell *matCellDef="let element"> {{element.GRADE}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="COURSE">
+            <th mat-header-cell *matHeaderCellDef class="tb-header">หลักสูตร</th>
+            <td mat-cell *matCellDef="let element"> {{element.COURSE}} </td>
+          </ng-container>
+
+          <!-- actions -->
+          <ng-container matColumnDef="ACTION">
+            <th mat-header-cell *matHeaderCellDef class="tb-header">แก้ไข/ลบ</th>
+            <td mat-cell *matCellDef="let row; let i=index;">
+              <button mat-icon-button color="warn" (click)="onEditDialog(row)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+              <span>
+                <button mat-icon-button color="warn" (click)="onDeleteDialog(row)">
+                  <mat-icon aria-label="Delete">delete</mat-icon>
+                </button>
+              </span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 15, 20, 25, 100]" showFirstLastButtons></mat-paginator>
+      </div>
     </div>
     <div class="col-md-2"></div>
   </div>
 </div>
+
+
+<!-- DELETE DIALOG -->
+<ng-template #deleteDialog>
+  <div class="deleteDialog">
+    <h2 matDialogTitle>Delete Confirm</h2>
+    <hr>
+    <div>
+      รหัสวิชา: {{deleteItem.SUB_ID}}
+    </div>
+    <div>
+      ชื่อวิชา: {{deleteItem.SUB_NAME}}
+    </div>
+    <hr>
+    <mat-dialog-actions align="end">
+      <button mat-stroked-button color="primary" (click)="onDeleteGrade()">Delete</button>
+      <span>
+        <button style="margin-left: 10px;" mat-stroked-button matDialogClose color="warn">Dismiss</button>
+      </span>
+    </mat-dialog-actions>
+  </div>
+</ng-template>
+
+<!-- EDIT DIALOG -->
+<ng-template #editDilog>
+  <div class="editDilog">
+    <h2 matDialogTitle>Edit Grade</h2>
+    <hr>
+    <div>
+      รหัสวิชา: {{editItem.SUB_ID}}
+    </div>
+    <div>
+      ชื่อวิชา: {{editItem.SUB_NAME}}
+    </div>
+    <div>
+      <mat-form-field color="accent">
+        <mat-select placeholder="เลือกเกรด" [(ngModel)]="gradeValue">
+          <mat-option *ngFor="let grades of grade" [value]="grades">
+            {{grades}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <hr>
+    <mat-dialog-actions align="end">
+      <button *ngIf="!gradeValue" mat-stroked-button disabled>Update</button>
+      <button *ngIf="gradeValue" mat-stroked-button color="primary" (click)="onEditGrade()">Update</button>
+      <span>
+        <button style="margin-left: 10px;" mat-stroked-button matDialogClose color="warn" (click)="gradeValue = ''">Dismiss</button>
+      </span>
+    </mat-dialog-actions>
+  </div>
+</ng-template>

@@ -5,24 +5,6 @@ export interface IGetSubjectPredict {
     IS_ACTIVE: boolean;
 
 }
-
-export interface DT {
-    Grade: string;
-    Accuracy: string;
-}
-
-export interface ASSO {
-    Grade: string;
-    Confidence: string;
-}
-
-export interface IPredictResult {
-    STD_ID: string;
-    SUB_NAME: string;
-    DT: DT;
-    ASSO: ASSO;
-}
-
 export interface IStudenByGroup {
     STD_ID: string;
     STD_NAME: string;
@@ -30,4 +12,26 @@ export interface IStudenByGroup {
     ACT_SUB: number;
 }
 
+export interface DT {
+    Grade: string;
+    Accuracy: number;
+}
 
+export interface ASSO {
+    Grade: string;
+    Confidence: number;
+}
+
+export interface Result {
+    STD_ID: string;
+    SUB_NAME: string;
+    CREDIT: number;
+    DT: DT;
+    ASSO: ASSO;
+}
+
+export interface IPredictResult {
+    result: Result[];
+    gpaDT: number;
+    gpaASSO: number;
+}

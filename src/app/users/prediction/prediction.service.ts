@@ -4,17 +4,28 @@ import { IPredictResult } from './prediction.interface';
 
 @Injectable()
 export class PredictionService {
-  public myResult;
+  public myResult: IPredictResult;
 
   constructor(private connection: ConnectionService) { }
 
-  getSubjectPredict(): Promise<any> {
-    return this.connection.requestGet('prediction/single/get-subject')
-      .then((response) => {
-        return response;
-      }).catch((error) => {
-        throw error;
-      });
+  getSubjectPredict(STD_ID): Promise<any> {
+
+    if (STD_ID) {
+      return this.connection.requestGet('prediction/single/get-subject/' + STD_ID)
+        .then((response) => {
+          return response;
+        }).catch((error) => {
+          throw error;
+        });
+    } else {
+      return this.connection.requestGet('prediction/single/get-subject')
+        .then((response) => {
+          return response;
+        }).catch((error) => {
+          throw error;
+        });
+    }
+
   }
 
   studentPredict(subject): Promise<any> {
@@ -39,22 +50,32 @@ export class PredictionService {
 
   getStudentByGroup(group): Promise<any> {
     return this.connection.requestGet('prediction/group/get-student/' + group)
-    .then((response) => {
-      return response;
-    })
-    .catch((error) => {
-      throw error;
-    });
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
   getSubjectByGroup(group): Promise<any> {
     return this.connection.requestGet('prediction/group/get-subject/t/' + group)
-    .then((response) => {
-      return response;
-    })
-    .catch((error) => {
-      throw error;
-    });
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  teacherPredict(data): Promise<any> {
+    return this.connection.requestPost('prediction/group/prediction', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
   saveResult(data) {

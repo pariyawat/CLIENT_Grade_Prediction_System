@@ -46,4 +46,24 @@ export class GradeHistoryService {
         throw error;
       });
   }
+
+  public teacherEditGrade(data): Promise<any> {
+    return this.connection.requestPut('grade-history/teacher/edit', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  public teacherDeleteGrade(data): Promise<any> {
+    return this.connection.requestDelete('grade-history/teacher/delete/' + data.STD_ID + '/' + data.SUB_ID)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

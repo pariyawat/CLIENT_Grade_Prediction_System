@@ -13,6 +13,8 @@ import { SelectSubjectsComponent } from './group/select-subjects/select-subjects
 import { PredictionService } from './prediction.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SingleTeacherComponent } from './single-teacher/single-teacher.component';
+import { TeacherSubjectComponent } from './single-teacher/teacher-subject/teacher-subject.component';
 
 
 
@@ -35,7 +37,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         GroupComponent,
         SelectGroupComponent,
         SelectSubjectsComponent,
-        PredictResultsComponent
+        PredictResultsComponent,
+        SingleTeacherComponent,
+        TeacherSubjectComponent,
     ],
     providers: [
         PredictionService

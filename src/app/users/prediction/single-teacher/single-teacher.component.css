@@ -1,0 +1,9 @@
+.single-header {
+    background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%);
+    height: 100px;
+    color: #ffffff;
+    padding-top: 40px;
+    padding-left: 50px;
+    font-size: 20px;
+    font-weight: 300;
+  }

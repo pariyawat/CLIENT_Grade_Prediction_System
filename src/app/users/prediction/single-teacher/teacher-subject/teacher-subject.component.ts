@@ -1,41 +1,43 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
-import { PredictionService } from '../../prediction.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { ToastrService } from 'ngx-toastr';
 import { IGetSubjectPredict } from '../../prediction.interface';
+import { PredictionService } from '../../prediction.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
 import { redirectLink } from '../../../../@common/models/app.url';
-import { AuthenticationService } from '../../../../@common/service/authentication.service';
-import { IActiveUser } from '../../../../@common/models/login.interface';
 
 @Component({
-  selector: 'app-select-subject',
-  templateUrl: './select-subject.component.html',
-  styleUrls: ['./select-subject.component.css']
+  selector: 'app-teacher-subject',
+  templateUrl: './teacher-subject.component.html',
+  styleUrls: ['./teacher-subject.component.css']
 })
-export class SelectSubjectComponent implements OnInit {
+export class TeacherSubjectComponent implements OnInit {
 
   displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'ACTION'];
   dataSource: MatTableDataSource<IGetSubjectPredict[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('loadingDialog') loadingDialog: TemplateRef<any>;
+
+  public studentNAME;
+  public studentID;
+
+  private subjectSelected = [];
+  private dataToserver = [];
+
   constructor(
     private predictService: PredictionService,
     private toastr: ToastrService,
-    private authService: AuthenticationService,
     private route: Router,
+    private activateRoute: ActivatedRoute,
     private dialog: MatDialog,
-    private modalService: NgbModal) { }
-
-  private subjectSelected = [];
-  private user: IActiveUser = this.authService.getActiveUser();
-  private dataToserver = [];
-
+  ) {
+    this.studentID = activateRoute.snapshot.queryParamMap.get('STD_ID');
+    this.studentNAME = activateRoute.snapshot.queryParamMap.get('STD_NAME');
+  }
 
   ngOnInit() {
-    this.predictService.getSubjectPredict('')
+    this.predictService.getSubjectPredict(this.studentID)
       .then((response) => {
         this.dataSource = new MatTableDataSource(response.map(list => {
           list['IS_ACTIVE'] = false;
@@ -56,9 +58,7 @@ export class SelectSubjectComponent implements OnInit {
     }
 
   }
-  onHistory() {
-    this.route.navigate([redirectLink.gradeStudent]);
-  }
+
   async onSAVE() {
     this.subjectSelected = [];
 
@@ -69,14 +69,16 @@ export class SelectSubjectComponent implements OnInit {
     });
   }
 
+
   onPrediction() {
     this.dataToserver = [];
     if (this.subjectSelected.length <= 0) {
       this.toastr.warning('กรุณาเลือกวิชาที่ต้องการทำนาย', 'Warning');
     } else {
       this.subjectSelected.forEach(item => {
-        this.dataToserver.push({ STD_ID: this.user.ID, SUB_CPE: item.SUB_CPE, SUB_NAME: item.SUB_NAME });
+        this.dataToserver.push({ STD_ID: this.studentID, SUB_CPE: item.SUB_CPE, SUB_NAME: item.SUB_NAME });
       });
+      console.log(this.dataToserver);
       this.dialog.open(this.loadingDialog, { disableClose: true, position: { top: '150px' } });
       this.predictService.studentPredict(this.dataToserver)
         .then((response) => {
@@ -93,6 +95,14 @@ export class SelectSubjectComponent implements OnInit {
           throw error;
         });
     }
+  }
+
+  onHistory() {
+    const data = {
+      STD_ID: this.studentID,
+      STD_NAME: this.studentNAME
+    };
+    this.route.navigate([redirectLink.gradeTeacher], { queryParams: data });
   }
 
 }

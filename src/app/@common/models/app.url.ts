@@ -20,4 +20,6 @@ export const redirectLink = {
     singlePrediction: 'pages/prediction/single',
     singleResult: 'pages/prediction/single/result',
     groupPrediction: 'pages/prediction/group',
+    groupResult: 'pages/prediction/group/results',
+    teacherPrediction: 'pages/prediction/single-teacher',
 };

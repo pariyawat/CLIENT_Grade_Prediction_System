@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PredictionService } from '../../prediction.service';
-import { IPredictResult } from '../../prediction.interface';
 import { Router } from '@angular/router';
 import { redirectLink } from '../../../../@common/models/app.url';
 
@@ -10,8 +9,9 @@ import { redirectLink } from '../../../../@common/models/app.url';
   styleUrls: ['./predict-result.component.css']
 })
 export class PredictResultComponent implements OnInit {
-  public myResult: IPredictResult[];
-  public GPA;
+  public myResult;
+  public gpaDT;
+  public gpaASSO;
   constructor(
     private predictService: PredictionService,
     private route: Router) { }
@@ -24,7 +24,8 @@ export class PredictResultComponent implements OnInit {
       this.route.navigate([redirectLink.singlePrediction]);
     } else {
       this.myResult = data.result;
-      this.GPA = data.GPA;
+      this.gpaDT = data.gpaDT;
+      this.gpaASSO = data.gpaASSO;
     }
 
     console.log(this.myResult);

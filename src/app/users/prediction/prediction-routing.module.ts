@@ -10,6 +10,8 @@ import { PredictResultComponent } from './single/predict-result/predict-result.c
 import { SelectGroupComponent } from './group/select-group/select-group.component';
 import { SelectSubjectsComponent } from './group/select-subjects/select-subjects.component';
 import { PredictResultsComponent } from './group/predict-results/predict-results.component';
+import { SingleTeacherComponent } from './single-teacher/single-teacher.component';
+import { TeacherSubjectComponent } from './single-teacher/teacher-subject/teacher-subject.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,16 @@ const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'single-teacher',
+        component: SingleTeacherComponent,
+        children: [
+          {
+            path: '',
+            component: TeacherSubjectComponent
+          }
+        ]
+      }
     ]
   }
 ];

@@ -88,9 +88,21 @@ export class SelectGroupComponent implements OnInit {
     }
   }
 
-  public onManageSTD(ID) {
-    const data = { STD_ID: ID };
+  public onManageSTD(ID, NAME) {
+    const data = {
+      STD_ID: ID,
+      STD_NAME: NAME
+    };
     this.route.navigate([redirectLink.gradeTeacher], { queryParams: data });
+
+  }
+
+  public onPredictSTD(ID, NAME) {
+    const data = {
+      STD_ID: ID,
+      STD_NAME: NAME
+    };
+    this.route.navigate([redirectLink.teacherPrediction], { queryParams: data });
 
   }
 
@@ -155,7 +167,7 @@ export class SelectGroupComponent implements OnInit {
 
         const data = {
           STD_ID: student['STD_ID'],
-          STD_NAME: student['STD_NAME'],
+          // STD_NAME: student['STD_NAME'],
           SUB_CPE: subject['SUB_CPE'],
           SUB_NAME: subject['SUB_NAME']
         };
@@ -163,7 +175,14 @@ export class SelectGroupComponent implements OnInit {
         this.dataToServer.push(data);
       }
     }
-    console.log(this.dataToServer);
+
+    this.predictService.teacherPredict(this.dataToServer)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
 }
