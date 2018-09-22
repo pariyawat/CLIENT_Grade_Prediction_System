@@ -24,8 +24,10 @@ label {
   /* font-family: 'Kanit', sans-serif;
 
     font-weight: 300; */
-  background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%);
-  color: white;
+  /* background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%); */
+  background: linear-gradient(to right, #000428, #004e92); 
+
+  color: rgb(251, 255, 202);
 }
 
 .card-body-in {
@@ -33,7 +35,7 @@ label {
 }
 
 .border-card {
-  border-color: #0093ca;
+  border-color: #3c1053;
 }
 
 .grade-reult {

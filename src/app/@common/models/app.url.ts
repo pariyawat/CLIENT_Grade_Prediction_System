@@ -15,6 +15,7 @@ export const redirectLink = {
     // ---------- Grade History ---------
     gradeStudent: 'pages/grade-history/student',
     gradeTeacher: 'pages/grade-history/teacher',
+    teacherAddGrade: 'pages/grade-history/teacher-add',
 
     // ---------- Prediction ---------
     singlePrediction: 'pages/prediction/single',

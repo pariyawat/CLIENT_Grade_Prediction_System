@@ -7,6 +7,7 @@ import { GradeHistoryComponent } from './grade-history.component';
 import { GradeHistoryRoutingModule } from './grade-history-routing.module';
 import { MaterialModule } from '../../material.module';
 import { GradeHistoryService } from './grade-history.service';
+import { TeacherAddComponent } from './teacher-add/teacher-add.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { GradeHistoryService } from './grade-history.service';
   declarations: [
     GradeStudentComponent,
     GradeTeacherComponent,
-    GradeHistoryComponent
+    GradeHistoryComponent,
+    TeacherAddComponent
   ],
   providers: [
     GradeHistoryService

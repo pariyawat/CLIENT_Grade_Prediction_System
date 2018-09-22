@@ -60,6 +60,10 @@ export class ProfileTeacherComponent implements OnInit {
     this.route.navigate([redirectLink.groupPrediction]);
   }
 
+  addGrade() {
+    this.route.navigate([redirectLink.teacherAddGrade]);
+  }
+
 
   onChangeEmail() {
     this.dialog.open(TeacherEmailComponent);

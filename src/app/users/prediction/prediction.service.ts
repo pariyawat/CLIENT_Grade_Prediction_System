@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ConnectionService } from '../../@common/service/connection.service';
 import { IPredictResult } from './prediction.interface';
+import { IPredictGroupsResult } from './prediction-group.interface';
 
 @Injectable()
 export class PredictionService {
   public myResult: IPredictResult;
+  public myGroupResult: IPredictGroupsResult;
 
   constructor(private connection: ConnectionService) { }
 
@@ -84,5 +86,13 @@ export class PredictionService {
 
   getResult() {
     return this.myResult;
+  }
+
+  saveGroupResult(data) {
+    this.myGroupResult = data;
+  }
+
+  getGroupResult() {
+    return this.myGroupResult;
   }
 }

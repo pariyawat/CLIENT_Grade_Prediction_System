@@ -1,3 +1,69 @@
-<p>
-  predict-results works!
-</p>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8 his-body">
+    <div class="row">
+      <div class="col-md-3">
+        <label>ผลการทำนาย </label>
+      </div>
+      <div class="col-md-9" style="text-align: right;">
+        <button mat-raised-button class="primary-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+          <mat-icon>exposure</mat-icon>
+          <span> คำนวนเกรดเฉลี่ย(GPA)</span>
+        </button> |
+        <button mat-raised-button class="warning-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+          <mat-icon>bar_chart</mat-icon>
+          <span> แสดงกราฟ </span>
+        </button> |
+        <button mat-raised-button class="danger-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+          <mat-icon>file_copy</mat-icon>
+          <span> ดาวน์โหลด PDF </span>
+        </button>
+      </div>
+    </div>
+    <hr>
+
+    <!-- ************************* กล่องแสดงคำตอบ *********************** -->
+    <div class="result-box" *ngFor="let data of myDataResult">
+      <div class="card border-card ">
+        <div class="card-header bg-head-card ">
+          ชื่อ สกุล | {{data.results[0].STD_ID}}
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-sm">
+            <thead class="text-center">
+              <tr>
+                <th rowspan="2">#</th>
+                <th rowspan="2" style="min-width: 400px;">SUBJECT LIST</th>
+                <th colspan="2">Decision Tree</th>
+                <th colspan="2">Association Rule</th>
+              </tr>
+              <tr>
+                <th>Grade</th>
+                <th>Accuracy</th>
+                <th>Grade</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let result of data.results, let i =  index">
+                <td>{{i+1}}</td>
+                <td> {{result.SUB_NAME}}</td>
+                <td class="text-center">{{result.DT.Grade}}</td>
+                <td class="text-center">{{result.DT.Accuracy}} %</td>
+                <td class="text-center">{{result.ASSO.Grade}}</td>
+                <td class="text-center">{{result.ASSO.Confidence}} %</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <!-- <div style="text-align: right;">
+        sssssssssssssssssssssssss
+      </div> -->
+      <hr>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>

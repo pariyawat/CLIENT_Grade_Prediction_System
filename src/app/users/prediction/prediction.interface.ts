@@ -12,6 +12,8 @@ export interface IStudenByGroup {
     ACT_SUB: number;
 }
 
+
+// ******************Interface Single Prediction Result**********************
 export interface DT {
     Grade: string;
     Accuracy: number;

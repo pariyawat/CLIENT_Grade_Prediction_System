@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatPaginatorIntl } from '@angular/material';
-import { NgxAlertsService } from '@ngx-plus/ngx-alerts';
-import { AuthenticationService } from '../../../../@common/service/authentication.service';
 import { PredictionService } from '../../prediction.service';
 import { IStudenByGroup, IGetSubjectPredict } from '../../prediction.interface';
 import { redirectLink } from '../../../../@common/models/app.url';
@@ -24,6 +22,7 @@ export class SelectGroupComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('loadingDialog') loadingDialog: TemplateRef<any>;
   constructor(
     private route: Router,
     private fb: FormBuilder,
@@ -161,6 +160,7 @@ export class SelectGroupComponent implements OnInit {
   }
 
   public onTeacherPredict() {
+    this.dialog.open(this.loadingDialog, { disableClose: true, position: { top: '150px' } });
     this.dataToServer = [];
     for (const student of this.studentCanUse) {
       for (const subject of this.sbjSelected) {
@@ -178,9 +178,16 @@ export class SelectGroupComponent implements OnInit {
 
     this.predictService.teacherPredict(this.dataToServer)
       .then((response) => {
-        console.log(response);
+        console.log('>>>>>>>', response);
+        if (response) {
+          this.predictService.saveGroupResult(response);
+          this.dialog.closeAll();
+          this.route.navigate([redirectLink.groupResult]);
+        }
       })
       .catch((error) => {
+        this.dialog.closeAll();
+        this.toastr.error('ไม่สามารถทำนายผลการเรียนได้', 'Error');
         throw error;
       });
   }

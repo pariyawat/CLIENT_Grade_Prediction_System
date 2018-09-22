@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IStudentSubject } from '../grade-history.interface';
 import { GradeHistoryService } from '../grade-history.service';
 import { ToastrService } from 'ngx-toastr';
+import { redirectLink } from '../../../@common/models/app.url';
 
 @Component({
   selector: 'app-grade-teacher',
@@ -25,6 +26,7 @@ export class GradeTeacherComponent implements OnInit {
   @ViewChild('editDilog') editDilog: TemplateRef<any>;
 
   constructor(
+    private route: Router,
     private activateRoute: ActivatedRoute,
     private gradeService: GradeHistoryService,
     private dialog: MatDialog,
@@ -37,6 +39,11 @@ export class GradeTeacherComponent implements OnInit {
   ngOnInit() {
     this.getGrade();
   }
+
+  public onTeacherAdd() {
+    this.route.navigate([redirectLink.teacherAddGrade]);
+  }
+
   private getGrade() {
     this.gradeService.studentGetGrade(this.studentID)
       .then((response) => {
