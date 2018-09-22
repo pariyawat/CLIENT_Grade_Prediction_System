@@ -27,15 +27,19 @@ label {
 .bg-head-card {
     font-family: 'Kanit', sans-serif;
     font-weight: 200;
-    background: linear-gradient(to right, #000428, #004e92);
+    background: linear-gradient(to right, #2b5876, #4e4376);
     /* background: linear-gradient(to left, #24243e, #302b63, #0f0c29);  */
-    
     /* background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%); */
     /* background: #0093ca; */
-    color: rgb(251, 255, 202);
+    color: rgb(252, 255, 219);
     font-size: 19px;
+}
+
+.graph-head-card{
+    color: rgb(251, 255, 202);
+    background: linear-gradient(to right, #2b5876, #4e4376);
 }
 
 button:focus {
     outline: 0;
-  }
+}

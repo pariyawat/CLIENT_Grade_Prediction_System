@@ -8,7 +8,6 @@ import { GroupComponent } from './group/group.component';
 import { SelectSubjectComponent } from './single/select-subject/select-subject.component';
 import { PredictResultComponent } from './single/predict-result/predict-result.component';
 import { SelectGroupComponent } from './group/select-group/select-group.component';
-import { SelectSubjectsComponent } from './group/select-subjects/select-subjects.component';
 import { PredictResultsComponent } from './group/predict-results/predict-results.component';
 import { SingleTeacherComponent } from './single-teacher/single-teacher.component';
 import { TeacherSubjectComponent } from './single-teacher/teacher-subject/teacher-subject.component';
@@ -39,10 +38,6 @@ const routes: Routes = [
           {
             path: '',
             component: SelectGroupComponent
-          },
-          {
-            path: 'subjects',
-            component: SelectSubjectsComponent
           },
           {
             path: 'results',

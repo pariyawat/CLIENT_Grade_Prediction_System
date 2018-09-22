@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <button *ngIf="showPie" (click)="openBar()" mat-raised-button class="warning-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+      <mat-icon>bar_chart</mat-icon>
+      <span> Bar Chart </span>
+    </button>
+    <button *ngIf="showBar" (click)="openPie()" mat-raised-button class="success-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+      <mat-icon>pie_chart</mat-icon>
+      <span> Pie Chart </span>
+    </button>
+    <hr>
+  </div>
+  <div class="col-md-6">
+    <div class="card ">
+      <div class="card-header text-center" style="color: #004e92;">
+        Decision Tree
+      </div>
+      <div class="card-body">
+        <div *ngIf="showPie" echarts [options]="optionDT" class="echart"></div>
+        <div *ngIf="showBar" echarts [options]="optionDTBar" class="echart"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card ">
+      <div class="card-header text-center" style="color: #004e92;">
+        Association Rules
+      </div>
+      <div class="card-body">
+        <div *ngIf="showPie" echarts [options]="optionAsso" class="echart"></div>
+        <div *ngIf="showBar" echarts [options]="optionAssoBar" class="echart"></div>
+      </div>
+    </div>
+  </div>
+
+</div>

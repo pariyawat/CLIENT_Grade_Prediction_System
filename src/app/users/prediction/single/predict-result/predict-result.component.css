@@ -25,8 +25,7 @@ label {
 
     font-weight: 300; */
   /* background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%); */
-  background: linear-gradient(to right, #000428, #004e92); 
-
+  background: linear-gradient(to right, #2b5876, #4e4376);
   color: rgb(251, 255, 202);
 }
 
@@ -35,7 +34,7 @@ label {
 }
 
 .border-card {
-  border-color: #3c1053;
+  border-color: #a5a5a5;
 }
 
 .grade-reult {

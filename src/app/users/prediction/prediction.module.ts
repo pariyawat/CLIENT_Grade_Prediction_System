@@ -9,12 +9,13 @@ import { SelectSubjectComponent } from './single/select-subject/select-subject.c
 import { PredictResultComponent } from './single/predict-result/predict-result.component';
 import { SelectGroupComponent } from './group/select-group/select-group.component';
 import { PredictResultsComponent } from './group/predict-results/predict-results.component';
-import { SelectSubjectsComponent } from './group/select-subjects/select-subjects.component';
 import { PredictionService } from './prediction.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleTeacherComponent } from './single-teacher/single-teacher.component';
 import { TeacherSubjectComponent } from './single-teacher/teacher-subject/teacher-subject.component';
+import { PieChartComponent } from './group/pie-chart/pie-chart.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 
@@ -27,7 +28,8 @@ import { TeacherSubjectComponent } from './single-teacher/teacher-subject/teache
         CommonModule,
         NgbModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxEchartsModule
     ],
     declarations: [
         PredictionComponent,
@@ -36,10 +38,10 @@ import { TeacherSubjectComponent } from './single-teacher/teacher-subject/teache
         PredictResultComponent,
         GroupComponent,
         SelectGroupComponent,
-        SelectSubjectsComponent,
         PredictResultsComponent,
         SingleTeacherComponent,
         TeacherSubjectComponent,
+        PieChartComponent,
     ],
     providers: [
         PredictionService

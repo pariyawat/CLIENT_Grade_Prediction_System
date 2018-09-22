@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PapaParseModule } from 'ngx-papaparse';
 import { NgxAlertsModule } from '@ngx-plus/ngx-alerts';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 
@@ -39,7 +40,8 @@ import { ToastrModule } from 'ngx-toastr';
     Ng2Webstorage,
     PapaParseModule,
     NgxAlertsModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxEchartsModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ],
   bootstrap: [AppComponent]
