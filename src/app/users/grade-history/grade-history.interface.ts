@@ -5,3 +5,19 @@ export interface IStudentSubject {
     COURSE: number;
 }
 
+export interface Error {
+    student_id: string;
+    subject_id: string;
+    grade: string;
+}
+
+export interface Success {
+    student_id: string;
+    subject_id: string;
+    grade: string;
+}
+
+export interface TeacherAddGrade {
+    error: Error[];
+    success: Success[];
+}

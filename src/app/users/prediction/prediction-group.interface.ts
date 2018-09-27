@@ -13,6 +13,7 @@ export interface ASSO {
 
 export interface Result {
     STD_ID: string;
+    STD_NAME: string;
     SUB_NAME: string;
     CREDIT: number;
     DT: DT;

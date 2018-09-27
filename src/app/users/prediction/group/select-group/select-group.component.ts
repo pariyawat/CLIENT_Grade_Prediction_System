@@ -167,7 +167,7 @@ export class SelectGroupComponent implements OnInit {
 
         const data = {
           STD_ID: student['STD_ID'],
-          STD_NAME: student['STD_NAME'],
+          // STD_NAME: student['STD_NAME'],
           SUB_CPE: subject['SUB_CPE'],
           SUB_NAME: subject['SUB_NAME']
         };

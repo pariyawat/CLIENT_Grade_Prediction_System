@@ -6,6 +6,7 @@ export const appURL = {
 export const redirectLink = {
     homePage: 'pages/home',
     loginPage: 'login',
+    downloadPage: 'pages/download',
 
     // ---------- Profile ----------
     studentProfile: 'pages/account/Student',

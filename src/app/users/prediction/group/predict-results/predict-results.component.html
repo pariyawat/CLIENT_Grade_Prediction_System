@@ -31,7 +31,7 @@
       <div class="result-box" *ngFor="let data of myDataResult">
         <div class="card border-card ">
           <div class="card-header bg-head-card ">
-            ชื่อ สกุล | {{data.results[0].STD_ID}}
+            {{data.results[0].STD_NAME}} | {{data.results[0].STD_ID}}
           </div>
           <div class="card-body">
             <table class="table table-bordered table-sm">

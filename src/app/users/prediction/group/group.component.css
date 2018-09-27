@@ -72,3 +72,6 @@
     outline: 0;
   }
   
+  ::ng-deep button:focus {
+    outline: 0px;
+  }

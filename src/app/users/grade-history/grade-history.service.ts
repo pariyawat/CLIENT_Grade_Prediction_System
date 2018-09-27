@@ -66,4 +66,24 @@ export class GradeHistoryService {
         throw error;
       });
   }
+
+  public teacherAddGrade(data): Promise<any> {
+    return this.connection.requestPost('grade-history/teacher/add', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  public getGroupByTeacher(): Promise<any> {
+    return this.connection.requestGet('prediction/group/get-group')
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12"  style="text-align: right;">
     <button *ngIf="showPie" (click)="openBar()" mat-raised-button class="warning-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
       <mat-icon>bar_chart</mat-icon>
-      <span> Bar Chart </span>
+      <span> Show Bar Chart </span>
     </button>
-    <button *ngIf="showBar" (click)="openPie()" mat-raised-button class="success-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+    <button *ngIf="showBar" (click)="openPie()" mat-raised-button class="primary-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
       <mat-icon>pie_chart</mat-icon>
-      <span> Pie Chart </span>
+      <span> Show Pie Chart </span>
     </button>
     <hr>
   </div>

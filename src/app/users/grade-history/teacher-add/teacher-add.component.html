@@ -1,3 +1,94 @@
-<p>
-  teacher-add works!
-</p>
+<div class="container-fluid">
+  <div class="row profile-header">Add grade your students</div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 profile-body">
+      <div class="row">
+        <div class="col-md-12" style="text-align: right;">
+          <button mat-raised-button class="info-button-custom" style="font-family: 'Kanit', sans-serif;  border-radius: 7px; height: 40px;"
+            (click)="goDownload()">
+            <mat-icon>cloud_download</mat-icon> ดาวน์โหลดฟอร์ม
+          </button> |
+          <button mat-raised-button class="primary-button-custom" style="font-family: 'Kanit', sans-serif;  border-radius: 7px; height: 40px;"
+            (click)="groupPredict()">
+            <mat-icon>bubble_chart</mat-icon> ทำนายผลการเรียน
+          </button>
+
+        </div>
+      </div>
+      <hr>
+
+      <div class="select-group">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <label>เลือกกลุ่มนักศึกษา</label>
+            <br>
+            <form [formGroup]="selectFormForm">
+              <mat-form-field class="form-group form-select">
+                <mat-select placeholder="เลือกกลุ่ม" formControlName="group" required (selectionChange)="onSubmitGroup(selectFormForm.value)">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let groups of group" [value]="groups.group_name">
+                    {{groups.group_name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>กรุณาเลือก
+                  <strong>กลุ่ม</strong>
+                </mat-error>
+              </mat-form-field>
+              <br>
+            </form>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+
+
+      <!-- UPLOAD -->
+      <div class="file-upload">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <label>อัปโหลดผลการเรียน กลุ่ม {{groupSelected}}</label>
+            <br>
+            <input #csvData type="file" accept=".csv" (change)="onCSV()" class="form-control form-control-sm input-custom1">
+            <br>
+            <button mat-raised-button color="accent" (click)="onAddGrade()" style=" font-family: 'Kanit', sans-serif;  border-radius: 7px; "
+              [disabled]="!groupSelected">อัปโหลด</button>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UPLOAD DIALOG -->
+<ng-template #statusUploadDialog>
+  <div class="uploadDialog">
+    <h2 matDialogTitle>Upload Status!</h2>
+    <hr>
+    <div>
+      <span>
+        <mat-icon color="primary">check_circle_outline</mat-icon>
+      </span>
+      Success : {{addedItem}}
+    </div>
+    <div>
+      <mat-icon color="warn">highlight_off</mat-icon>
+      <span> Error : {{errorItem.length}}</span>
+    </div>
+    <div>
+      <mat-icon color="accent">list</mat-icon>
+      <span> Total : {{totalItem}}</span>
+    </div>
+    <hr>
+    <div *ngFor="let item of errorItem" style=" font-family: 'Kanit', sans-serif;  font-weight: 300; font-size: 14px;">
+      <span class="badge badge-danger">Error :</span> รหัส น.ศ. {{item.student_id}} | รหัสวิชา {{item.subject_id}}
+
+    </div>
+    <mat-dialog-actions align="end">
+      <button mat-stroked-button matDialogClose color="warn">Close</button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>

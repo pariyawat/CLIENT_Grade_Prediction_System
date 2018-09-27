@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { PredictionService } from '../../prediction.service';
 import { Router } from '@angular/router';
-import { redirectLink } from '../../../../@common/models/app.url';
+import { redirectLink, appURL } from '../../../../@common/models/app.url';
 import { IPredictGroupsResult, IDataGroupResult, IGraphResult } from '../../prediction-group.interface';
 import { MatDialog } from '@angular/material';
+import { ConnectionService } from '../../../../@common/service/connection.service';
 
 @Component({
   selector: 'app-predict-results',
@@ -22,6 +23,7 @@ export class PredictResultsComponent implements OnInit {
     private predictService: PredictionService,
     private route: Router,
     private dialog: MatDialog,
+    private connection: ConnectionService
   ) { }
 
   ngOnInit() {

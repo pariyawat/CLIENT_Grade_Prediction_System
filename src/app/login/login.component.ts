@@ -35,8 +35,12 @@ export class LoginComponent implements OnInit {
   onLogin(loginForm) {
     this.loginService.toLogin(loginForm.value)
       .then((response) => {
-        this.authService.setActiveUser(<IActiveUser>response);
-        this.route.navigate([redirectLink.homePage]);
+        if (response) {
+          this.authService.setActiveUser(<IActiveUser>response);
+          this.route.navigate([redirectLink.homePage]);
+        } else {
+          this.toastr.error(`Login ไม่สำเร็จ`, 'Error');
+        }
       }).catch(() => {
         this.toastr.error(`Login ไม่สำเร็จ`, 'Error');
       });

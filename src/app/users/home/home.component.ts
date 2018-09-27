@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
       this.route.navigate([redirectLink.singlePrediction]);
     } else if (this.user.Role === 'Teacher') {
       this.route.navigate([redirectLink.groupPrediction]);
-    } else {
+    } else if (this.user.Role === '"Administrator"') {
       this.route.navigate([redirectLink.adminProfile]);
     }
 

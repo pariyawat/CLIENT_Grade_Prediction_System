@@ -55,6 +55,10 @@ export class GradeStudentComponent implements OnInit {
     this.route.navigate([redirectLink.singlePrediction]);
   }
 
+  public goDownload() {
+    this.route.navigate([redirectLink.downloadPage]);
+  }
+
   public onCSV() {
     const files = this._file.nativeElement.files;
     const blob: Blob = new Blob(files, { type: 'text/csv' });

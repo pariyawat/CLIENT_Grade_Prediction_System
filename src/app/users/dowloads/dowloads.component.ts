@@ -15,7 +15,15 @@ export class DowloadsComponent implements OnInit {
     // window.open('src/assets/image/angular.svg', '_blank');
     const link = document.createElement('a');
     // link.download = 'filename';
-    link.href = 'assets/csv/student_model.csv';
+    link.href = 'assets/excel/student_model.xlsx';
+    link.click();
+  }
+
+  teachDownload() {
+    // window.open('src/assets/image/angular.svg', '_blank');
+    const link = document.createElement('a');
+    // link.download = 'filename';
+    link.href = 'assets/excel/teacher_model.xlsx';
     link.click();
   }
 }
