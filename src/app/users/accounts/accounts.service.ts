@@ -38,4 +38,93 @@ export class AccountsService {
         throw error;
       });
   }
+
+  getTeacher(): Promise<any> {
+    return this.connect.requestGet('manage/teacher')
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  addTeacher(data): Promise<any> {
+    return this.connect.requestPost('manage/teacher/add', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  changePassTeacher(data): Promise<any> {
+    return this.connect.requestPut('manage/teacher/change-pass', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  editTeacher(data): Promise<any> {
+    return this.connect.requestPut('manage/teacher/edit/profile', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+  deleteTeacher(teacher_id): Promise<any> {
+    return this.connect.requestDelete('manage/teacher/delete/' + teacher_id)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  getGroup(): Promise<any> {
+    return this.connect.requestGet('manage/group')
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  addGroup(data): Promise<any> {
+    return this.connect.requestPost('manage/group/add', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  editGroup(data): Promise<any> {
+    return this.connect.requestPut('manage/group/edit', data)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      throw error;
+    });
+  }
+
+  deleteGroup(data): Promise<any> {
+    return this.connect.requestDelete('manage/group/delete/' + data.group_name + '/' + data.teacher_key)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

@@ -24,7 +24,6 @@ export class PredictResultComponent implements OnInit {
 
   ngOnInit() {
     this.myResult = [];
-    window.scrollTo(0, 0);
     const data = this.predictService.getResult();
     if (!data) {
       if (this.user.Role === 'Teacher') {

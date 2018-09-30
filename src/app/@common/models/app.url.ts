@@ -1,6 +1,6 @@
 export const appURL = {
     ipServer: 'http://localhost:3000/api/',
-
+    // ipServer: 'http://203.158.110.142/api/',
 };
 
 export const redirectLink = {

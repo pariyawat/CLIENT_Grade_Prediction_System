@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ElementRef } from '@angular/core';
 import { PredictionService } from '../../prediction.service';
 import { Router } from '@angular/router';
 import { redirectLink, appURL } from '../../../../@common/models/app.url';
 import { IPredictGroupsResult, IDataGroupResult, IGraphResult } from '../../prediction-group.interface';
 import { MatDialog } from '@angular/material';
 import { ConnectionService } from '../../../../@common/service/connection.service';
+// import * as jsPDF from 'jspdf';
+
+declare let jsPDF;
 
 @Component({
   selector: 'app-predict-results',
@@ -15,6 +18,7 @@ export class PredictResultsComponent implements OnInit {
   public myDataResult: IDataGroupResult[];
   public myGraphResult: IGraphResult[];
   @ViewChild('chartDialog') chartDialog: TemplateRef<any>;
+  @ViewChild('contents') contents: ElementRef;
 
   public showTable: boolean;
   public showChart: boolean;
@@ -28,7 +32,6 @@ export class PredictResultsComponent implements OnInit {
 
   ngOnInit() {
     this.openTable();
-    window.scrollTo(0, 0);
     const data = this.predictService.getGroupResult();
     if (!data) {
       this.route.navigate([redirectLink.groupPrediction]);
@@ -50,4 +53,20 @@ export class PredictResultsComponent implements OnInit {
     this.showChart = false;
   }
 
+  public exportPDF() {
+
+    const doc = new jsPDF('p', 'pt');
+    const columns = ['ID', 'Name', 'Age', 'City'];
+
+    const data = [
+      [1, 'Jonathan', 25, 'Gothenburg'],
+      [2, 'Simon', 23, 'Gothenburg'],
+      [3, 'Hanna', 21, 'Stockholm']
+    ];
+    doc.autoTable(columns, data);
+    doc.save('table.pdf');
+
+
+
+  }
 }

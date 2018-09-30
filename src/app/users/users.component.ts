@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthenticationService } from '../@common/service/authentication.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { redirectLink } from '../@common/models/app.url';
 import { IActiveUser } from '../@common/models/login.interface';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -15,7 +17,8 @@ export class UsersComponent implements OnInit {
   FirstName: string;
   LastName: string;
   Role: string;
-  constructor (private authService: AuthenticationService, private route: Router) {
+  subscription: Subscription;
+  constructor(private authService: AuthenticationService, private route: Router, ) {
     this.user = this.authService.getActiveUser();
     this.FirstName = this.user.FirstName;
     this.LastName = this.user.LastName;
@@ -29,6 +32,11 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscription = this.route.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd)
+      )
+      .subscribe(() => window.scrollTo(0, 0));
   }
 
   onLogout() {
@@ -44,6 +52,10 @@ export class UsersComponent implements OnInit {
     } else {
       this.route.navigate([redirectLink.adminProfile]);
     }
+  }
+
+  OnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

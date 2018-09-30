@@ -1,0 +1,49 @@
+.profile-header {
+    background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%);
+    height: 100px;
+    color: #ffffff;
+    padding-top: 40px;
+    padding-left: 50px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.profile-body {
+    box-shadow: 0px 4px 7px 0px #afafaf;
+    font-family: 'Kanit', sans-serif;
+    color: #777777;
+    padding-bottom: 70px;
+    padding-top: 50px;
+    min-height: 700px;
+}
+table {
+    width: 100%;
+}
+
+.form-field {
+    width: 300px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.tb-header {
+    font-family: 'Kanit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    background: #0093ca;
+    color: white;
+}
+
+.filter-header {
+    text-align: right;
+    margin-right: 10px;
+}
+.example-form {
+    width: 350px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+button:focus {
+    outline: 0;
+  }

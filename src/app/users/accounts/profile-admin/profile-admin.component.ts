@@ -3,6 +3,8 @@ import { AdminProfile } from '../profile.interface';
 import { IActiveUser } from '../../../@common/models/login.interface';
 import { AccountsService } from '../accounts.service';
 import { AuthenticationService } from '../../../@common/service/authentication.service';
+import { Router } from '@angular/router';
+import { redirectLink } from '../../../@common/models/app.url';
 
 @Component({
   selector: 'app-profile-admin',
@@ -18,7 +20,10 @@ export class ProfileAdminComponent implements OnInit {
   Email: string;
   Role: string;
 
-  constructor(private accountService: AccountsService, private authService: AuthenticationService) {
+  constructor(
+    private accountService: AccountsService,
+    private authService: AuthenticationService,
+    private route: Router, ) {
     this.user = this.authService.getActiveUser();
   }
 
@@ -40,5 +45,20 @@ export class ProfileAdminComponent implements OnInit {
         throw error;
       });
   }
+  public goAddLearnData() {
+    this.route.navigate([redirectLink.adminProfile + '/add-data']);
 
+  }
+
+  public goAddStudentData() {
+    this.route.navigate([redirectLink.adminProfile + '/student-data']);
+  }
+
+  public goAddTeacherData() {
+    this.route.navigate([redirectLink.adminProfile + '/teacher-data']);
+  }
+
+  public goGrupManage() {
+    this.route.navigate([redirectLink.adminProfile + '/group-manage']);
+  }
 }

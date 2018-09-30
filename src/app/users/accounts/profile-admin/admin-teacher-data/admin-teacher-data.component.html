@@ -1,3 +1,232 @@
-<p>
-  admin-teacher-data works!
-</p>
+<div class="container-fluid">
+  <div class="row profile-header">Manage teacher</div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 profile-body">
+      <div class="row">
+        <div class="col-md-6">
+          <label>ประวัติผลการเรียน </label>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+          <button mat-raised-button class="info-button-custom" style="font-family: 'Kanit', sans-serif;  border-radius: 7px; height: 40px;"
+            (click)="onAddTeacherDialog()">
+            <mat-icon>person_add</mat-icon> เพิ่มอาจารย์
+          </button>
+        </div>
+      </div>
+      <hr>
+
+      <div class="filter-header">
+        <mat-form-field class="form-field">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ค้นหาอาจารย์">
+        </mat-form-field>
+      </div>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+
+          <ng-container matColumnDef="teacher_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">รหัสอาจารย์</th>
+            <td mat-cell *matCellDef="let element"> {{element.teacher_id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="first_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="tb-header">ชื่อ</th>
+            <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="last_name">
+            <th mat-header-cell *matHeaderCellDef class="tb-header">นามสกุล</th>
+            <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email_address">
+            <th mat-header-cell *matHeaderCellDef class="tb-header">อีเมล์</th>
+            <td mat-cell *matCellDef="let element"> {{element.email_address}} </td>
+          </ng-container>
+
+          <!-- edit -->
+          <ng-container matColumnDef="EDIT">
+            <th mat-header-cell *matHeaderCellDef class="tb-header">แก้ไข </th>
+            <td mat-cell *matCellDef="let row; let i=index;">
+              <button mat-icon-button color="primary" (click)="onEditDialog(row)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+
+            </td>
+          </ng-container>
+
+          <!-- cang password -->
+          <ng-container matColumnDef="PASSWORD">
+            <th mat-header-cell *matHeaderCellDef class="tb-header">รหัสผ่าน</th>
+            <td mat-cell *matCellDef="let row; let i=index;">
+              <button mat-icon-button color="accent" (click)="onChangPassDialog(row)">
+                <mat-icon>keyboard_hide</mat-icon>
+              </button>
+
+            </td>
+          </ng-container>
+
+          <!-- del -->
+          <ng-container matColumnDef="DELETE">
+            <th mat-header-cell *matHeaderCellDef class="tb-header"> ลบ </th>
+            <td mat-cell *matCellDef="let row; let i=index;">
+
+                <button mat-icon-button color="warn" (click)="onDeleteDialog(row)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 15, 20, 25, 100]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+<!-- ************ edit dialog ************* -->
+<ng-template #editDialog>
+
+  <div class="example-form">
+    <h4 matDialogTitle>Change teacher profile!</h4>
+    <hr>
+    <form [formGroup]="editForm">
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="teacher_id" placeholder="Teacher ID" required>
+        <mat-error>Teacher ID is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="first_name" placeholder="First Name" required>
+        <mat-error>First Name is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="last_name" placeholder="Last Name" required>
+        <mat-error>Last Name is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="email_address" placeholder="Email Address" required>
+        <mat-error> Please enter a valid <strong>email address </strong> </mat-error>
+      </mat-form-field>
+
+
+      <hr>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="onEditTeacher(editForm.value)" [disabled]="!editForm.valid">Change</button>
+        <span>
+          <button style="margin-left: 10px;" mat-raised-button matDialogClose color="warn">Dismiss</button>
+        </span>
+      </mat-dialog-actions>
+    </form>
+  </div>
+
+</ng-template>
+
+<!-- ************ add dialog ************* -->
+<ng-template #addTeacherDialog>
+
+  <div class="example-form">
+    <h4 matDialogTitle>Create teacher profile!</h4>
+    <hr>
+    <form [formGroup]="addTeacherForm">
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="teacher_id" placeholder="Teacher ID" required>
+        <mat-error>Teacher ID is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="first_name" placeholder="First Name" required>
+        <mat-error>First Name is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="last_name" placeholder="Last Name" required>
+        <mat-error>Last Name is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" formControlName="email_address" placeholder="Email Address" required>
+        <mat-error> Please enter a valid <strong>email address </strong> </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="password" formControlName="passwordControl" placeholder="Enter new password" required>
+        <mat-error>You must enter a <strong>password</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="password" formControlName="rePasswordControl" placeholder="Re new password" required>
+        <mat-error>You must enter password <strong>again</strong></mat-error>
+      </mat-form-field>
+      <mat-error style="font-size: 12px;" *ngIf="!addTeacherForm.valid">Your <strong>password</strong> don't match or
+        Your <strong>Email</strong> invalid</mat-error>
+
+      <hr>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="onAddTeacher(addTeacherForm.value)" [disabled]="!addTeacherForm.valid">Create</button>
+        <span>
+          <button style="margin-left: 10px;" mat-raised-button matDialogClose color="warn">Dismiss</button>
+        </span>
+      </mat-dialog-actions>
+    </form>
+  </div>
+</ng-template>
+
+<!-- ************ Chang password dialog ************* -->
+<ng-template #changPassDialog>
+  <div class="example-form">
+    <h4 matDialogTitle>Change teacher password!</h4>
+    <hr>
+    <div class="example-full-width">
+      <i class="fa fa-user" aria-hidden="true"></i> <span> {{changePassForm.value.teacher_name}}</span>
+    </div>
+
+
+    <form [formGroup]="changePassForm">
+      <mat-form-field class="example-full-width">
+        <input matInput type="password" formControlName="passwordControl" placeholder="Enter new password" required>
+        <mat-error>You must enter a <strong>password</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="password" formControlName="rePasswordControl" placeholder="Re new password" required>
+        <mat-error>You must enter password <strong>again</strong></mat-error>
+      </mat-form-field>
+      <mat-error *ngIf="!changePassForm.valid">Your password don't <strong>match</strong></mat-error>
+      <hr>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="onChangePassword(changePassForm.value)" [disabled]="!changePassForm.valid">Change</button>
+        <span>
+          <button style="margin-left: 10px;" mat-raised-button matDialogClose color="warn">Dismiss</button>
+        </span>
+      </mat-dialog-actions>
+    </form>
+  </div>
+</ng-template>
+
+<!-- DELETE DIALOG -->
+<ng-template #deleteDialog>
+  <div class="example-form">
+    <h2 matDialogTitle>Delete Confirm</h2>
+    <hr>
+    <div class="example-full-width">
+      <i class="fa fa-ban" style="color:red" aria-hidden="true"></i> <span> ต้องการลบ - {{deleteItem.first_name + ' ' +
+        deleteItem.last_name}}</span>
+    </div>
+    <hr>
+    <mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="onDeleteTeacher()">Delete</button>
+      <span>
+        <button style="margin-left: 10px;" mat-raised-button matDialogClose color="warn">Dismiss</button>
+      </span>
+    </mat-dialog-actions>
+  </div>
+</ng-template>

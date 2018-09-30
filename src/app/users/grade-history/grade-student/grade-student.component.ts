@@ -83,16 +83,6 @@ export class GradeStudentComponent implements OnInit {
         .then((response) => {
           console.log(response);
           this.uploadStatus = response;
-          // const item: any = {
-          //   title: `Status`,
-          //   text: `
-          //   Success: ${response.success}
-          //   Error: ${response.error}
-          //   Total: ${response.total}
-          //   Message: ${response.errorItem}
-          //   `
-          // };
-          // this.alerts.alertInfo(item);
           this.onUploadDialog();
         })
         .catch((error) => {

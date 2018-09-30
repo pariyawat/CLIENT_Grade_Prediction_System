@@ -18,13 +18,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+
   public goPrediction() {
 
     if (this.user.Role === 'Student') {
       this.route.navigate([redirectLink.singlePrediction]);
     } else if (this.user.Role === 'Teacher') {
       this.route.navigate([redirectLink.groupPrediction]);
-    } else if (this.user.Role === '"Administrator"') {
+    } else if (this.user.Role === 'Administrator') {
       this.route.navigate([redirectLink.adminProfile]);
     }
 

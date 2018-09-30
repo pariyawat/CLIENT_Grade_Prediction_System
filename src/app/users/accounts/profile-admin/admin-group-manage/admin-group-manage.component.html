@@ -1,3 +1,146 @@
-<p>
-  admin-group-manage works!
-</p>
+<div class="container-fluid">
+  <div class="row profile-header">Administrator manage group</div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 profile-body">
+      <div class="row">
+        <label>จัดการกลุ่มนักศึกษา </label>
+      </div>
+      <hr>
+      <div class="file-upload">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <form [formGroup]="addGroupFrom">
+
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" formControlName="groupName" placeholder="Group name" value="CPE" minlength="8"
+                  maxlength="8" required>
+                <mat-error>Group name is <strong>required</strong></mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                <mat-select placeholder="Select Teacher" formControlName="teacher_key" required>
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let teachers of teacher" [value]="teachers.teacher_key">
+                    {{teachers.teacher_id}} | {{teachers.first_name + ' ' + teachers.last_name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>Teacher is <strong>required</strong></mat-error>
+              </mat-form-field>
+              <br>
+              <br>
+              <button color="accent" mat-raised-button (click)="onAddGroup(addGroupFrom.value)" [disabled]="!addGroupFrom.valid"
+                style=" font-family: 'Kanit', sans-serif;  border-radius: 7px;  margin-left: 7px;">สร้างกลุ่ม</button>
+
+            </form>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+      <div class="group-ta">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="filter-header">
+              <mat-form-field class="form-field">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ค้นหากลุ่ม">
+              </mat-form-field>
+            </div>
+
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="NO">
+                  <th mat-header-cell *matHeaderCellDef class="tb-header">ลำดับ</th>
+                  <td mat-cell *matCellDef="let i = index"> {{i +1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="GROUP">
+                  <th mat-header-cell *matHeaderCellDef class="tb-header">ชื่อกลุ่ม</th>
+                  <td mat-cell *matCellDef="let element"> {{element.group_name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TEACHER">
+                  <th mat-header-cell *matHeaderCellDef class="tb-header">ชื่ออาจารย์</th>
+                  <td mat-cell *matCellDef="let element"> {{element.teacher_name}} </td>
+                </ng-container>
+
+                <!-- edit -->
+                <ng-container matColumnDef="ACTION">
+                  <th mat-header-cell *matHeaderCellDef class="tb-header">แก้ไข / ลบ</th>
+                  <td mat-cell *matCellDef="let row; let i=index;">
+                    <button mat-icon-button color="primary" (click)="onEditDialog(row)">
+                      <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button> |
+                    <span> <button mat-icon-button color="warn" (click)="onDeleteDialog(row)">
+                        <mat-icon aria-label="Edit">delete</mat-icon>
+                      </button></span>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[10, 15, 20, 25, 100]" showFirstLastButtons></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+
+  <!-- ************ edit dialog ************* -->
+  <ng-template #editDialog>
+
+    <div class="example-form">
+      <h4 matDialogTitle>Edit group!</h4>
+      <hr>
+      <form [formGroup]="editForm">
+
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" formControlName="group_name" placeholder="Group name" minlength="8" maxlength="8"
+            required>
+          <mat-error>Group name is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="Select Teacher" formControlName="teacher_key" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let teachers of teacher" [value]="teachers.teacher_key">
+              {{teachers.teacher_id}} | {{teachers.first_name + ' ' + teachers.last_name}}
+            </mat-option>
+          </mat-select>
+          <mat-error>Teacher is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-dialog-actions align="end">
+          <button mat-raised-button color="primary" (click)="onEditGroup(editForm.value)" [disabled]="!editForm.valid">Change</button>
+          <span>
+            <button style="margin-left: 10px;" mat-raised-button matDialogClose color="warn">Dismiss</button>
+          </span>
+        </mat-dialog-actions>
+      </form>
+    </div>
+
+  </ng-template>
+
+  <!-- DELETE DIALOG -->
+  <ng-template #deleteDialog>
+    <div class="example-form">
+      <h2 matDialogTitle>Delete Confirm</h2>
+      <hr>
+      <div class="example-full-width">
+        <span>  ต้องการลบกลุ่ม </span>
+        <br>
+        <i class="fa fa-ban" style="color:red" aria-hidden="true"></i> {{deleteItem.group_name}} | {{deleteItem.teacher_name}}
+      </div>
+      <hr>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="onDeleteGroup()">Delete</button>
+        <span>
+          <button style="margin-left: 10px;" mat-raised-button matDialogClose color="warn">Dismiss</button>
+        </span>
+      </mat-dialog-actions>
+    </div>
+  </ng-template>

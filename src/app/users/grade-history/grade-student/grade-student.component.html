@@ -133,19 +133,19 @@
       <span>
         <mat-icon color="primary">check_circle_outline</mat-icon>
       </span>
-      Success : {{uploadStatus.success}}
+      Success : {{uploadStatus.success.length}}
     </div>
     <div>
       <mat-icon color="warn">highlight_off</mat-icon>
-      <span> Error : {{uploadStatus.error}}</span>
+      <span> Error : {{uploadStatus.error.length}}</span>
     </div>
     <div>
       <mat-icon color="accent">list</mat-icon>
-      <span> Total : {{uploadStatus.total}}</span>
+      <span> Total : {{uploadStatus.error.length + uploadStatus.success.length}}</span>
     </div>
     <hr>
-    <div *ngFor="let item of uploadStatus.errorItem">
-      <span class="badge badge-danger">Error :</span> {{item}}
+    <div *ngFor="let item of uploadStatus.error">
+      <span class="badge badge-danger">Error :</span> รหัสวิชา {{item.subject_id}}
 
     </div>
     <mat-dialog-actions align="end">
