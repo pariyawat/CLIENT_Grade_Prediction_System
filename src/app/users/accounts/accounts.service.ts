@@ -110,16 +110,76 @@ export class AccountsService {
 
   editGroup(data): Promise<any> {
     return this.connect.requestPut('manage/group/edit', data)
-    .then((response) => {
-      return response;
-    })
-    .catch((error) => {
-      throw error;
-    });
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
   deleteGroup(data): Promise<any> {
     return this.connect.requestDelete('manage/group/delete/' + data.group_name + '/' + data.teacher_key)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  uploadStudent(data): Promise<any> {
+    return this.connect.requestPost('manage/student/upload', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  addStudent(data): Promise<any> {
+    return this.connect.requestPost('manage/student/upload/one', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  getStudent(group_name): Promise<any> {
+    return this.connect.requestGet('manage/student/' + group_name)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  deleteStudent(data): Promise<any> {
+    return this.connect.requestDelete('manage/student/delete/' + data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  changePassStudent(data): Promise<any> {
+    return this.connect.requestPut('manage/student/chang-pass', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  editStudent(data): Promise<any> {
+    return this.connect.requestPut('manage/student/edit/profile', data)
       .then((response) => {
         return response;
       })

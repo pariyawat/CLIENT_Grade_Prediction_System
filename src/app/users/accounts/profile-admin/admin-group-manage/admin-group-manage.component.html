@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row profile-header">Administrator manage group</div>
+  <div class="row profile-header">Manage group</div>
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 profile-body">
@@ -11,19 +11,23 @@
         <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-4">
-            <form [formGroup]="addGroupFrom">
 
+            เพิ่มกลุ่มนักศึกษา
+            <hr style="width: 250px;">
+            <br>
+            <form [formGroup]="addGroupFrom">
               <mat-form-field class="example-full-width">
-                <input matInput type="text" formControlName="groupName" placeholder="Group name" value="CPE" minlength="8"
+                <input matInput type="text" formControlName="groupName" placeholder="ชื่อกลุ่ม" value="CPE" minlength="8"
                   maxlength="8" required>
                 <mat-error>Group name is <strong>required</strong></mat-error>
               </mat-form-field>
 
               <mat-form-field class="example-full-width">
-                <mat-select placeholder="Select Teacher" formControlName="teacher_key" required>
+                <mat-select class="example-full-width" placeholder="เลือกอาจารย์ที่ปรึกษา" formControlName="teacher_key"
+                  required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let teachers of teacher" [value]="teachers.teacher_key">
-                    {{teachers.teacher_id}} | {{teachers.first_name + ' ' + teachers.last_name}}
+                    {{teachers.teacher_id}} - {{teachers.first_name + ' ' + teachers.last_name}}
                   </mat-option>
                 </mat-select>
                 <mat-error>Teacher is <strong>required</strong></mat-error>
@@ -99,16 +103,17 @@
       <form [formGroup]="editForm">
 
         <mat-form-field class="example-full-width">
-          <input matInput type="text" formControlName="group_name" placeholder="Group name" minlength="8" maxlength="8"
+          <input matInput type="text" formControlName="group_name" placeholder="ชื่อกลุ่ม" minlength="8" maxlength="8"
             required>
           <mat-error>Group name is <strong>required</strong></mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-select placeholder="Select Teacher" formControlName="teacher_key" required>
+          <mat-select class="example-full-width" placeholder="เลือกอาจารย์ที่ปรึกษา" formControlName="teacher_key"
+            required>
             <mat-option>--</mat-option>
             <mat-option *ngFor="let teachers of teacher" [value]="teachers.teacher_key">
-              {{teachers.teacher_id}} | {{teachers.first_name + ' ' + teachers.last_name}}
+              {{teachers.teacher_id}} - {{teachers.first_name + ' ' + teachers.last_name}}
             </mat-option>
           </mat-select>
           <mat-error>Teacher is <strong>required</strong></mat-error>
@@ -131,9 +136,10 @@
       <h2 matDialogTitle>Delete Confirm</h2>
       <hr>
       <div class="example-full-width">
-        <span>  ต้องการลบกลุ่ม </span>
+        <span> ต้องการลบกลุ่ม </span>
         <br>
-        <i class="fa fa-ban" style="color:red" aria-hidden="true"></i> {{deleteItem.group_name}} | {{deleteItem.teacher_name}}
+        <i class="fa fa-ban" style="color:red" aria-hidden="true"></i> {{deleteItem.group_name}} |
+        {{deleteItem.teacher_name}}
       </div>
       <hr>
       <mat-dialog-actions align="end">
