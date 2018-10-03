@@ -7,7 +7,7 @@
         <div class="col-md-6">
           <div class="file-upload">
             เพิ่มนักศึกษา
-            <hr style="width: 250px;">
+            <hr style="width: 60%;">
             <br>
             <form [formGroup]="addStudentForm">
               <mat-form-field class="example-full-width">
@@ -58,7 +58,7 @@
                 หรือ
                 <strong>อีเมล์</strong> ไม่ถูกต้อง</mat-error>
 
-              <hr style="width: 250px;">
+                <hr style="width: 60%;">
               <mat-dialog-actions align="end">
                 <button mat-raised-button color="primary" (click)="onAddStudent(addStudentForm.value)" [disabled]="!addStudentForm.valid"
                   style="font-family: 'Kanit', sans-serif;  border-radius: 7px; height: 50px; width: 100%; margin-right: 10px;">เพิ่มนักศึกษา</button>
@@ -135,7 +135,7 @@
         </div>
       </div>
       <br>
-      <div *ngIf="dataSource">
+      <div *ngIf="showStudentTable">
         <div class="filter-header">
           <mat-form-field class="form-field">
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ค้นหาอาจารย์">

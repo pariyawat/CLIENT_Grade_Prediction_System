@@ -8,6 +8,7 @@ import { IGetSubjectPredict } from '../../prediction.interface';
 import { redirectLink } from '../../../../@common/models/app.url';
 import { AuthenticationService } from '../../../../@common/service/authentication.service';
 import { IActiveUser } from '../../../../@common/models/login.interface';
+import { IStudentSubject } from '../../../grade-history/grade-history.interface';
 
 @Component({
   selector: 'app-select-subject',
@@ -21,6 +22,9 @@ export class SelectSubjectComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('loadingDialog') loadingDialog: TemplateRef<any>;
+
+  public gradeHistory: IStudentSubject[];
+
   constructor(
     private predictService: PredictionService,
     private toastr: ToastrService,
@@ -29,12 +33,14 @@ export class SelectSubjectComponent implements OnInit {
     private dialog: MatDialog,
     private modalService: NgbModal) { }
 
+
   private subjectSelected = [];
   private user: IActiveUser = this.authService.getActiveUser();
   private dataToserver = [];
 
 
   ngOnInit() {
+    this.getGrade();
     this.predictService.getSubjectPredict('')
       .then((response) => {
         this.dataSource = new MatTableDataSource(response.map(list => {
@@ -67,6 +73,20 @@ export class SelectSubjectComponent implements OnInit {
         this.subjectSelected.push(list);
       }
     });
+  }
+
+  getGrade() {
+    this.predictService.studentGetGrade(this.user.ID)
+      .then((response) => {
+        this.gradeHistory = response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  notify(str_value) {
+    this.toastr.warning(`${str_value}`, 'Warning');
   }
 
   onPrediction() {

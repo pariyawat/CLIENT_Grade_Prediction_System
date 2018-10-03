@@ -3,6 +3,7 @@
   <div class="col-md-7 single-body">
     <div class="row">
       <div class="col-md-6">
+        <p *ngIf="gradeHistory > 6">55555555555555</p>
         <label>เลือกวิชาที่จะทำนาย </label>
       </div>
       <div class="col-md-6" style="text-align: right;">
@@ -35,12 +36,22 @@
         <ng-container matColumnDef="ACTION">
           <th mat-header-cell *matHeaderCellDef class="tb-header">เลือกวิชา</th>
           <td mat-cell *matCellDef="let row; let i=index;">
-            <button *ngIf="!row.IS_ACTIVE" mat-raised-button class="primary-button-custom" (click)="row.IS_ACTIVE = true"
-              (click)="onSAVE()">
+            <button *ngIf="subjectSelected.length >= 10" (click)="notify('ทำนายได้ไม่เกินครั้งละ 10 วิชา')" class="bt-radius"
+              mat-raised-button>
               <mat-icon>add_circle_outline</mat-icon>
               <span> เพิ่ม</span>
             </button>
-            <button *ngIf="row.IS_ACTIVE" mat-raised-button class="danger-button-custom" (click)="row.IS_ACTIVE = false"
+            <button *ngIf="gradeHistory.length <= 6" (click)="notify('คุณมีผลการเรียนต่ำกว่า 7 วิชา')" class="bt-radius"
+              mat-raised-button>
+              <mat-icon>add_circle_outline</mat-icon>
+              <span> เพิ่ม</span>
+            </button>
+            <button *ngIf="!row.IS_ACTIVE && gradeHistory.length >= 7 && subjectSelected.length <=9" color="primary" mat-raised-button class="bt-radius"
+              (click)="row.IS_ACTIVE = true" (click)="onSAVE()">
+              <mat-icon>add_circle_outline</mat-icon>
+              <span> เพิ่ม</span>
+            </button>
+            <button *ngIf="row.IS_ACTIVE && subjectSelected.length <=9" mat-raised-button color="warn" class="bt-radius" (click)="row.IS_ACTIVE = false"
               (click)="onSAVE()">
               <mat-icon>remove_circle_outline</mat-icon>
               <span> ลบ</span>
@@ -79,15 +90,15 @@
 </div>
 
 
-<ng-template #loadingDialog  >
+<ng-template #loadingDialog>
 
-    <div class="semipolar-spinner" :style="spinnerStyle">
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-      </div>
+  <div class="semipolar-spinner" :style="spinnerStyle">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
   <div style="font-family: 'Kanit', sans-serif; color: #ff1d5e;">กำลังโหลด</div>
 
 

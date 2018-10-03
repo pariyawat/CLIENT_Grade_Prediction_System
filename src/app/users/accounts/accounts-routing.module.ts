@@ -60,12 +60,10 @@ const routes: Routes = [
         path: 'Administrator',
         component: ProfileAdminComponent,
         canActivate: [ProfileAdminGuard],
-        children: [
-          {
-            path: 'edit-account',
-            component: AdminEditComponent
-          }
-        ]
+      },
+      {
+        path: 'Administrator/edit-account',
+        component: AdminEditComponent
       },
       {
         path: 'Administrator/add-data',

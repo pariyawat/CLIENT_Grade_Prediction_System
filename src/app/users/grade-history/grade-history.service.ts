@@ -77,6 +77,16 @@ export class GradeHistoryService {
       });
   }
 
+  public teacherAddGradeOne(data, studen_id): Promise<any> {
+    return this.connection.requestPost('grade-history/teacher/add-one/' + studen_id, data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
   public getGroupByTeacher(): Promise<any> {
     return this.connection.requestGet('prediction/group/get-group')
       .then((response) => {

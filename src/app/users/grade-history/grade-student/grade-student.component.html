@@ -78,7 +78,8 @@
             <br>
             <form [formGroup]="addGradeForm" (ngSubmit)="onSubmitAddGrade(addGradeForm.value)">
               <mat-form-field class="form-group form-add">
-                <input matInput type="text" formControlName="subject_id" placeholder="รหัสวิชา" required>
+                <input matInput #sub_id type="text" formControlName="subject_id" placeholder="รหัสวิชา" required minlength="8" maxlength="8">
+                <mat-hint align="end">{{sub_id.value?.length || 0}}/8</mat-hint>
                 <mat-error>กรุณากรอก
                   <strong>รหัสวิชา</strong>
                 </mat-error>

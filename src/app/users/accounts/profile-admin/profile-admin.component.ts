@@ -61,4 +61,7 @@ export class ProfileAdminComponent implements OnInit {
   public goGrupManage() {
     this.route.navigate([redirectLink.adminProfile + '/group-manage']);
   }
+  public goAccountManage() {
+    this.route.navigate([redirectLink.adminProfile + '/edit-account']);
+  }
 }

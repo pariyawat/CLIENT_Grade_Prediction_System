@@ -22,6 +22,7 @@ export class AdminStudentDataComponent implements OnInit {
   public editForm: FormGroup;
   public deleteItem;
   public changePassForm: FormGroup;
+  public showStudentTable: boolean;
 
   /********** upload result*****/
   public addedItem: number;
@@ -46,6 +47,7 @@ export class AdminStudentDataComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.showStudentTable = false;
     this.getGroup();
     this.selectGroup = new FormControl('');
     this.addStudentForm = new FormGroup({
@@ -80,8 +82,9 @@ export class AdminStudentDataComponent implements OnInit {
         throw error;
       });
   }
-  public getStudent() {
-    this.serviceAccount.getStudent(this.selectGroup.value)
+  public  getStudent() {
+    this.showStudentTable = true;
+     this.serviceAccount.getStudent(this.selectGroup.value)
       .then((response) => {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
@@ -104,7 +107,7 @@ export class AdminStudentDataComponent implements OnInit {
     this.serviceAccount.addStudent(formValue)
       .then((response) => {
         if (response.affectedRows) {
-          this.toastr.success(`เพิ่มอาจารย์ ${formValue.first_name} สำเร็จ`, 'Success');
+          this.toastr.success(`เพิ่มนักศึกษา ${formValue.first_name} สำเร็จ`, 'Success');
           this.dialog.closeAll();
           this.addStudentForm.reset();
           this.getStudent();

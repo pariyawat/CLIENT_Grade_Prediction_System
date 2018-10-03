@@ -80,6 +80,17 @@ export class PredictionService {
       });
   }
 
+  public studentGetGrade(id): Promise<any> {
+    return this.connection.requestGet('grade-history/student/' + id)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+
+  }
+
   saveResult(data) {
     this.myResult = data;
   }

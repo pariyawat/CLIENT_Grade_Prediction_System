@@ -1,90 +1,96 @@
 .his-header {
-  background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%);
-  height: 100px;
-  color: #ffffff;
-  padding-top: 40px;
-  padding-left: 50px;
-  font-size: 20px;
-  font-weight: 300;
+    background: linear-gradient(141deg, #0093ca 0%, #61b2ca 51%, #0093ca 75%);
+    height: 100px;
+    color: #ffffff;
+    padding-top: 40px;
+    padding-left: 50px;
+    font-size: 20px;
+    font-weight: 300;
 }
 
 .his-body {
-  box-shadow: 0px 4px 7px 0px #afafaf;
-  /* font-family: 'Kanit', sans-serif; */
-  color: #777777;
-  padding-bottom: 70px;
-  padding-top: 50px;
-  min-height: 700px;
+    box-shadow: 0px 4px 7px 0px #afafaf;
+    /* font-family: 'Kanit', sans-serif; */
+    color: #777777;
+    padding-bottom: 70px;
+    padding-top: 50px;
+    min-height: 700px;
 }
 
 table {
-  width: 100%;
+    width: 100%;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 300;
 }
 
 .form-field {
-  width: 300px;
-  font-family: 'Kanit', sans-serif;
+    width: 300px;
+    font-family: 'Kanit', sans-serif;
 }
 
-.form-add{
-  width: 100%;
-  font-family: 'Kanit', sans-serif;
+.form-add {
+    width: 100%;
+    font-family: 'Kanit', sans-serif;
 }
 
 .tb-header {
-  font-family: 'Kanit', sans-serif;
-  font-size: 15px;
-  font-weight: 300;
-  background: #0093ca;
-  color: white;
+    font-family: 'Kanit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    background: #0093ca;
+    color: white;
 }
 
 .filter-header {
-  text-align: right;
-  margin-right: 10px;
+    text-align: right;
+    margin-right: 10px;
 }
 
 label {
-  font-size: 20px;
-  font-weight: 200;
-  font-family: 'Kanit', sans-serif;
-  margin-left: 20px;
+    font-size: 20px;
+    font-weight: 200;
+    font-family: 'Kanit', sans-serif;
+    margin-left: 20px;
 }
 
-.file-upload{
-  margin-top: 70px;
-  /* margin-left: 100px;
+.file-upload {
+    margin-top: 70px;
+    /* margin-left: 100px;
   margin-right: 100px; */
-  padding-top: 40px; 
-  padding-bottom: 40px;
-  text-align: center;
-  border: 2px dashed rgb(190, 190, 190);
-  border-radius: 5px;
-}
-.input-custom1{
-  font-family: 'Kanit', sans-serif;
-}
-.uploadDialog{
-  width: 300px;
-}
-.deleteDialog{
-  width: 500px;
-}
-.deleteItem{
-  color: #777777;
-  font-family: 'Kanit', sans-serif;
-}
-.editDilog{
-  width: 500px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+    border: 2px dashed rgb(190, 190, 190);
+    border-radius: 5px;
 }
 
+.input-custom1 {
+    font-family: 'Kanit', sans-serif;
+}
+
+.uploadDialog {
+    width: 300px;
+}
+
+.deleteDialog {
+    width: 500px;
+}
+
+.deleteItem {
+    color: #777777;
+    font-family: 'Kanit', sans-serif;
+}
+
+.editDilog {
+    width: 500px;
+}
 
 button:focus {
-  outline: 0;
+    outline: 0;
 }
 
-.primary-button-custom{
-height: 40px;
-border-radius: 7px;
-font-family: 'Kanit', sans-serif;
+.primary-button-custom {
+    height: 40px;
+    border-radius: 7px;
+    font-family: 'Kanit', sans-serif;
 }
