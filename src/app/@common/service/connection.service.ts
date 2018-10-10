@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, Headers, } from '@angular/http';
+import { Http, Response, Headers, } from '@angular/http';
 import { appURL } from '../models/app.url';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { IActiveUser } from '../models/login.interface';
+import { timeout } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class ConnectionService {
     this.myHeaders = new Headers();
     this.myHeaders.set('Accept', 'application/json');
     this.myHeaders.set('Content-Type', 'application/json');
+    // this.myHeaders.set('timeout', '300000');
   }
 
 
@@ -76,6 +78,21 @@ export class ConnectionService {
     console.log('Data Sendtoserver :', data);
     return this.http
       .put(appURL.ipServer + path, data, { headers: this.setHeader() })
+      .toPromise()
+      .then((response: Response) => {
+        return response.json();
+      })
+      .catch((error: HttpErrorResponse) => {
+        throw error;
+      });
+  }
+
+
+  public requestPredict(path: string, data: any): Promise<any> {
+    console.log('Path Connect to Server >>>>>>>>>>>>>>>>>>>>>>', appURL.ipServer + path);
+    console.log('Data Sendtoserver :', data);
+    return this.http
+      .post(appURL.ipServer + path, data, { headers: this.setHeader() }).pipe(timeout(1800000))
       .toPromise()
       .then((response: Response) => {
         return response.json();

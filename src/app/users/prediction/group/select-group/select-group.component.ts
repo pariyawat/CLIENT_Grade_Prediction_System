@@ -36,7 +36,7 @@ export class SelectGroupComponent implements OnInit {
   public showSubjectTable: boolean;
   public group: string[];
   public selectFormForm: FormGroup;
-  private sbjSelected = [];
+  public sbjSelected = [];
   private studentCanUse = [];
   private dataToServer = [];
 
@@ -108,6 +108,10 @@ export class SelectGroupComponent implements OnInit {
   public stdWarnAlertB(name) {
     const NAME = name.substr(0, name.indexOf(' '));
     this.toastr.warning(`เนื่องจาก ${NAME}\n มีผลการเรียนต่ำว่า 7 วิชา`, 'ไม่สามารถทำนายได้');
+  }
+
+  notify(str_value) {
+    this.toastr.warning(`${str_value}`, 'Warning');
   }
 
   public onSubjectByGroup(value) {

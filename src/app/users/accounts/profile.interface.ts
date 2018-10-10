@@ -23,4 +23,11 @@ export interface AdminProfile {
     Role: string;
 }
 
+export interface IConfig {
+    config_id: number;
+    support: number;
+    confidence: number;
+}
+
+
 

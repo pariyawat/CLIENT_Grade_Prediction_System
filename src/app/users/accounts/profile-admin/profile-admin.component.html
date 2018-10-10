@@ -18,18 +18,27 @@
         <div class="col-md-1"></div>
         <div class="col-md-5">
           <div class="button-group">
-            <button (click)="goAddLearnData()" mat-button class="info-button-custom" style="height: 50px; width: 290px;margin-bottom: 15px;">
-              <mat-icon>cloud_upload</mat-icon> นำเข้าผลการเรียน</button>
+            <button (click)="goAddLearnData()" mat-button class="info-button-custom" style="height: 50px; width: 290px;margin-bottom: 10px;">
+              <mat-icon>cloud_upload</mat-icon> นำเข้าผลการเรียน
+            </button>
+            <br>
+            <button (click)="predictConfig()" mat-button class="warning-button-custom" style="height: 50px; width: 290px;margin-bottom: 10px;">
+              <mat-icon>settings</mat-icon> ปรับค่าการทำนาย
+            </button>
             <br>
             <button (click)="goAddStudentData()" mat-button class="primary-button-custom" style="height: 45px; width: 140px;  margin-bottom: 10px; margin-right: 10px;">
-              <mat-icon>list_alt</mat-icon> ข้อมูลนักศึกษา</button>
+              <mat-icon>list_alt</mat-icon> ข้อมูลนักศึกษา
+            </button>
             <button (click)="goAddTeacherData()" mat-button class="primary-button-custom" style="height: 45px; width: 140px;  margin-bottom: 10px">
-              <mat-icon>list_alt</mat-icon> ข้อมูลอาจารย์</button>
+              <mat-icon>list_alt</mat-icon> ข้อมูลอาจารย์
+            </button>
             <br>
-            <button (click)="goGrupManage()" mat-button class="warning-button-custom" style="height: 45px; width: 140px; margin-bottom: 10px; margin-right: 10px;">
-              <mat-icon>error_outline</mat-icon> จัดการกลุ่ม</button>
-            <button (click)="goAccountManage()"  mat-button class="danger-button-custom" style="height: 45px; width: 140px;">
-              <mat-icon>settings</mat-icon> จัดการบัญชี</button>
+            <button (click)="goGrupManage()" mat-button class="danger-button-custom" style="height: 45px; width: 140px; margin-bottom: 10px; margin-right: 10px;">
+              <mat-icon>error_outline</mat-icon> จัดการกลุ่ม
+            </button>
+            <button (click)="goAccountManage()" mat-button class="danger-button-custom" style="height: 45px; width: 140px;">
+              <mat-icon>settings</mat-icon> จัดการบัญชี
+            </button>
             <br>
           </div>
         </div>
@@ -55,3 +64,34 @@
     <div class="col-md-2"></div>
   </div>
 </div>
+
+
+<!-- ************ edit dialog ************* -->
+<ng-template #editDialog>
+
+  <div class="example-form">
+    <h4 matDialogTitle>Config Association Rule prediction</h4>
+    <hr>
+    <form [formGroup]="editForm">
+
+      <mat-form-field class="example-full-width">
+        <input matInput #sup type="number" formControlName="support" placeholder="Support %" required>
+        <mat-error>Support is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput #conf type="number" formControlName="confidence" placeholder="Confidence %" required>
+        <mat-error>Confidence is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+      <hr>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="onEditConfig(editForm.value)" [disabled]="!editForm.valid">Change</button>
+        <span>
+          <button style="margin-left: 10px;" mat-raised-button matDialogClose color="warn">Dismiss</button>
+        </span>
+      </mat-dialog-actions>
+    </form>
+  </div>
+
+</ng-template>

@@ -71,7 +71,7 @@ export class PredictionService {
   }
 
   teacherPredict(data): Promise<any> {
-    return this.connection.requestPost('prediction/group/prediction', data)
+    return this.connection.requestPredict('prediction/group/prediction', data)
       .then((response) => {
         return response;
       })

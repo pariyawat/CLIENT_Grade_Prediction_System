@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.loginService.toLogin(loginForm.value)
       .then((response) => {
         if (response.code) {
-          this.toastr.error(`Login ไม่สำเร็จ`, 'Error');
+          this.toastr.error(`ไม่สามารถเชื่อมต่อฐานข้อมูลได้`, 'Error');
         } else if (response) {
           this.authService.setActiveUser(<IActiveUser>response);
           this.route.navigate([redirectLink.homePage]);

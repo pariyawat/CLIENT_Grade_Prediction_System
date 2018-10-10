@@ -6,9 +6,13 @@
         <label>ผลการทำนาย </label>
       </div>
       <div class="col-md-6" style="text-align: right;">
-        <button mat-raised-button class="primary-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+        <button *ngIf="!gpaShow" mat-raised-button (click)="gpaShow = true" class="primary-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
           <mat-icon>exposure</mat-icon>
           <span> คำนวนเกรดเฉลี่ย(GPA)</span>
+        </button>
+        <button *ngIf="gpaShow" mat-raised-button (click)="gpaShow = false" class="warning-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+          <mat-icon>exposure</mat-icon>
+          <span> ปิดเกรดเฉลี่ย(GPA)</span>
         </button> |
         <button mat-raised-button class="danger-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
           <mat-icon>file_copy</mat-icon>
@@ -17,6 +21,39 @@
       </div>
     </div>
     <hr>
+
+    <div *ngIf="gpaShow"  [@fadeInOut] class="result-box">
+      <div class="card border-card ">
+        <div class="card-header bg-head-card text-center" style="font-weight: 300;   font-family: 'Kanit', sans-serif;">
+          เกรดเฉลี่ย
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card ">
+                <div class="card-header text-center" style="color: #004e92;">
+                  Decision Tree
+                </div>
+                <div class="card-body card-body-in show-gpa" style="text-align: center">
+                 GPA : {{gpaDT}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card ">
+                <div class="card-header text-center" style="color: #004e92;">
+                  Association Rules
+                </div>
+                <div class="card-body card-body-in show-gpa" style="text-align: center">
+                  GPA  : {{gpaASSO}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="result-box" *ngFor="let Rusult of myResult">
       <div class="card border-card ">
         <div class="card-header bg-head-card text-center">

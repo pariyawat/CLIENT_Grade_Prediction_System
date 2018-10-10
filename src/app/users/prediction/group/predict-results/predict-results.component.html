@@ -6,17 +6,21 @@
         <label>ผลการทำนาย </label>
       </div>
       <div class="col-md-9" style="text-align: right;">
-        <button mat-raised-button class="primary-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
-          <mat-icon>exposure</mat-icon>
-          <span> คำนวนเกรดเฉลี่ย(GPA)</span>
-        </button> |
-        <button *ngIf="showTable" (click)="openChart()" mat-raised-button class="warning-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+        <button *ngIf="showTable" (click)="openChart()" mat-raised-button class="info-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
           <mat-icon>bar_chart</mat-icon>
           <span> แสดงกราฟ </span>
         </button>
         <button *ngIf="showChart" (click)="openTable()" mat-raised-button class="success-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
           <mat-icon>list_alt</mat-icon>
           <span> แสดงตาราง </span>
+        </button>|
+        <button *ngIf="!gpaShow" mat-raised-button (click)="gpaShow = true" class="primary-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+          <mat-icon>exposure</mat-icon>
+          <span> คำนวนเกรดเฉลี่ย(GPA)</span>
+        </button>
+        <button *ngIf="gpaShow" mat-raised-button (click)="gpaShow = false" class="warning-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+          <mat-icon>exposure</mat-icon>
+          <span> ปิดเกรดเฉลี่ย(GPA)</span>
         </button>|
         <button mat-raised-button (click)="exportPDF()" class="danger-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
           <mat-icon>file_copy</mat-icon>
@@ -25,10 +29,41 @@
       </div>
     </div>
     <hr>
+    <!-- ************************* แสดงเกรดเฉลี่ย *********************** -->
+    <div *ngIf="gpaShow"  [@fadeInOut] class="result-box" style="font-family: 'Kanit', sans-serif;font-weight: 300;">
+      <div class="card border-card ">
+        <div class="card-header bg-head-card ">
+         เกรดเฉลี่ย (GPA)
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-hover" >
+            <thead>
+              <tr>
+                <th scope="col">รหัสนักศึกษา</th>
+                <th scope="col">ชื่อ-นามสกุล</th>
+                <th scope="col">Decision Tree</th>
+                <th scope="col">Association Rule</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of myDataResult">
+                <td>{{data.results[0].STD_ID}}</td>
+                <td>{{data.results[0].STD_NAME}}</td>
+                <td>{{data.gpaDT}}</td>
+                <td>{{data.gpaASSO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <hr>
+    </div>
+
 
     <!-- ************************* กล่องแสดงคำตอบ *********************** -->
     <div #contents id='contents'>
-      <div *ngIf="showTable">
+      <div  [@fadeInOut] *ngIf="showTable">
         <div class="result-box" *ngFor="let data of myDataResult">
           <div class="card border-card ">
             <div class="card-header bg-head-card ">
@@ -64,17 +99,13 @@
 
             </div>
           </div>
-
-          <!-- <div style="text-align: right;">
-              sssssssssssssssssssssssss
-            </div> -->
           <hr>
         </div>
       </div>
 
 
       <!-- ************************* แสดงกราฟ *********************** -->
-      <div *ngIf="showChart">
+      <div  [@fadeInOut] *ngIf="showChart">
         <div class="result-box" *ngFor="let graph of myGraphResult">
           <div class="card border-card ">
             <div class="card-header graph-head-card text-center ">

@@ -187,4 +187,56 @@ export class AccountsService {
         throw error;
       });
   }
+
+  getAdmin(admin_id): Promise<any> {
+    return this.connect.requestGet('manage/admin/' + admin_id)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  changePassAdmin(data): Promise<any> {
+    return this.connect.requestPut('manage/admin/chang-pass', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  editAdmin(data): Promise<any> {
+    return this.connect.requestPut('manage/admin/edit/profile', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  getConfig(): Promise<any> {
+    return this.connect.requestGet('prediction/config')
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+
+  editConfig(data): Promise<any> {
+    return this.connect.requestPut('prediction/config/edit', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
 }

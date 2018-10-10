@@ -173,7 +173,7 @@ export class GradeStudentComponent implements OnInit {
           window.scrollTo(0, 0);
           this.addGradeForm.reset();
         } else if (response.error.length) {
-          this.toastr.error(`ไม่พบรหัส ${data.subject_id} ในฐาข้อมูล`, 'Error');
+          this.toastr.error(`ไม่พบรหัส ${data.subject_id} ในฐานข้อมูล`, 'Error');
         }
       })
       .catch((error) => {

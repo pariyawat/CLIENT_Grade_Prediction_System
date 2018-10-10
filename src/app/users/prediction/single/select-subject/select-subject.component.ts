@@ -34,7 +34,7 @@ export class SelectSubjectComponent implements OnInit {
     private modalService: NgbModal) { }
 
 
-  private subjectSelected = [];
+  public subjectSelected = [];
   private user: IActiveUser = this.authService.getActiveUser();
   private dataToserver = [];
 

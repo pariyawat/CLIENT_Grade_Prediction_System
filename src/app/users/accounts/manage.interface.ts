@@ -19,3 +19,10 @@ export interface IStudent {
     group_name: string;
     email_address: string;
 }
+
+export interface IAdmin {
+    admin_id: string;
+    first_name: string;
+    last_name: string;
+    email_address: string;
+}

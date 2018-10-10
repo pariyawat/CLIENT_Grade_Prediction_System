@@ -5,6 +5,7 @@ import { redirectLink, appURL } from '../../../../@common/models/app.url';
 import { IPredictGroupsResult, IDataGroupResult, IGraphResult } from '../../prediction-group.interface';
 import { MatDialog } from '@angular/material';
 import { ConnectionService } from '../../../../@common/service/connection.service';
+import { trigger, transition, animate, style } from '@angular/animations';
 // import * as jsPDF from 'jspdf';
 
 declare let jsPDF;
@@ -12,7 +13,18 @@ declare let jsPDF;
 @Component({
   selector: 'app-predict-results',
   templateUrl: './predict-results.component.html',
-  styleUrls: ['./predict-results.component.css']
+  styleUrls: ['./predict-results.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(1000, style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class PredictResultsComponent implements OnInit {
   public myDataResult: IDataGroupResult[];
@@ -22,6 +34,7 @@ export class PredictResultsComponent implements OnInit {
 
   public showTable: boolean;
   public showChart: boolean;
+  public gpaShow: boolean;
 
   constructor(
     private predictService: PredictionService,

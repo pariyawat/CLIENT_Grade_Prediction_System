@@ -3,11 +3,23 @@ import { PredictionService } from '../../prediction.service';
 import { Router } from '@angular/router';
 import { redirectLink } from '../../../../@common/models/app.url';
 import { AuthenticationService } from '../../../../@common/service/authentication.service';
+import { trigger, transition, animate, style } from '@angular/animations';
 
 @Component({
   selector: 'app-predict-result',
   templateUrl: './predict-result.component.html',
-  styleUrls: ['./predict-result.component.css']
+  styleUrls: ['./predict-result.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({ opacity: 0 }),
+        animate(1000, style({ opacity: 1 }))
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(1000, style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class PredictResultComponent implements OnInit {
 
@@ -15,6 +27,7 @@ export class PredictResultComponent implements OnInit {
   public gpaDT;
   public gpaASSO;
   public user;
+  public gpaShow: boolean;
   constructor(
     private predictService: PredictionService,
     private route: Router,
@@ -40,5 +53,6 @@ export class PredictResultComponent implements OnInit {
 
     console.log(this.myResult);
   }
+
 
 }
