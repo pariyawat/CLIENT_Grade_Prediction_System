@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { IGraphResult } from '../../prediction-group.interface';
 import { NgxEchartsDirective } from 'ngx-echarts/lib/ngx-echarts.directive';
 
 @Component({
@@ -9,7 +8,7 @@ import { NgxEchartsDirective } from 'ngx-echarts/lib/ngx-echarts.directive';
 })
 export class PieChartComponent implements OnInit {
 
-  @Input() myGraph: IGraphResult;
+  @Input() myGraph;
   public optionAsso: any;
   public optionDT: any;
   public optionAssoBar: any;
@@ -47,7 +46,7 @@ export class PieChartComponent implements OnInit {
   }
   createOptionDT() {
     this.optionAsso = {
-      color: ['#b700e5', '#411fba', '#008bcc', '#00cc6c', '#61ea00', '#eaab00', '#ea6900', '#ea2300', '#9e9e9e'],
+      color: ['#b700e5', '#411fba', '#008bcc', '#00cc6c', '#61ea00', '#eaab00', '#ea6900', '#ea2300', '#a34900', '#f2e200', '#9e9e9e'],
       tooltip: {
         trigger: 'item',
         formatter: 'Grade {b} : {c} ({d}%)',
@@ -55,7 +54,7 @@ export class PieChartComponent implements OnInit {
       legend: {
         orient: 'horizontal',
         bottom: 'left',
-        data: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'N/A'],
+        data: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'U', 'S', 'N/A'],
         textStyle: {
           color: '#a30000',
         },
@@ -75,6 +74,8 @@ export class PieChartComponent implements OnInit {
             { value: this.graphASSO[2], name: 'D+' },
             { value: this.graphASSO[1], name: 'D' },
             { value: this.graphASSO[0], name: 'F' },
+            { value: this.graphASSO[9], name: 'U' },
+            { value: this.graphASSO[10], name: 'S' },
             { value: this.graphASSO[8], name: 'N/A' },
           ],
           itemStyle: {
@@ -98,7 +99,7 @@ export class PieChartComponent implements OnInit {
 
   createOptionASSO() {
     this.optionDT = {
-      color: ['#b700e5', '#411fba', '#008bcc', '#00cc6c', '#61ea00', '#eaab00', '#ea6900', '#ea2300', '#9e9e9e'],
+      color: ['#b700e5', '#411fba', '#008bcc', '#00cc6c', '#61ea00', '#eaab00', '#ea6900', '#ea2300', '#a34900', '#f2e200', '#9e9e9e'],
       tooltip: {
         trigger: 'item',
         formatter: 'Grade {b} : {c} ({d}%)',
@@ -106,7 +107,7 @@ export class PieChartComponent implements OnInit {
       legend: {
         orient: 'horizontal',
         bottom: 'left',
-        data: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'N/A'],
+        data: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'U', 'S', 'N/A'],
         textStyle: {
           color: '#a30000',
         },
@@ -126,6 +127,8 @@ export class PieChartComponent implements OnInit {
             { value: this.graphDT[2], name: 'D+' },
             { value: this.graphDT[1], name: 'D' },
             { value: this.graphDT[0], name: 'F' },
+            { value: this.graphDT[9], name: 'U' },
+            { value: this.graphDT[10], name: 'S' },
             { value: this.graphDT[8], name: 'N/A' },
           ],
           itemStyle: {
@@ -164,7 +167,7 @@ export class PieChartComponent implements OnInit {
       xAxis: [
         {
           type: 'category',
-          data: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'N/A'],
+          data: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'U', 'S', 'N/A'],
           axisTick: {
             alignWithLabel: true,
           },
@@ -209,6 +212,8 @@ export class PieChartComponent implements OnInit {
             { value: this.graphASSO[2], itemStyle: { color: '#eaab00' } },
             { value: this.graphASSO[1], itemStyle: { color: '#ea6900' } },
             { value: this.graphASSO[0], itemStyle: { color: '#ea2300' } },
+            { value: this.graphASSO[9], itemStyle: { color: '#a34900' } },
+            { value: this.graphASSO[10], itemStyle: { color: '#f2e200' } },
             { value: this.graphASSO[8], itemStyle: { color: '#9e9e9e' } },
           ],
         },
@@ -236,7 +241,7 @@ export class PieChartComponent implements OnInit {
       xAxis: [
         {
           type: 'category',
-          data: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'N/A'],
+          data: ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'U', 'S', 'N/A'],
           axisTick: {
             alignWithLabel: true,
           },
@@ -281,6 +286,8 @@ export class PieChartComponent implements OnInit {
             { value: this.graphDT[2], itemStyle: { color: '#eaab00' } },
             { value: this.graphDT[1], itemStyle: { color: '#ea6900' } },
             { value: this.graphDT[0], itemStyle: { color: '#ea2300' } },
+            { value: this.graphDT[9], itemStyle: { color: '#a34900' } },
+            { value: this.graphDT[10], itemStyle: { color: '#f2e200' } },
             { value: this.graphDT[8], itemStyle: { color: '#9e9e9e' } },
           ],
         },

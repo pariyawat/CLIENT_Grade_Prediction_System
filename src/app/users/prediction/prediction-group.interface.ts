@@ -1,38 +1,27 @@
 
 // ******************Interface Group Prediction Result**********************
-
-export interface DT {
-    Grade: string;
-    Accuracy: number;
-}
-
-export interface ASSO {
-    Grade: string;
-    Confidence: number;
-}
-
-export interface Result {
-    STD_ID: string;
-    STD_NAME: string;
-    SUB_NAME: string;
-    CREDIT: number;
-    DT: DT;
-    ASSO: ASSO;
-}
-
-export interface IDataGroupResult {
-    results: Result[];
-    gpaDT: number;
-    gpaASSO: number;
-}
-
-export interface IGraphResult {
-    SUB_NAME: string;
-    graphDT: number[];
-    graphASSO: number[];
-}
-
 export interface IPredictGroupsResult {
-    data: IDataGroupResult[];
-    graph: IGraphResult[];
+  gpaASSO: number;
+  gpaDT: number;
+  results: IResult[];
+}
+
+export interface IResult {
+  ASSO: IASSO;
+  CREDIT: number;
+  DT: IDT;
+  STD_ID: string;
+  STD_NAME: string;
+  SUB_CPE: string;
+  SUB_NAME: string;
+}
+
+export interface IDT {
+  Accuracy: number;
+  Grade: string;
+}
+
+export interface IASSO {
+  Confidence: number;
+  Grade: string;
 }

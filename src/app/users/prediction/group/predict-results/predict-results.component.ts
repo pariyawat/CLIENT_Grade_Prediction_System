@@ -2,13 +2,10 @@ import { Component, OnInit, ViewChild, TemplateRef, ElementRef } from '@angular/
 import { PredictionService } from '../../prediction.service';
 import { Router } from '@angular/router';
 import { redirectLink, appURL } from '../../../../@common/models/app.url';
-import { IPredictGroupsResult, IDataGroupResult, IGraphResult } from '../../prediction-group.interface';
 import { MatDialog } from '@angular/material';
 import { ConnectionService } from '../../../../@common/service/connection.service';
 import { trigger, transition, animate, style } from '@angular/animations';
-// import * as jsPDF from 'jspdf';
-
-declare let jsPDF;
+import { IPredictGroupsResult } from '../../prediction-group.interface';
 
 @Component({
   selector: 'app-predict-results',
@@ -27,8 +24,9 @@ declare let jsPDF;
   ]
 })
 export class PredictResultsComponent implements OnInit {
-  public myDataResult: IDataGroupResult[];
-  public myGraphResult: IGraphResult[];
+  public myDataResult: IPredictGroupsResult[];
+  public myGraph = [];
+
   @ViewChild('chartDialog') chartDialog: TemplateRef<any>;
   @ViewChild('contents') contents: ElementRef;
 
@@ -43,19 +41,81 @@ export class PredictResultsComponent implements OnInit {
     private connection: ConnectionService
   ) { }
 
-  ngOnInit() {
+  async  ngOnInit() {
+
     this.openTable();
-    const data = this.predictService.getGroupResult();
+    const data = await this.predictService.getGroupResult();
     if (!data) {
       this.route.navigate([redirectLink.groupPrediction]);
     } else {
-
-      console.log('have a result ===', data);
-      this.myDataResult = data.data;
-      this.myGraphResult = data.graph;
+      console.table(this.myDataResult);
+      this.myDataResult = await data;
+      await this.predictService.plotGraph(this.myDataResult)
+      .then((response) => {
+        console.log(response);
+        this.myGraph = response;
+      }).catch((error) => {
+        throw error;
+      });
     }
-
   }
+
+  // async mapGraph(data: IPredictGroupsResult[]) {
+  //   const bySubject = [];
+  //   await data.forEach((element) => {
+  //     element.results.forEach((item) => {
+  //       const subject = {
+  //         SUB_CPE: item.SUB_CPE,
+  //         SUB_NAME: item.SUB_NAME,
+  //         ASSO: item.ASSO.Grade,
+  //         DT: item.DT.Grade
+  //       };
+  //       bySubject.push(subject);
+  //     });
+  //   });
+  //   console.log('#####################################', bySubject);
+
+  //   const grade = {
+  //     'A': 0,
+  //     'B': 0,
+  //     'B+': 0,
+  //     'C': 0,
+  //     'C+': 0,
+  //     'D': 0,
+  //     'D+': 0,
+  //     'F': 0,
+  //     '?': 0,
+  //     'S': 0,
+  //     'U': 0,
+  //   };
+
+  //   await bySubject.forEach((item: {
+  //     SUB_CPE: string,
+  //     SUB_NAME: string,
+  //     ASSO: string,
+  //     DT: string,
+  //   }) => {
+  //     if (this.myGraph[item.SUB_CPE] === undefined) {
+  //       this.myGraph[item.SUB_CPE] = {};
+  //       this.myGraph[item.SUB_CPE]['ASSO'] = {};
+  //       this.myGraph[item.SUB_CPE]['DT'] = {};
+
+  //       Object.assign(this.myGraph[item.SUB_CPE]['ASSO'], grade);
+  //       Object.assign(this.myGraph[item.SUB_CPE]['DT'], grade);
+  //     }
+  //     this.myGraph[item.SUB_CPE]['ASSO'][item.ASSO]++;
+  //     this.myGraph[item.SUB_CPE]['DT'][item.DT]++;
+
+
+
+  //   });
+  //   console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', this.myGraph);
+
+  // }
+
+  // log() {
+  //   this.mapGraph(this.myDataResult);
+  // }
 
   openChart() {
     this.showTable = false;
@@ -64,22 +124,5 @@ export class PredictResultsComponent implements OnInit {
   openTable() {
     this.showTable = true;
     this.showChart = false;
-  }
-
-  public exportPDF() {
-
-    const doc = new jsPDF('p', 'pt');
-    const columns = ['ID', 'Name', 'Age', 'City'];
-
-    const data = [
-      [1, 'Jonathan', 25, 'Gothenburg'],
-      [2, 'Simon', 23, 'Gothenburg'],
-      [3, 'Hanna', 21, 'Stockholm']
-    ];
-    doc.autoTable(columns, data);
-    doc.save('table.pdf');
-
-
-
   }
 }

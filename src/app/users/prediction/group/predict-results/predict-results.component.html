@@ -22,7 +22,7 @@
           <mat-icon>exposure</mat-icon>
           <span> ปิดเกรดเฉลี่ย(GPA)</span>
         </button>|
-        <button mat-raised-button (click)="exportPDF()" class="danger-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
+        <button mat-raised-button class="danger-button-custom" style=" border-radius: 7px; font-family: 'Kanit', sans-serif;">
           <mat-icon>file_copy</mat-icon>
           <span> ดาวน์โหลด PDF </span>
         </button>
@@ -63,7 +63,7 @@
 
     <!-- ************************* กล่องแสดงคำตอบ *********************** -->
     <div #contents id='contents'>
-      <div  [@fadeInOut] *ngIf="showTable">
+      <div  [@fadeInOut] *ngIf="showTable" style="font-family: 'Kanit', sans-serif;font-weight: 300;">
         <div class="result-box" *ngFor="let data of myDataResult">
           <div class="card border-card ">
             <div class="card-header bg-head-card ">
@@ -74,7 +74,8 @@
                 <thead class="text-center">
                   <tr>
                     <th rowspan="2">#</th>
-                    <th rowspan="2" style="min-width: 400px;">SUBJECT LIST</th>
+                    <th rowspan="2">SUBJECT LIST</th>
+                    <th rowspan="2">Credit</th>
                     <th colspan="2">Decision Tree</th>
                     <th colspan="2">Association Rule</th>
                   </tr>
@@ -89,6 +90,7 @@
                   <tr *ngFor="let result of data.results, let i =  index">
                     <td>{{i+1}}</td>
                     <td> {{result.SUB_NAME}}</td>
+                    <td class="text-center"> {{result.CREDIT}}</td>
                     <td class="text-center">{{result.DT.Grade}}</td>
                     <td class="text-center">{{result.DT.Accuracy}} %</td>
                     <td class="text-center">{{result.ASSO.Grade}}</td>
@@ -106,7 +108,7 @@
 
       <!-- ************************* แสดงกราฟ *********************** -->
       <div  [@fadeInOut] *ngIf="showChart">
-        <div class="result-box" *ngFor="let graph of myGraphResult">
+        <div class="result-box" *ngFor="let graph of myGraph">
           <div class="card border-card ">
             <div class="card-header graph-head-card text-center ">
               {{graph.SUB_NAME}}

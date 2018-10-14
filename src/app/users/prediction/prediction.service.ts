@@ -6,7 +6,7 @@ import { IPredictGroupsResult } from './prediction-group.interface';
 @Injectable()
 export class PredictionService {
   public myResult: IPredictResult;
-  public myGroupResult: IPredictGroupsResult;
+  public myGroupResult: IPredictGroupsResult[];
 
   constructor(private connection: ConnectionService) { }
 
@@ -31,7 +31,7 @@ export class PredictionService {
   }
 
   studentPredict(subject): Promise<any> {
-    return this.connection.requestPost('prediction/single/std-predict', subject)
+    return this.connection.requestPredict('prediction/single/std-predict', subject)
       .then((response) => {
         return response;
       })
@@ -91,19 +91,30 @@ export class PredictionService {
 
   }
 
-  saveResult(data) {
+  public plotGraph(data): Promise<any> {
+    return this.connection.requestPost('prediction/group/graph/plot' , data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+
+  }
+// ###################################################################################//
+  public saveResult(data) {
     this.myResult = data;
   }
 
-  getResult() {
+  public getResult() {
     return this.myResult;
   }
 
-  saveGroupResult(data) {
+  public saveGroupResult(data) {
     this.myGroupResult = data;
   }
 
-  getGroupResult() {
+  public getGroupResult() {
     return this.myGroupResult;
   }
 }

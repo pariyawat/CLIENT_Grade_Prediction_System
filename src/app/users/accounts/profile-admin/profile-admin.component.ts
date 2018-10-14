@@ -31,7 +31,7 @@ export class ProfileAdminComponent implements OnInit {
     private authService: AuthenticationService,
     private route: Router,
     private dialog: MatDialog,
-    private toastr: ToastrService,) {
+    private toastr: ToastrService, ) {
     this.user = this.authService.getActiveUser();
   }
 
@@ -97,6 +97,7 @@ export class ProfileAdminComponent implements OnInit {
         if (response.affectedRows) {
           this.toastr.success(`แก้ไข้ข้อมูลสำเร็จ`, 'Success');
           this.dialog.closeAll();
+          this.ngOnInit();
         } else {
           this.toastr.warning(`ไม่สามารถแก้ไขได้`, 'Warning');
         }

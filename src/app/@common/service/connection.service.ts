@@ -92,7 +92,7 @@ export class ConnectionService {
     console.log('Path Connect to Server >>>>>>>>>>>>>>>>>>>>>>', appURL.ipServer + path);
     console.log('Data Sendtoserver :', data);
     return this.http
-      .post(appURL.ipServer + path, data, { headers: this.setHeader() }).pipe(timeout(1800000))
+      .post(appURL.ipServer + path, data, { headers: this.setHeader() }).pipe(timeout(600000))
       .toPromise()
       .then((response: Response) => {
         return response.json();

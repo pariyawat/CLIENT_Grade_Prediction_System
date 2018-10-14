@@ -6,6 +6,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatPaginatorIntl 
 import { PredictionService } from '../../prediction.service';
 import { IStudenByGroup, IGetSubjectPredict } from '../../prediction.interface';
 import { redirectLink } from '../../../../@common/models/app.url';
+import { IPredictGroupsResult } from '../../prediction-group.interface';
 
 @Component({
   selector: 'app-select-group',
@@ -39,7 +40,8 @@ export class SelectGroupComponent implements OnInit {
   public sbjSelected = [];
   private studentCanUse = [];
   private dataToServer = [];
-
+  private dataFinal = [];
+  private dataResult = [];
 
   ngOnInit() {
     this.getGroup();
@@ -134,6 +136,7 @@ export class SelectGroupComponent implements OnInit {
 
     this.predictService.getStudentByGroup(value.group)
       .then((response) => {
+        console.log('======================', response);
         response.forEach((std) => {
           if (std.ACT_SUB >= 7) {
             this.studentCanUse.push(std);
@@ -163,37 +166,49 @@ export class SelectGroupComponent implements OnInit {
     });
   }
 
-  public onTeacherPredict() {
-    this.dialog.open(this.loadingDialog, { disableClose: true, position: { top: '150px' } });
-    this.dataToServer = [];
-    for (const student of this.studentCanUse) {
-      for (const subject of this.sbjSelected) {
+  public async onTeacherPredict() {
 
-        const data = {
-          STD_ID: student['STD_ID'],
-          // STD_NAME: student['STD_NAME'],
-          SUB_CPE: subject['SUB_CPE'],
-          SUB_NAME: subject['SUB_NAME']
-        };
+    try {
+      this.dialog.open(this.loadingDialog, { disableClose: true, position: { top: '150px' } });
+      this.dataFinal = await [];
+      this.dataToServer = await [];
 
-        this.dataToServer.push(data);
-      }
-    }
-
-    this.predictService.teacherPredict(this.dataToServer)
-      .then((response) => {
-        console.log('>>>>>>>', response);
-        if (response) {
-          this.predictService.saveGroupResult(response);
-          this.dialog.closeAll();
-          this.route.navigate([redirectLink.groupResult]);
+      for (const student of this.studentCanUse) {
+        for (const subject of this.sbjSelected) {
+          const data = {
+            STD_ID: student['STD_ID'],
+            SUB_CPE: subject['SUB_CPE'],
+            SUB_NAME: subject['SUB_NAME']
+          };
+          this.dataFinal.push(data);
         }
-      })
-      .catch((error) => {
-        this.dialog.closeAll();
-        this.toastr.error('ไม่สามารถทำนายผลการเรียนได้', 'Error');
-        throw error;
-      });
+      }
+
+      for (let index = 0; index < this.dataFinal.length; index += this.sbjSelected.length) {
+        await this.dataToServer.push(this.dataFinal.slice(index, index + this.sbjSelected.length));
+
+      }
+
+      for (const data of this.dataToServer) {
+
+        await this.predictService.teacherPredict(data)
+          .then((response) => {
+            this.dataResult.push(response);
+          })
+          .catch((error) => {
+            throw error;
+          });
+      }
+      console.log(this.dataResult);
+      await this.predictService.saveGroupResult(this.dataResult);
+      await this.dialog.closeAll();
+      await this.route.navigate([redirectLink.groupResult]);
+
+    } catch (error) {
+      this.dialog.closeAll();
+      this.toastr.error('ไม่สามารถทำนายผลการเรียนได้', 'Error');
+      throw error;
+    }
   }
 
 }
