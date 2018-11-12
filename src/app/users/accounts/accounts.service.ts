@@ -218,6 +218,16 @@ export class AccountsService {
       });
   }
 
+  adminUploadData(data): Promise<any> {
+    return this.connect.requestPost('manage/admin/upload', data)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
   getConfig(): Promise<any> {
     return this.connect.requestGet('prediction/config')
       .then((response) => {

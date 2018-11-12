@@ -3,7 +3,31 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 profile-body">
-      
+
+      <div class="row">
+        <div class="col-md-12" style="text-align: right;">
+          <button mat-raised-button class="primary-button-custom" style="font-family: 'Kanit', sans-serif;  border-radius: 7px; height: 45px; width: 250px;"
+            (click)="download()">
+            <mat-icon>cloud_download</mat-icon> ดาวน์โหลดฟอร์มข้อมูล
+          </button>
+        </div>
+      </div>
+      <hr>
+
+      <!-- UPLOAD -->
+      <div class="file-upload">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <label>อัปโหลดผลการเรียนสำหรับการเรียนรู้</label>
+            <br>
+            <input #csvData type="file" accept=".csv" (change)="onCSV()" class="form-control form-control-sm input-custom1">
+            <br>
+            <button mat-raised-button color="accent" (click)="onAddGrade()" style=" font-family: 'Kanit', sans-serif;  border-radius: 7px; ">อัปโหลด</button>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
     </div>
     <div class="col-md-2"></div>
   </div>
