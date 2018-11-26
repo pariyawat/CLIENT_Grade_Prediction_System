@@ -27,7 +27,7 @@ export class GradeStudentComponent implements OnInit {
   public deleteItem;
   public editItem;
   private user: IActiveUser = this.authService.getActiveUser();
-  public grade: string[] = ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'S', 'U'];
+  public grade: string[] = ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F'];
   public gradeValue: string;
   public addGradeForm: FormGroup;
 

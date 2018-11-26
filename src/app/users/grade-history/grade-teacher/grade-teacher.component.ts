@@ -17,7 +17,7 @@ export class GradeTeacherComponent implements OnInit {
   public studentID;
   public deleteItem;
   public editItem;
-  public grade: string[] = ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', 'S', 'U'];
+  public grade: string[] = ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F'];
   public gradeValue: string;
   public displayedColumns: string[] = ['SUB_ID', 'SUB_NAME', 'GRADE', 'COURSE', 'ACTION'];
   public addGradeForm: FormGroup;

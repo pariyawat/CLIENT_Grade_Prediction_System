@@ -162,7 +162,7 @@ export class AdminStudentDataComponent implements OnInit {
       });
   }
 
-  public privateonDownload() {
+  public onDownload() {
     const link = document.createElement('a');
     link.href = 'assets/csv/add_student_model.csv';
     link.click();
